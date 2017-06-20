@@ -1,0 +1,141 @@
+<?php
+View::content();
+
+
+
+$css = file_get_contents('css/boot/bootstrap.css');
+
+
+
+$html = '
+<html>
+<head>
+
+
+
+<style> 
+
+
+@page { sheet-size: Letter; }
+
+
+#example1 {
+       background-image: url(img/carnet/carnetP1.png);;
+    background-position: right bottom, left top;
+    background-repeat: no-repeat, repeat;
+    width:816px;
+    height:220px;
+    
+}
+
+
+
+</style>
+
+
+</head>
+<body>
+
+<div id="example1">
+<div style="margin-left:150px; padding-top:73px;">
+<h6>5</h6>
+</div>
+
+<div  style="margin-left:96px; padding-top:0px;">
+<h6>Yeison Eduardo</h6>
+</div>
+
+<div  style="margin-left:96px; padding-top:-6px;">
+<h6>Caicedo Garzón</h6>
+</div>
+
+<div style="margin-left:96px; padding-top:-5px;">
+<h6>1084258757</h6>
+</div>
+
+
+<div  style="margin-left:96px; padding-top:-8px; ">
+<h6>O+</h6>
+
+
+
+<div  style="margin-left:290px; padding-top:-88px;">
+<h6>23/03/2017</h6>
+</div>
+
+<div  style="margin-left:450px; padding-top:-25px;">
+<h6>31/12/2017</h6>
+</div>
+
+<div style="margin-left:384px; padding-top:11px;">
+<h6><small>Vereda Belén</small></h6>
+</div>
+
+
+<div  style="margin-left:384px; padding-top:-8px; ">
+<h6><small>3125557879</small></h6>
+
+<div  style="margin-left:384px; padding-top:2px; ">
+<h6><small>Maria Melba Muñoz</small></h6>
+
+
+</div>
+
+
+
+
+
+</div>
+
+</body>
+</html>
+';
+
+
+
+
+
+
+$html2='<br> <br>';
+
+
+
+Load::lib('mpdf');
+
+
+// $mpdf = new mPDF('utf-8', array(896,477));
+
+
+$mpdf = new mPDF('c','', 0, '', '0', '0', '0', '0', '0', '0', 'Letter');
+
+//$mpdf = new mPDF('utf-8', 'Letter-L');
+
+
+
+$html = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
+
+$html2 = mb_convert_encoding($html2, 'UTF-8', 'UTF-8');
+
+$mpdf->WriteHTML($css, 1);
+
+
+
+
+$mpdf->WriteHTML($html);
+
+
+
+
+$string = 'carnetsGradoPreescolar.pdf';
+
+
+
+
+$mpdf->Output($string, 'I');
+
+
+exit;
+
+
+
+?>

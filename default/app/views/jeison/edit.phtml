@@ -1,0 +1,99 @@
+
+<!-- En este archivo está la plantilla Editar Nota -->
+<?php View::content(); ?> 
+
+<?php echo Form::open(); // por defecto llama a la misma url ?>
+
+<h4> Actualmente editando alumno : <?php echo $alumnoB->nombres  ?>  <?php echo $alumnoB->apellidos  ?> </h4>
+<h4> Grado: <?php echo $alumnoB->grado  ?> </h4>
+<h4> Materia : <?php echo $alumnoB->idAlumno  ?></h4>
+<h4> Periodo : </h4>
+
+<div class="row">
+
+    <div class="col-lg-3">
+
+        <div class="form-group">
+            <label>Faltas</label>
+             <input type="text" name="faltasF" id="faltasF" class="form-control" value="<?php echo $listaNotaB->faltas; ?>" >
+             <input type="hidden" name="idNotaF" id="idNotaF" class="form-control" value="<?php echo $listaNotaB->idNota; ?>" >
+        </div>
+
+        <div class="form-group">
+            <label>Taller</label>
+            <input type="text" name="tallerF"  id="tallerF" class="form-control" value="<?php echo $listaNotaB->taller; ?>">
+        </div>
+
+        <div class="form-group">
+            <label>Prueba Escrita</label>
+            <input type="text" name="pEscritaF"  id="pEscritaF" class="form-control" value="<?php echo $listaNotaB->pruebaEscrita; ?>">
+        </div>
+
+        <div class="form-group">
+            <label>Laboratorios</label>
+            <input type="text" name="labsF"  id="labsF" class="form-control" value="<?php echo $listaNotaB->laboratorios; ?>">
+        </div>
+
+       
+
+        
+
+
+    
+
+        <div class="form-group">
+            <label>Evaluación Oral</label>
+            <input type="text" name="eOralF"  id="eOralF" class="form-control" value="<?php echo $listaNotaB->evaluacionOral; ?>">
+        </div>
+
+    </div>
+        <div class="col-lg-3">
+        <div class="form-group">
+            <label>Evaluación Escrita</label>
+            <input type="text" name="eEscritaF"  id="eEscritaF" class="form-control" value="<?php echo $listaNotaB->evaluacionEscrita; ?>">
+        </div>
+        <div class="form-group">
+            <label>Puntualidad</label>
+            <input type="text" name="punF"  id="punF" class="form-control" value="<?php echo $listaNotaB->puntualidad; ?>">
+        </div>
+
+        <div class="form-group">
+            <label>Presentación Personal</label>
+            <input type="text" name="pPersonalF"  id="pPersonalF" class="form-control" value="<?php echo $listaNotaB->presentacionPersonal; ?>">
+        </div>
+
+        <div class="form-group">
+            <label>Comportamiento</label>
+            <input type="text" name="compF"  id="compF" class="form-control" value="<?php echo $listaNotaB->comportamiento; ?>">
+        </div>
+
+        <div class="form-group">
+            <label>Interés y Participación</label>
+            <input type="text" name="ipF"  id="ipF" class="form-control" value="<?php echo $listaNotaB->interesParticipacion; ?>">
+        </div>
+       
+       
+       
+
+    </div>
+
+</div>
+<!-- /.row -->
+
+<div class="row">
+
+    <div class="col-lg-3">
+        <button class="btn btn-success waves-effect waves-light" type="submit" name="Actualizar">Actualizar Notas
+            
+        </button>
+    </div>
+    <div class="col-lg-3">
+        <div class="actions">
+            <?= Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->
+
+<?php echo Form::close() ?>

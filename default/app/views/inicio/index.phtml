@@ -1,0 +1,47 @@
+<!doctype html> <!-- Aquí están las imágenes de la institución-->
+<html>
+<head>
+
+</head>
+<body>
+
+
+  <div class="container">
+ <h1> Información Útil </h1>
+
+ <h2>Teléfonos</h2>
+
+ <h2>Horario de entrada y Salida </h2>
+ <h3>08:00 am a 3:30 pm Lunes a Viernes</h3>
+
+
+ <h1>Servicios y otra información de Interés</h1>
+ 
+  </div>
+
+ <?php
+echo Tag:: js ( 'jquery/jquery' ); //Adiciona un archivo
+
+?>
+ <?php
+echo Tag:: js ( 'jquery/jquery.slides.min' ); //Adiciona un archivo
+
+?>
+  
+  <script>
+    $(function() {
+      $('#slides').slidesjs({
+        width: 940,
+        height: 528,
+        play: {
+          active: true,
+          auto: true,
+          interval: 4000,
+          swap: true
+        }
+      });
+    });
+  </script>
+  <!-- End SlidesJS Required -->
+</body>
+</html>

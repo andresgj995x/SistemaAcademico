@@ -1,0 +1,144 @@
+<?php View::content(); ?>
+
+<?php echo Form::open() ?>
+<html>
+<head>
+
+
+</head>
+
+<div class="row">
+    <div class="col-lg-2">
+        <div class="actions">
+            <?= Html::linkAction("create/", 'Crear nuevo alumno', 'class="btn btn-primary"') ?>
+        </div>
+    </div>
+    
+    <div class="col-lg-2">
+        <div class="actions">
+            <?= Html::linkAction("buscar/", 'Buscar alumno', 'class="btn btn-info"') ?>
+        </div>
+    </div>
+
+<div class="col-lg-2">
+        <div class="actions">
+            <?= Html::linkAction("index/", 'Mostrar Todos', 'class="btn btn-warning"') ?>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+
+        <div class="form-group" style="display:none;">
+            <input type="text" name="grado" id="grado" class="form-control" placeholder="Grado">
+             </div>
+             
+             <?php 
+             
+             $array = array();
+             if ($selector == 13) $array[0] = 'selected'; else $array[0] = '';
+             if ($selector == 1) $array[1] = 'selected'; else $array[1] = '';
+            if ($selector == 2) $array[2] = 'selected'; else $array[2] = '';
+             if ($selector == 3) $array[3] = 'selected'; else $array[3] = '';
+            if ($selector == 4) $array[4] = 'selected'; else $array[4] = '';
+             if ($selector == 5) $array[5] = 'selected'; else $array[5] = '';
+            if ($selector == 6) $array[6] = 'selected'; else $array[6] = '';
+             if ($selector == 7) $array[7] = 'selected'; else $array[7] = '';
+            if ($selector == 8) $array[8] = 'selected'; else $array[8] = '';
+             if ($selector == 9) $array[9] = 'selected'; else $array[9] = '';
+            if ($selector == 10) $array[10] = 'selected'; else $array[10] = '';
+             if ($selector == 11) $array[11] = 'selected'; else $array[11] = '';
+            
+            $_SESSION['selector']=$selector;
+
+
+             ?>
+           
+
+            <div class="form-group">
+            <select class="form-control"  name ="gradoF"id="gradoF">
+           <optgroup label="Grado">
+                <option value="13" <?= $array[0] ?>>Preescolar</option>
+                <option value="1" <?= $array[1] ?>>Primero</option>
+                <option value="2" <?= $array[2] ?>>Segundo</option>
+                <option value="3" <?= $array[3] ?>>Tercero</option>
+                <option value="4" <?= $array[4] ?>>Cuarto</option>
+                <option value="5" <?= $array[5] ?>>Quinto</option>
+                <option value="6" <?= $array[6] ?>>Sexto</option>
+                <option value="7" <?= $array[7] ?>>Séptimo</option>
+                <option value="8" <?= $array[8] ?>>Octavo</option>
+                <option value="9" <?= $array[9] ?>>Noveno</option>
+                <option value="10" <?= $array[10] ?>>Décimo</option>
+                <option value="11" <?= $array[11] ?>>Undécimo</option>
+                </optgroup>
+              
+            </select>
+
+        </div>
+
+
+    </div>
+
+    <div class="col-lg-2">
+        <button class="btn btn-success waves-effect waves-light" type="submit" name="Filtrar">Filtrar 
+            <!--?php echo Form::submit("Ingresar","class: boton"); ?--> 
+        </button>
+    </div>
+
+
+</div>
+<!-- /.row -->
+
+
+
+
+<?php echo Form::close() ?>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <br />
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Documento</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Genero</th>
+                        <th>RH</th>
+                        <th>Grado</th>
+                        <th>Estado</th>
+                        <th>Matricula</th>
+                        <th>Acudiente</th>
+                      
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   <?php for($i=0; $i<count($listaAlumnos); $i++) { ?>
+                            <tr>
+                                <td><?php echo ($i+1) ?></td>    
+                                <td><?php echo $listaAlumnos[$i]->identidadAl ?></td>
+                                <td><?php echo $listaAlumnos[$i]->nombre ?></td>
+                                <td><?php echo $listaAlumnos[$i]->apellido ?></td>
+                                <td><?php echo $listaAlumnos[$i]->genero ?></td>
+                                <td><?php echo $listaAlumnos[$i]->rh ?></td>
+                                <td><?php echo $listaAlumnos[$i]->nombreGrado ?></td>
+                                <td><?php echo $listaAlumnos[$i]->tipoEstado ?></td>
+                                <td><?php echo $listaAlumnos[$i]->estadoMatricula ?></td>
+                                <td><?php echo $listaAlumnos[$i]->nombreAcu ?></td>
+                               
+                                <td>
+                                   <?php  $temp=$listaAlumnos[$i]->idAlumno; ?>
+                                    <i class="fa fa-fw fa-edit"></i><?php echo Html::linkAction("edit/$temp", ' Editar','onclick="return confirm(\'¿Está seguro de editar este alumno?\')"') ?>
+                                                                   </td>
+                            </tr>
+                             <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+</html>

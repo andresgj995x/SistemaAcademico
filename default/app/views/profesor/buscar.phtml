@@ -1,0 +1,71 @@
+<?php View::content(); ?>
+
+<div class="row">
+    <div class="col-lg-3">
+        <div class="form-group input-group">
+            <span class="input-group-btn">
+                <?php echo Form::open("profesor/buscar/"); ?>
+               <h4>Primer o segundo nombre del profesor...</h4>
+                <input type="text" name="nombreProF" id ="nombreProF" class="form-control" placeholder="Primero o segundo nombre del profesor" required>
+                <button class="btn btn-default" type="submit" name="Buscar"><i class="fa fa-search"></i></button>
+                <?php echo Form::close(); ?>
+            </span>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->
+
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="table-responsive">     
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                        <th>Código</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Estado</th>
+                        <th>Cédula</th>
+                        
+                        <th>Acciones</th>
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                         <?php for($i=0; $i<count($listaAlumnos); $i++) { ?>
+                            <tr>
+                                <td><?php echo $listaAlumnos[$i]->idPro ?></td>    
+                                <td><?php echo $listaAlumnos[$i]->nombrePro ?></td>
+                                <td><?php echo $listaAlumnos[$i]->apellidoPro ?></td>
+                                <td><?php echo $listaAlumnos[$i]->estadoPro?></td>
+                                <td><?php echo $listaAlumnos[$i]->identidadPro ?></td>
+                                
+                               
+                                <td>
+                                   <?php  $temp=intval($listaAlumnos[$i]->idPro); ?>
+                                    <i class="fa fa-fw fa-edit"></i><?php echo Html::linkAction("edit/$temp/", ' Editar Rector(a)') ?>
+                                  
+                                </td>
+                            </tr>
+                             <?php } ?>
+                        </tbody>
+                    </table>
+                     
+            
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+
+<div class="row">
+
+    <div class="col-lg-1">
+        <div class="actions">
+            <?= Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->

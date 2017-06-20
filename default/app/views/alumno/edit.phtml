@@ -1,0 +1,249 @@
+<?php View::content(); ?>
+<?php
+for($i=0; $i<count($matricula2); $i++){
+
+   
+
+     $estadoMatricula=$matricula2[$i]->estadoMatricula;
+
+     $anioMatricula=$matricula2[$i]->anio_idAnio;
+    
+
+   
+}
+
+?>
+
+
+
+<?php echo Form::open(); ?>
+
+<div class="row">
+ <div class="col-lg-3">
+
+  <div class="form-group">
+    <label for="identificación">Identificación Alumno:</label>
+    <input type="number" class="form-control" id="identificacion" name ="identificacion" required value ="<?php echo $alumno->identidadAl ?>" >
+    <input type="hidden" id="idAl" name ="idAl" value ="<?php echo $idAl; ?>" >
+  </div>  
+
+
+
+ <div class="form-group">
+        <label for="nomF">Nombres</label>
+
+         <input type="text" name="nomF" id="nomF" class="form-control" value="<?php echo $alumno->nombre; ?>" placeholder="Nombres" required >
+
+ </div>
+
+ <div class="form-group">
+    <label for ="apeF">Apellidos</label>
+
+     <input type="text" name="apeF" id="apeF" class="form-control" value="<?php echo $alumno->apellido; ?>" placeholder="Apellidos" required >
+
+ </div>
+
+  <div class="form-group">
+            <label for ="estadoF">Estado</label> 
+            <select class="form-control" name ="estadoF" id ="estadoF">
+
+            <?php $array = array();
+            if ($alumno->estado_idEstado == 1) $array[0] = 'selected'; else $array[0] = '';
+            if ($alumno->estado_idEstado == 2) $array[1] = 'selected'; else $array[1] = '';
+
+             ?>
+                <option value="1" <?= $array[0] ?> >Activo</option>
+                <option value="2" <?= $array[1] ?> >Inactivo</option>
+            </select>
+  </div>
+
+
+ 
+
+
+</div><!-- FIN COLUMNA 1 ***************************************-->
+
+<div class="col-lg-3">
+
+
+
+        <div class="form-group">
+            <label for ="edadF">Fecha de Nacimiento</label>
+    <input type="date"  name="edadF" id="edadF" class="form-control"  value='<?php echo $alumno->nacimiento; ?>' required >
+        </div>
+
+
+        <div class="form-group">
+          <?php $array = array();
+            if ($alumno->genero == 'M') $array[0] = 'selected'; else $array[0] = '';
+            if ($alumno->genero == 'F') $array[1] = 'selected'; else $array[1] = '';
+
+             ?>
+            <label for ="generoF">Género</label>
+            <select class="form-control"  name ="generoF"id="generoF">
+
+                <option value ="M" <?= $array[0] ?> >Masculino</option>
+                <option value ="F" <?= $array[1] ?> >Femenino</option>
+            </select>
+        </div>
+
+          <div class="form-group">
+            <label for="dirF">Dirección</label>
+            <input type="text" name="dirF" id="dirF" class="form-control" value="<?php echo $alumno->dir; ?>" placeholder="Dirección" required>
+        </div>
+
+
+        <div class="form-group">
+            <label for="celF">Celular</label>
+            <input type="number" value="<?php echo $alumno->celular; ?>"  maxlength="10" size="10" name="celF" id="celF" class="form-control"  placeholder="Celular" >
+        </div>
+
+
+<!-- INSERT CODE HERE -->
+
+</div><!-- FIN COLUMNA 22222222222222222 ***************************************-->
+
+ <div class="col-lg-3">
+
+<div class="form-group">
+
+
+        <?php $array = array();
+            if ($alumno->rh == 'O+') $array[0] = 'selected'; else $array[0] = '';
+            if ($alumno->rh == 'O-') $array[1] = 'selected'; else $array[1] = '';
+            if ($alumno->rh == 'A+') $array[2] = 'selected'; else $array[2] = '';
+            if ($alumno->rh == 'A-') $array[3] = 'selected'; else $array[3] = '';
+            if ($alumno->rh == 'B+') $array[4] = 'selected'; else $array[4] = '';
+            if ($alumno->rh == 'B-') $array[5] = 'selected'; else $array[5] = '';
+            if ($alumno->rh == 'AB+') $array[6] = 'selected'; else $array[6] = '';
+            if ($alumno->rh == 'AB-') $array[7] = 'selected'; else $array[7] = '';
+        ?>
+            <label for ="rhF">RH</label> 
+            <select class="form-control" name ="rhF" id ="rhF">
+                <option value ="O+" <?= $array[0] ?> >O+</option>
+                <option  value ="O-" <?= $array[1] ?> >O-</option>
+                <option  value ="A+" <?= $array[2] ?> >A+</option>
+                <option  value ="A-" <?= $array[3] ?> >A-</option>
+                <option  value ="B+" <?= $array[4] ?> >B+</option>
+                <option  value ="B-" <?= $array[5] ?> >B-</option>
+                <option  value ="AB+" <?= $array[6] ?> >AB+</option>
+                <option  value ="AB-" <?= $array[7] ?> >AB-</option>
+            </select>
+        </div>
+
+       <div class="form-group">
+
+
+        <?php $array = array();
+            if ($alumno->grado_idGrado == 13) $array[0] = 'selected'; else $array[0] = '';
+            if ($alumno->grado_idGrado == 1) $array[1] = 'selected'; else $array[1] = '';
+            if ($alumno->grado_idGrado == 2) $array[2] = 'selected'; else $array[2] = '';
+            if ($alumno->grado_idGrado == 3) $array[3] = 'selected'; else $array[3] = '';
+            if ($alumno->grado_idGrado == 4) $array[4] = 'selected'; else $array[4] = '';
+            if ($alumno->grado_idGrado == 5) $array[5] = 'selected'; else $array[5] = '';
+            if ($alumno->grado_idGrado == 6) $array[6] = 'selected'; else $array[6] = '';
+            if ($alumno->grado_idGrado == 7) $array[7] = 'selected'; else $array[7] = '';
+            if ($alumno->grado_idGrado == 8) $array[9] = 'selected'; else $array[8] = '';
+            if ($alumno->grado_idGrado == 9) $array[9] = 'selected'; else $array[9] = '';
+            if ($alumno->grado_idGrado == 10) $array[10] = 'selected'; else $array[10] = '';
+            if ($alumno->grado_idGrado == 11) $array[11] = 'selected'; else $array[11] = '';
+        ?>
+            <label for ="gradoF">Grado Actual</label>
+            <select class="form-control" name ="gradoZ" id="gradoZ" data-style="btn-info">
+                 <option value ="13" <?= $array[0] ?> >Preescolar</option>
+                <option  value ="1" <?= $array[1] ?> >Primero</option>
+                <option  value ="2" <?= $array[2] ?> >Segundo</option>
+                <option  value ="3" <?= $array[3] ?> >Tercero</option>
+                <option  value ="4" <?= $array[4] ?> >Cuarto</option>
+                <option  value ="5" <?= $array[5] ?> >Quinto</option>
+                <option  value ="6" <?= $array[6] ?> >Sexto</option>
+                <option  value ="7" <?= $array[7] ?> >Séptimo</option>
+                <option  value ="8" <?= $array[8] ?> >Octavo</option>
+                <option  value ="9" <?= $array[9] ?> >Noveno</option>
+                <option  value ="10" <?= $array[10] ?> >Décimo</option>
+                <option  value ="11" <?= $array[11] ?> >Undécimo</option>
+            </select>
+        </div>
+
+         
+
+          <div class="form-group">
+            <label for ="idAcuF">Matricula Actual</label>
+
+            <input type="text"  value="<?php $var="-"; echo $estadoMatricula . $var . $anioMatricula;  ?>" class="form-control"  disabled>
+
+        </div>
+<div class="bg-danger">
+ <div class="form-group">
+            <label for="tipoMatF">Cambiar matricula a:</label> 
+           
+            <select class="form-control" name ="tipoMatF" id="tipoMatF">
+                <?php foreach ($matricula->items as $item) : ?>
+                    <option value="<?php echo $item->idMatricula ?>"> <?php echo $item->estadoMatricula ?> - <?php echo $item->anio_idAnio ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>    
+  </div>    
+
+
+
+
+
+</div><!-- FIN COLUMNA 33333333333333333 ***************************************-->
+
+<div class="col-lg-3">
+<div class="form-group">
+            <label for ="idAcuF">Cédula o TI (A)</label>
+
+            <input type="number"  maxlength="15" name ="idAcuF" id ="idAcuF" value="<?php echo $alumno->cedulaAcu; ?>" class="form-control" placeholder=" CC Acudiente" required>
+
+        </div>
+
+        <div class="form-group">
+            <label for ="nomAcuF">Nombre Completo (A)</label>
+
+            <input type="text"   name="nomAcuF" id="nomAcuF"  value="<?php echo $alumno->nombreAcu; ?>" class="form-control" placeholder="Nombre Completo" required>
+
+        </div>
+
+
+
+
+        <div class="form-group">
+            <label for ="dirAcuF">Dirección (A)</label>
+
+            <input type="text" name="dirAcuF" id="dirAcuF" class="form-control" value="<?php echo $alumno->dirAcu; ?>" placeholder="Dirección Acudiente" required>
+
+        </div>
+        <div class="form-group">
+            <label for ="celAcuF">Celular (A)</label>
+
+            <input type="number"  maxlength="10" size="10" name="celAcuF" id="celAcuF" value="<?php echo $alumno->celAcu; ?>" class="form-control"  placeholder="Celular Acudiente" >
+
+        </div>
+
+
+
+</div><!-- FIN COLUMNA 444444444444444444 ***************************************-->
+
+
+</div><!-- FIN FILA FORMULARIOOOOOOOOOOOOOOOOOO 1 *************************************** NO TOCAR--> 
+
+
+<div class="row"> <!-- INICIO BOTÓN ACCIONES **********************************-->
+
+    <div class="col-lg-1">
+        <button class="btn btn-success waves-effect waves-light" type="submit" name="Actualizar Alumno">Actualizar
+            
+        </button>
+    </div>
+    <div class="col-lg-1">
+        <div class="actions">
+            <?= Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->
+
+<?php echo Form::close(); ?>

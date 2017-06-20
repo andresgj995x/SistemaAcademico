@@ -1,0 +1,120 @@
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/SistemaAcademico/inicio" style ="font-size:23px">Institución Educativa Belén</a>
+    </div>
+    
+    <!-- Top Menu Items -->
+    <ul class="nav navbar-right top-nav">
+        <li class="dropdown">
+            <?php
+            $usuario = Auth::get('usuario');
+            if ($usuario != null) {
+                ?>
+                <a style ="font-size:17px" href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $usuario; ?> <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a style ="font-size:15px" href="/SistemaAcademico/usuarios/sesion"><i class="fa fa-fw fa-power-off"></i> Cerrar Sesión</a>
+                    </li>
+                </ul>
+            <?php } ?> 
+        </li>
+    </ul>
+    
+    <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav side-nav">
+            <li>
+                <a href="/SistemaAcademico/inicio"style ="font-size:18px"><i class="fa fa-fw fa-group"></i> Inicio</a>
+            </li>
+            <?php
+            $tipo = Auth::get('rol');
+            if ($tipo != null && $tipo == 1) {
+                ?>
+                
+                <li>
+                    <a style ="font-size:18px" href="/SistemaAcademico/profesor" id="Registro_Profesor"><i class="fa fa-fw fa-male"></i> Gestionar Profesores</a>
+                </li>
+
+                <li>
+                    <a style ="font-size:18px" href="/SistemaAcademico/alumno"><i class="fa fa-fw fa-child"></i> Gestionar Alumnos</a>
+                </li>
+
+                <li>
+                    <a style ="font-size:18px" href="/SistemaAcademico/notap"><i class="fa fa-fw fa-male"></i> Gestionar Notas</a>
+                </li>
+
+                 <li>
+                    <a style ="font-size:18px" href="/SistemaAcademico/logros"><i class="fa fa-stack-overflow"></i> Logros</a>
+                </li>
+
+                <li>
+                    <a style ="font-size:18px" href="/SistemaAcademico/materia"><i class="fa fa-fw fa-book"></i> Gestionar Materias</a>
+                </li> <!-- Fin Selectores Normales-->
+
+                
+
+
+                <li>
+                    <a style ="font-size:18px" href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-download"></i> Generables<i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="demo" class="collapse">
+                        <li>
+                            <a style ="font-size:17px"  href="/SistemaAcademico/generar/create_carnet">Carnet</a>
+                        </li>
+                        <li>
+                            <a style ="font-size:17px" href="/SistemaAcademico/generar/create_certificado">Certificado</a>
+                        </li>
+                        <li>
+                            <a style ="font-size:17px"  href="/SistemaAcademico/boletin">Boletín</a>
+                        </li>
+                        <li>
+                            <a style ="font-size:17px" href="/SistemaAcademico/generar/create_planilla">Planilla</a>
+                        </li>
+                        <li>
+                            <a style ="font-size:17px"   href="/SistemaAcademico/informe">Informe</a>
+                        </li>
+                        <li>
+                            <a style ="font-size:17px"  href="/SistemaAcademico/generar/create_informe_final">Informe Final</a>
+                        </li>
+                     
+                      
+                    </ul>
+                </li> <!-- Fin Lista Desplegable Generables -->
+                 <li>
+                    <a style ="font-size:18px" href="javascript:;" data-toggle="collapse" data-target="#demo2"><i class="fa fa-fw fa-edit"></i> Sistema<i class="fa fa-fw fa-caret-down"></i></a>
+                    <ul id="demo2" class="collapse">
+                        <li>
+                            <a style ="font-size:17px" href="/SistemaAcademico/sistema">Generar Año Lectivo</a>
+                        </li>
+                       
+                      
+                        <li>
+                            <a style ="font-size:17px"href="/SistemaAcademico/sistema/guia_usuario">Guía de Usuario Academic</a>
+                        </li>
+                   
+                    </ul>
+                </li> <!-- Fin Lista Desplegable Generables -->
+
+                <?php } else {
+                    if($tipo == 2) { ?>
+                    <li>
+                        <a style ="font-size:17px" href="/SistemaAcademico/nota"><i class="fa fa-fw fa-pencil"></i> Gestionar Notas</a>
+                    </li>
+                    <?php }
+                } ?>
+                 <li>
+                    <a style ="font-size:18px"href="/SistemaAcademico/inicio/acerca"><i class="fa fa-fw fa-info-circle"></i> Acerca de</a>
+                </li>
+           
+        </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+</nav>

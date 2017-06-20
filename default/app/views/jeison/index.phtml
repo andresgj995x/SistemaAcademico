@@ -1,0 +1,103 @@
+<?php View::content(); ?>
+<?php echo Form::open() ?>
+
+<div class="row">
+
+    <div class="col-lg-3">
+
+        <div class="form-group" style="display:none;">
+            <input type="text" name="grado" id="grado" class="form-control" placeholder="Grado">
+             </div>
+            <label for="exampleSelect1">Seleccionar el periodo</label>
+
+            <div class="form-group">
+            <select class="form-control"  name ="periodo1"id="periodo1">
+           <optgroup label="Periodos">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                </optgroup>
+              
+            </select>
+
+        </div>
+
+
+    </div>
+    
+  <div class="col-lg-2">
+
+        <div class="form-group" style="display:none;">
+            <input type="text" name="grado" id="grado" class="form-control" placeholder="Grado">
+             </div>
+            <label for="exampleSelect1">Seleccionar el grado</label>
+
+            <div class="form-group">
+            <select class="form-control"  name ="grado1"id="grado1">
+           <optgroup label="Grados">
+                <option>Preescolar</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                </optgroup>
+            </select>
+
+        </div>
+
+
+    </div>
+<div class="col-lg-2">
+
+        <div class="form-group" style="display:none;">
+            <input type="text" name="grado" id="grado" class="form-control" placeholder="Grado">
+             </div>
+            <label for="exampleSelect1">Seleccionar la materia</label>
+
+            <div class="form-group">
+            <select class="form-control"  name ="materia1"id="materia1">
+            <optgroup label="Materias">
+                <option>Matemáticas</option>
+                <option>Lengua Castellana</option>
+                <option>Inglés</option>
+                <option>Ciencias Sociales</option>
+                <option>Ciencias Naturales</option>
+                <option>Educación Artística</option>
+                <option>Educación Religiosa</option>
+                <option>Educación Física</option>
+                <option>Ética y Valores</option>
+                <option>Técnología e Informática</option>
+             </optgroup>
+            </select>
+
+        </div>
+
+
+    </div>
+</div>
+
+
+<div class="row">
+
+    <div class="col-lg-2">
+        <button class="btn btn-success waves-effect waves-light" type="submit" name="Ingresar">Comenzar a modificar notas... 
+            <!--?php echo Form::submit("Ingresar","class: boton"); ?--> 
+        </button>
+    </div>
+    <div class="col-lg-1">
+        <div class="actions" style="padding-left:40px;">
+            <?= Html::linkAction("atras", 'Atras', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->
+
+<?php echo Form::close() ?>

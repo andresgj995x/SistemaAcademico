@@ -1,0 +1,84 @@
+<?php View::content(); ?>
+
+
+
+
+
+
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="table-responsive">     
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Faltas</th>
+                        <th>Taller</th>
+                        <th>Prueba Escrita</th>
+                        <th>Laboratorios</th>
+                        <th>Evaluación Oral</th>
+                        <th>Evaluación Escrita</th>
+                        <th>Puntualidad</th>
+                        <th>Presentación Personal</th>
+                        <th>Comportamiento</th>
+                        <th>Interés y Participación</th>
+                        <th>Nota Final</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Este vector representa todas las columnas traídas con la siguiente sentencia SQL:
+   
+                    $sql="SELECT idAlumno,nombres,apellidos,faltas,taller,prueba_escrita,
+                    laboratorios,evaluacion_oral,evaluacion_escrita,puntualidad,presentacion_personal,
+                    comportamiento,interes_participacion,
+                     valorFinal from alumno inner join nota on idAlumno=alumno_idAlumno inner join nota_final on idNota=nota_idNota "; -->
+
+                    <?php for($i=0; $i<count($listaNotas); $i++) { ?>
+                    <tr>
+                        <td><?php echo $listaNotas[$i]->idAlumno ?></td>    
+                        <td><?php echo $listaNotas[$i]->nombres ?></td>
+                        <td><?php echo $listaNotas[$i]->apellidos ?></td>
+                        <td><?php echo $listaNotas[$i]->faltas ?></td>
+                        <td><?php echo $listaNotas[$i]->taller ?></td>
+                        <td><?php echo $listaNotas[$i]->prueba_escrita ?></td>
+                        <td><?php echo $listaNotas[$i]->laboratorios ?></td>
+                        <td><?php echo $listaNotas[$i]->evaluacion_oral ?></td>
+                        <td><?php echo $listaNotas[$i]->evaluacion_escrita ?></td>
+                        <td><?php echo $listaNotas[$i]->puntualidad ?></td>
+                        <td><?php echo $listaNotas[$i]->presentacion_personal ?></td>
+                        <td><?php echo $listaNotas[$i]->comportamiento?></td>
+                        <td><?php echo $listaNotas[$i]->interes_participacion ?></td>
+                        <td><?php echo $listaNotas[$i]->valorFinal ?></td>
+                        <td>
+                            <?php  $temp=intval($listaNotas[$i]->idAlumno); ?>
+                            <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#updateData">
+  Editar
+</button>
+                            
+                        </td>
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+
+<div class="row">
+
+    <div class="col-lg-1">
+        <div class="actions">
+            <?= Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->

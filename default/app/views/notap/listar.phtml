@@ -1,0 +1,244 @@
+<?php View::content(); 
+
+
+
+for($i=0; $i<count($periodo); $i++){
+
+   
+
+     $tempIdPeriodo=$periodo[$i]->idPeriodo;
+     $tempNumPeriodo=$periodo[$i]->numeroPeriodo;
+    
+
+    $_SESSION['tempIdPeriodo']=$tempIdPeriodo;
+
+}
+
+
+
+
+for($i=0; $i<count($materia); $i++){
+
+    
+    $tempIdMateria=$materia[$i]->idMateria;
+    $_SESSION['idMateriaGlobal']=$tempIdMateria;
+
+}
+
+for($i=0; $i<count($semestre); $i++){
+
+    
+    $tempIdSemestre=$semestre[$i]->idSemestre;
+     $_SESSION['tempIdSemestre']=$tempIdSemestre;
+}
+
+
+?>
+
+
+<?php 
+if(intval($gradoMateria)==13){
+
+$gradoM="PREESCOLAR";
+
+}elseif(intval($gradoMateria)==1){
+$gradoM="PRIMERO";
+
+}elseif(intval($gradoMateria)==2){
+
+  $gradoM="SEGUNDO";  
+}elseif(intval($gradoMateria)==3){
+$gradoM="TERCERO";
+    
+}elseif(intval($gradoMateria)==4){
+$gradoM="CUARTO";
+    
+}elseif(intval($gradoMateria)==5){
+
+  $gradoM="QUINTO";  
+}elseif(intval($gradoMateria)==6){
+
+   $gradoM="SEXTO"; 
+}elseif(intval($gradoMateria)==7){
+
+   $gradoM="SÉPTIMO"; 
+}elseif(intval($gradoMateria)==8){
+$gradoM="OCTAVO";
+    
+}elseif(intval($gradoMateria)==9){
+$gradoM="NOVENO";
+    
+}elseif(intval($gradoMateria)==10){
+$gradoM="DÉCIMO";
+    
+}elseif(intval($gradoMateria)==11){
+
+   $gradoM="UNDÉCIMO"; 
+}else {
+
+
+}
+
+
+
+
+?>
+
+
+
+<div class="row">
+
+  <div class="col-lg-12">
+
+    <div class="panel panel-primary">
+       <div class="panel-heading">Datos del curso actual</div>
+       <div class="panel-body">Año Lectivo Actual :<b> <?php echo $anioSel;?>  </b> &nbsp;   Periodo: <b><?php echo $periodoSel;?>
+         </b>  &nbsp; Materia Actual:<b> <?php  echo $nombreMateria; ?> </b> &nbsp; Grado:<b>
+         <?php  echo $gradoM; ?> </b>
+       
+       </div>
+    </div>
+
+  </div>  
+
+</div> <!-- Fin Header Row 1-->
+
+
+</div> <!-- Fin Fila 1 -->
+<!-- /.row -->
+
+<!-- FILAAAAAAAAAAAAAAAAAAAA CON NOTAS *******************************-->
+<div class="row">
+
+    <div class="col-lg-12"> <!-- INICIO DE LA TABLA ALUMNOS -->
+        <div class="table-responsive">     
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Número </th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                       
+                        <th class="info">Faltas </th>
+                        <th>Taller</th>
+                        <th>Prueba Escrita</th>
+                        <th>Laboratorios</th>
+                        <th>Evaluación Oral</th>
+                        <th>Evaluación Escrita </th>
+                        <th>Puntualidad</th>
+                        <th>Presentación Personal</th>
+                        <th>Comportamiento</th>
+                        <th>Interés y Participación</th>
+                        <th class="info">Nota Parcial</th>
+                        <th class="danger">Recuperación</th>
+                        <th class="success">Nota FINAL</th>
+
+
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+               
+
+                    <?php
+
+                       
+                 
+                     for($i=0; $i<count($listaNotas3); $i++) {
+        
+
+
+
+                     ?>
+                    <tr>
+                        <td><?php echo $i ?></td>    
+                        <td><?php echo $listaNotas3[$i]->nombre ?></td>
+                        <td><?php echo $listaNotas3[$i]->apellido ?></td>
+                        
+
+                        <td><?php echo $listaNotas3[$i]->faltas ?></td>
+                        <td><?php echo $listaNotas3[$i]->taller ?></td>
+                        <td><?php echo $listaNotas3[$i]->pEscrita ?></td>
+
+                        <td><?php echo $listaNotas3[$i]->labs ?></td>
+                        <td><?php echo $listaNotas3[$i]->eOral ?></td>
+                        <td><?php echo $listaNotas3[$i]->eEscrita ?></td>
+
+                        <td><?php echo $listaNotas3[$i]->punt ?></td>
+
+                        <td><?php echo $listaNotas3[$i]->pPersonal ?></td>
+                        <td><?php echo $listaNotas3[$i]->comp ?></td>
+                        <td><?php echo $listaNotas3[$i]->iParticipacion ?></td>
+                        <td> <?php echo $listaNotas3[$i]->notaParcial ?> </td>
+                        <td><?php echo $listaNotas3[$i]->recuperacion ?></td>
+                        <td> <?php echo $listaNotas3[$i]->notaFinal ?> </td>
+
+                        <!-- Espacio para calcular la nota final -->
+                   <?php 
+                     
+
+
+
+                   ?>
+                   
+                      
+                        <td>
+
+
+
+                            <?php  $nombre=trim($listaNotas3[$i]->nombre); ?>
+                            <?php  $temp2=trim(utf8_encode($listaNotas3[$i]->apellido)); ?> 
+                            <?php  $temp3=$listaNotas3[$i]->anio_idAnio; ?>
+
+                            <?php  $temp4=$listaNotas3[$i]->nombrePro; ?>
+                             <?php  $temp5=utf8_encode($listaNotas3[$i]->apellidoPro); ?>
+                            <?php  $temp6=$listaNotas3[$i]->numeroPeriodo; ?>
+                             <?php  $temp7=$listaNotas3[$i]->nombreMateria; ?>
+
+
+
+                             <?php $idAlumno =$listaNotas3[$i]->idAlumno?>
+                             <?php $id=$listaNotas3[$i]->idNotaP?>
+
+                            <?php 
+                              $nomMateria1=$_SESSION['nombreMateriaGlobal'];
+                              $gradoMateria1=$_SESSION['gradoIdGlobal'];
+
+                              //envío la Ñ que es el apellido de Ana Milena en el ejemplo que se daña.
+                              //La variable es $temp2
+
+                            ?>
+                       <i class="fa fa-fw fa-edit"></i><?php echo Html::linkAction("edit/$nombre/$temp2/$tempIdMateria/$tempIdPeriodo/$nomMateria1/$gradoMateria1/$tempIdSemestre/$idAlumno/$id", ' Editar Nota') ?>
+                            
+                        </td>
+                    </tr>
+                    <?php }?>
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+
+ 
+      <!-- fin FILA 2 NOTAS -->
+
+
+
+
+
+</div> <!-- Fin Fila 1 -->
+<hr>
+<!-- /.row -->
+<!-- /.row -->
+<div class="row">
+
+    <div class="col-lg-1">
+        <div class="actions">
+            <?php echo Html::linkAction("", 'Volver a selector principal', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+    
+
+</div>

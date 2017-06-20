@@ -1,0 +1,156 @@
+<?php View::content(); 
+
+
+
+for($i=0; $i<count($periodo); $i++){
+
+   
+
+     $tempIdPeriodo=$periodo[$i]->idPeriodo;
+     $tempNumPeriodo=$periodo[$i]->numeroPeriodo;
+    
+
+    $_SESSION['tempIdPeriodo']=$tempIdPeriodo;
+
+}
+
+
+
+
+for($i=0; $i<count($materia); $i++){
+
+    
+    $tempIdMateria=$materia[$i]->idMateria;
+    $_SESSION['idMateriaGlobal']=$tempIdMateria;
+
+}
+
+for($i=0; $i<count($semestre); $i++){
+
+    
+    $tempIdSemestre=$semestre[$i]->idSemestre;
+     $_SESSION['tempIdSemestre']=$tempIdSemestre;
+}
+
+
+
+
+
+?>
+
+
+<div class="row">
+
+    <div class="col-lg-12"> <!-- INICIO DE LA TABLA ALUMNOS -->
+        <div class="table-responsive">     
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Número </th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Notas</th>
+                        <th>Faltas </th>
+                        <th>Taller</th>
+                        <th>Prueba Escrita</th>
+                        <th>Laboratorios</th>
+                        <th>Evaluación Oral</th>
+                        <th>Evaluación Escrita </th>
+                        <th>Puntualidad</th>
+                        <th>Presentación Personal</th>
+                        <th>Comportamiento</th>
+                        <th>Interés y Participación</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+               
+
+                    <?php
+
+                       
+                 
+                     for($i=0; $i<count($listaNotas); $i++) {
+        
+
+
+
+                     ?>
+                    <tr>
+                        <td><?php echo $i ?></td>    
+                        <td><?php echo $listaNotas[$i]->nombre ?></td>
+                        <td><?php echo $listaNotas[$i]->apellido ?></td>
+                        <td><?php echo $listaNotas[$i]->notas ?></td>
+
+                        <td><?php echo $listaNotas[$i]->faltas ?></td>
+                        <td><?php echo $listaNotas[$i]->taller ?></td>
+                        <td><?php echo $listaNotas[$i]->pEscrita ?></td>
+
+                        <td><?php echo $listaNotas[$i]->labs ?></td>
+                        <td><?php echo $listaNotas[$i]->eOral ?></td>
+                        <td><?php echo $listaNotas[$i]->eEscrita ?></td>
+
+                        <td><?php echo $listaNotas[$i]->punt ?></td>
+
+                        <td><?php echo $listaNotas[$i]->pPersonal ?></td>
+                        <td><?php echo $listaNotas[$i]->comp ?></td>
+                        <td><?php echo $listaNotas[$i]->iParticipacion ?></td>
+                   
+                      
+                        <td>
+
+                           
+
+                            <?php  $temp1=$listaNotas[$i]->nombre; ?>
+                            <?php  $temp2=$listaNotas[$i]->apellido; ?>
+                            <?php  $temp3=$listaNotas[$i]->anio_idAnio; ?>
+
+                            <?php  $temp4=$listaNotas[$i]->nombrePro; ?>
+                             <?php  $temp5=$listaNotas[$i]->apellidoPro; ?>
+                            <?php  $temp6=$listaNotas[$i]->numeroPeriodo; ?>
+                             <?php  $temp7=$listaNotas[$i]->nombreMateria; ?>
+
+
+                             <?php $idAlumno =$listaNotas[$i]->idAlumno?>
+                             <?php $id=$listaNotas[$i]->idNotaP?>
+
+                            <?php 
+                              $nomMateria1=$_SESSION['nombreMateriaGlobal'];
+                              $gradoMateria1=$_SESSION['gradoIdGlobal'];
+
+
+                            ?>
+                       <i class="fa fa-fw fa-edit"></i><?php echo Html::linkAction("actualizar/$temp1/$temp2/$tempIdMateria/$tempIdPeriodo/$nomMateria1/$gradoMateria1/$tempIdSemestre/$idAlumno/$id", ' Editar') ?>
+                            
+                        </td>
+                    </tr>
+                    <?php }?>
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+
+ 
+      <!-- fin FILA 2 NOTAS -->
+
+
+
+
+
+</div> <!-- Fin Fila 1 -->
+<!-- /.row -->
+
+<div class="row">
+
+    <div class="col-lg-1">
+        <div class="actions">
+            <?= Html::linkAction("listar/", 'Volver a Lista', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+   
+
+</div>
+<!-- /.row -->

@@ -1,0 +1,686 @@
+<?php
+
+  View::content();
+  
+
+  $css = file_get_contents('css/sbadmin/bootstrap.css');
+  $espacio="&nbsp;";
+
+  $n=$_SESSION['p'];
+
+if(intval($n)==1){
+  $nombrePeriodo="PRIMER PERIODO";
+}elseif (intval($n)==2) {
+  $nombrePeriodo="SEGUNDO PERIODO"; 
+}elseif (intval($n)==3) {
+  $nombrePeriodo="TERCER PERIODO"; 
+}else {
+  $nombrePeriodo="CUARTO PERIODO";
+}
+
+
+  $director = $profesorEscogido->nombrePro.$espacio. $profesorEscogido->apellidoPro;
+
+  // Lo primero que haremos es traer al array de los alumnos con las notas.[MATEMÁTICAS]
+$listaM=$_SESSION['grupoBoletinM'];
+
+
+
+$listaL=$_SESSION['listaL'];
+$listaI=$_SESSION['listaI'];
+$listaS=$_SESSION['listaS'];
+$listaN=$_SESSION['listaN'];
+$listaA=$_SESSION['listaA'];
+$listaR=$_SESSION['listaR'];
+$listaF=$_SESSION['listaF'];
+$listaE=$_SESSION['listaE'];
+$listaT=$_SESSION['listaT'];
+
+
+$logroM=$_SESSION['logroM'];
+$logroL=$_SESSION['logroL'];
+$logroI=$_SESSION['logroI'];
+$logroS=$_SESSION['logroS'];
+$logroN=$_SESSION['logroN'];
+$logroA=$_SESSION['logroA'];
+$logroR=$_SESSION['logroR'];
+$logroF=$_SESSION['logroF'];
+$logroE=$_SESSION['logroE'];
+$logroT=$_SESSION['logroT'];
+
+
+
+$arrayH= array();
+
+for ($i=0; $i<count($listaM); $i++) { 
+
+ $arrayH[$i] = '
+
+<style>
+
+
+
+
+.gradient1 {
+    padding-top:0px;
+    margin: 0 !important;
+    padding: 0 !important;
+     
+     //  border:0.1mm solid #220044; 
+}
+
+.gradient2 {
+  
+     
+     //  border:0.1mm solid #220044; 
+}
+
+
+</style>
+
+  <div class="gradient1" style="float: left; position: absolute;overflow: visible;">
+    <img src="../public/img/escudoCol.jpg" height="120" width="120" />
+  </div>
+  <br />
+  
+  <div class="text-center"><small>
+    REPUBLICA DE COLOMBIA <br />
+    SECRETARÍA DE EDUCACIÓN DEPARTAMENTAL <br />
+    COLEGIO DEPARTAMENTAL INSTITUCIÓN EDUCATIVA BELÉN <br />
+    RESOLUCIÓN No. 9999 DE 2015 DECRETO 999 DE 2004 <br />
+    NIT: XXXX DANE 241359000160 <br />
+    ISNOS - HUILA</small><br />
+    BOLETÍN '.$nombrePeriodo.'
+  </div>
+
+   <div  style="float: right; position: fixed;overflow: visible; padding-left:600px;padding-top:-122px;">
+    <img src="../public/img/e.png" height="120" width="120" />
+  </div>
+  <br />
+
+<br />
+
+<div class="row text-center">
+  <div class="col-lg-12">
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th class="text-center">IDENTIFICACIÓN</th>
+            <th class="text-center">NOMBRES</th>
+            <th class="text-center">APELLIDOS</th>
+            <th class="text-center">GRADO</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-center">'.  $listaM[$i]->identidadAl .'</td>
+            <td class="text-center">'.  $listaM[$i]->nombre .'</td>
+            <td class="text-center">'.  $listaM[$i]->apellido .'</td>
+            <td class="text-center">'.  $listaM[$i]->nombreGrado .'</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-bordered table-hover table-striped">
+        <thead>
+          <tr>
+            <th class="text-center"><small>CÓDIGO</small></th>
+            <th class="text-center"><small>ASIGNATURA</small></th>
+            <th class="text-center"><small>VALORACIÓN</small></th>
+            <th class="text-center"><small>DESEMPEÑO</small></th>
+            <th class="text-center"><small>ESCALA NACIONAL</small></th>
+            <th class="text-center"><small>FALTAS</small></th>
+            
+          </tr>
+        </thead>
+        <tbody>';
+
+
+  $arrayNombres=array('MATEMÁTICAS','LENGUA CASTELLANA','INGLÉS','CIENCIAS SOCIALES',
+    'CIENCIAS NATURALES','EDUCACIÓN ARTÍSTICA','EDUCACIÓN RELIGIOSA','EDUCACIÓN FISICA',
+    'ÉTICA Y VALORES','INFORMÁTICA');
+
+
+  //puedo hacer conversion de matriz a array con posiciones 
+
+
+for ($j=0; $j<10 ; $j++) { 
+
+ $arrayH[$i].=' <tr><td class="text-center">'.($j+1).'</td>  ';
+ $arrayH[$i].=' <td class="text-center">'.$arrayNombres[$j].'</td>  ';
+ 
+
+if($j<1){
+
+$arrayH[$i].=' <td class="text-center">'.round($listaM[$i]->notaFinal,2).'</td>  ';
+
+}elseif($j==1 and $j<2){
+  // Añadir las otras notas
+
+  $arrayH[$i].=' <td class="text-center">'.round($listaL[$i]->notaFinal,2).'</td>  ';
+}elseif($j==2 and $j<3){
+  // Añadir las otras notas
+
+  $arrayH[$i].=' <td class="text-center">'.round($listaI[$i]->notaFinal,2).'</td>  ';
+}elseif($j==3 and $j<4){
+  // Añadir las otras notas
+
+  $arrayH[$i].=' <td class="text-center">'.round($listaS[$i]->notaFinal,2).'</td>  ';
+}elseif($j==4 and $j<5){
+  // Añadir las otras notas
+
+  $arrayH[$i].=' <td class="text-center">'.round($listaN[$i]->notaFinal,2).'</td> ';
+}elseif($j==5 and $j<6){
+  // Añadir las otras notas
+
+  $arrayH[$i].=' <td class="text-center">'.round($listaA[$i]->notaFinal,2).'</td>  ';
+}elseif($j==6 and $j<7){
+  // Añadir las otras notas
+
+  $arrayH[$i].=' <td class="text-center">'.round($listaR[$i]->notaFinal,2).'</td>  ';
+}elseif($j==7 and $j<8){
+  // Añadir las otras notas
+
+  $arrayH[$i].=' <td class="text-center">'.round($listaF[$i]->notaFinal,2).'</td>  ';
+}elseif($j==8 and $j<9){
+  // Añadir las otras notas
+
+  $arrayH[$i].=' <td class="text-center">'.round($listaE[$i]->notaFinal,2).'</td>  ';
+}else{
+
+ $arrayH[$i].=' <td class="text-center">'.round($listaT[$i]->notaFinal,2).'</td>  ';
+
+}
+
+
+
+
+// En esta parte deben ir los logros
+if($j<1){
+
+
+  if(floatval($listaM[$i]->notaFinal)<3){
+$arrayH[$i].=' <td class="text-center">'.$logroM->debilidad.'</td>  ';
+
+
+  }else{
+$arrayH[$i].=' <td class="text-center">'.$logroM->fortaleza.'</td>  ';
+
+  }
+
+
+
+}elseif($j==1 and $j<2){
+  // Añadir las otras notas
+if(floatval($listaL[$i]->notaFinal)<3){
+$arrayH[$i].=' <td class="text-center">'.$logroL->debilidad.'</td>  ';
+
+  }else{
+$arrayH[$i].=' <td class="text-center">'.$logroL->fortaleza.'</td>  ';
+
+  }
+
+}elseif($j==2 and $j<3){
+  // Añadir las otras notas
+
+  if(floatval($listaI[$i]->notaFinal)<3){
+$arrayH[$i].=' <td class="text-center">'.$logroI->debilidad.'</td>  ';
+
+  }else{
+$arrayH[$i].=' <td class="text-center">'.$logroI->fortaleza.'</td>  ';
+
+  }
+}elseif($j==3 and $j<4){
+  // Añadir las otras notas
+if(floatval($listaS[$i]->notaFinal)<3){
+$arrayH[$i].=' <td class="text-center">'.$logroS->debilidad.'</td>  ';
+
+  }else{
+$arrayH[$i].=' <td class="text-center">'.$logroS->fortaleza.'</td>  ';
+
+  }
+}elseif($j==4 and $j<5){
+  // Añadir las otras notas
+if(floatval($listaN[$i]->notaFinal)<3){
+$arrayH[$i].=' <td class="text-center">'.$logroN->debilidad.'</td>  ';
+
+  }else{
+$arrayH[$i].=' <td class="text-center">'.$logroN->fortaleza.'</td>  ';
+
+  }
+}elseif($j==5 and $j<6){
+  // Añadir las otras notas
+if(floatval($listaA[$i]->notaFinal)<3){
+$arrayH[$i].=' <td class="text-center">'.$logroA->debilidad.'</td>  ';
+
+  }else{
+$arrayH[$i].=' <td class="text-center">'.$logroA->fortaleza.'</td>  ';
+
+  }
+}elseif($j==6 and $j<7){
+  // Añadir las otras notas
+if(floatval($listaR[$i]->notaFinal)<3){
+$arrayH[$i].=' <td class="text-center">'.$logroR->debilidad.'</td>  ';
+
+  }else{
+$arrayH[$i].=' <td class="text-center">'.$logroR->fortaleza.'</td>  ';
+
+  }
+}elseif($j==7 and $j<8){
+  // Añadir las otras notas
+if(floatval($listaF[$i]->notaFinal)<3){
+$arrayH[$i].=' <td class="text-center">'.$logroF->debilidad.'</td>  ';
+
+  }else{
+$arrayH[$i].=' <td class="text-center">'.$logroF->fortaleza.'</td>  ';
+
+  }
+}elseif($j==8 and $j<9){
+  // Añadir las otras notas
+if(floatval($listaE[$i]->notaFinal)<3){
+$arrayH[$i].=' <td class="text-center">'.$logroE->debilidad.'</td>  ';
+
+  }else{
+$arrayH[$i].=' <td class="text-center">'.$logroE->fortaleza.'</td>  ';
+
+  }
+}else{
+
+if(floatval($listaT[$i]->notaFinal)<3){
+$arrayH[$i].=' <td class="text-center">'.$logroT->debilidad.'</td>  ';
+
+  }else{
+$arrayH[$i].=' <td class="text-center">'.$logroT->fortaleza.'</td>  ';
+
+  }
+
+}
+
+// Aquí va la parte de escalas
+
+
+if($j<1){
+
+   $nF = round($listaM[$i]->notaFinal,2);
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaM="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaM="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaM="A"; 
+    }else{
+
+      $escalaM="S"; 
+      
+    }
+
+$arrayH[$i].=' <td class="text-center ">'.$escalaM.'</td>  ';
+
+}elseif($j==1 and $j<2){
+  // Añadir las otras notas
+ $nF = round($listaL[$i]->notaFinal,2);
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaL="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaL="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaL="A"; 
+    }else{
+
+      $escalaL="S"; 
+      
+    }
+
+$arrayH[$i].=' <td class="text-center ">'.$escalaL.'</td>  ';
+}elseif($j==2 and $j<3){
+  // Añadir las otras notas
+ $nF = round($listaI[$i]->notaFinal,2);
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaI="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaI="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaI="A"; 
+    }else{
+
+      $escalaI="S"; 
+      
+    }
+
+$arrayH[$i].=' <td class="text-center ">'.$escalaI.'</td>  ';
+}elseif($j==3 and $j<4){
+  // Añadir las otras notas
+ $nF = round($listaS[$i]->notaFinal,2);
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaS="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaS="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaS="A"; 
+    }else{
+
+      $escalaS="S"; 
+      
+    }
+
+$arrayH[$i].=' <td class="text-center ">'.$escalaS.'</td>  ';
+}elseif($j==4 and $j<5){
+  // Añadir las otras notas
+
+   $nF = round($listaN[$i]->notaFinal,2);
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaN="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaN="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaN="A"; 
+    }else{
+
+      $escalaN="S"; 
+      
+    }
+
+$arrayH[$i].=' <td class="text-center ">'.$escalaN.'</td>  ';
+}elseif($j==5 and $j<6){
+  // Añadir las otras notas
+ $nF = round($listaA[$i]->notaFinal,2);
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaA="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaA="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaA="A"; 
+    }else{
+
+      $escalaA="S"; 
+      
+    }
+
+$arrayH[$i].=' <td class="text-center ">'.$escalaA.'</td>  ';
+}elseif($j==6 and $j<7){
+  // Añadir las otras notas
+ $nF = round($listaR[$i]->notaFinal,2);
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaR="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaR="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaR="A"; 
+    }else{
+
+      $escalaR="S"; 
+      
+    }
+
+$arrayH[$i].=' <td class="text-center ">'.$escalaR.'</td>  ';
+}elseif($j==7 and $j<8){
+  // Añadir las otras notas
+
+   $nF = round($listaF[$i]->notaFinal,2);
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaF="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaF="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaF="A"; 
+    }else{
+
+      $escalaF="S"; 
+      
+    }
+
+$arrayH[$i].=' <td class="text-center ">'.$escalaF.'</td>  ';
+}elseif($j==8 and $j<9){
+  // Añadir las otras notas
+ $nF = round($listaE[$i]->notaFinal,2);
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaE="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaE="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaE="A"; 
+    }else{
+
+      $escalaE="S"; 
+      
+    }
+
+$arrayH[$i].=' <td class="text-center ">'.$escalaE.'</td>  ';
+}else{
+
+  $nF = round($listaT[$i]->notaFinal,2);
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaT="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaT="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaT="A"; 
+    }else{
+
+      $escalaT="S"; 
+      
+    }
+
+$arrayH[$i].=' <td class="text-center success">'.$escalaT.'</td>  ';
+
+}
+
+// FALTAS
+
+
+if($j<1){
+
+$arrayH[$i].=' <td class="text-center">'.$listaM[$i]->faltas.'</td>  ';
+
+}elseif($j==1 and $j<2){
+  // Añadir las otras notas
+
+  $arrayH[$i].=' <td class="text-center">'.$listaL[$i]->faltas.'</td>  ';
+}elseif($j==2 and $j<3){
+  // Añadir las otras notas
+
+  $arrayH[$i].=' <td class="text-center">'.$listaI[$i]->faltas.'</td>  ';
+}elseif($j==3 and $j<4){
+  // Añadir las otras notas
+
+  $arrayH[$i].=' <td class="text-center">'.$listaS[$i]->faltas.'</td>  ';
+}elseif($j==4 and $j<5){
+  // Añadir las otras notas
+
+  $arrayH[$i].=' <td class="text-center">'.$listaN[$i]->faltas.'</td> ';
+}elseif($j==5 and $j<6){
+  // Añadir las otras notas
+
+  $arrayH[$i].=' <td class="text-center">'.$listaA[$i]->faltas.'</td>  ';
+}elseif($j==6 and $j<7){
+  // Añadir las otras notas
+
+  $arrayH[$i].=' <td class="text-center">'.$listaR[$i]->faltas.'</td>  ';
+}elseif($j==7 and $j<8){
+  // Añadir las otras notas
+
+  $arrayH[$i].=' <td class="text-center">'.$listaF[$i]->faltas.'</td>  ';
+}elseif($j==8 and $j<9){
+  // Añadir las otras notas
+
+  $arrayH[$i].=' <td class="text-center">'.$listaE[$i]->faltas.'</td>  ';
+}else{
+
+ $arrayH[$i].=' <td class="text-center">'.$listaT[$i]->faltas.'</td> </tr> ';
+
+}
+
+
+
+
+
+
+
+
+
+}// END FOR TABLE BOLETIN
+
+// Aquí faltas
+$faltasTotales=$listaM[$i]->faltas+$listaL[$i]->faltas+$listaI[$i]->faltas+
+               $listaS[$i]->faltas+$listaN[$i]->faltas+$listaA[$i]->faltas+
+               $listaR[$i]->faltas+$listaF[$i]->faltas+$listaE[$i]->faltas+
+               $listaT[$i]->faltas;
+
+
+     $arrayH[$i].= '     
+        </tbody>
+      </table>
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th class="text-center">PUESTO</th>
+            <th class="text-center">FALTAS TOTALES</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-center" ><b>'.($i+1).'</b> DE '.count($listaM).'</td>
+            <td class="text-center" >'.$faltasTotales.'</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<br />
+
+<!-- /.row -->
+<div class="row text-center">
+  <div class="col-lg-12">
+    <b>ESCALA NACIONAL DE 4,6 - 5,0 SUPERIOR | 3,9 - 4,5 ALTO | 3,0 -3,8 BASICO | 1,0 - 2,9 BAJO</b>
+  </div>
+  <div class="col-lg-12">
+  <br>
+    <b>OBSERVACIONES: ' . $observaciones .' </b>
+    <hr>
+    <hr>
+    <hr>
+  </div>
+</div>';
+
+//código para espacios en blanco 
+$espacio = null;
+for ($k=0; $k <80 ; $k++) { 
+  $espacio=$espacio."&nbsp;";
+}
+
+$espacio2 = null;
+for ($k=0; $k <100 ; $k++) { 
+  $espacio2=$espacio2."&nbsp;";
+}
+
+$espacio3 = null;
+for ($k=0; $k <115 ; $k++) { 
+  $espacio3=$espacio3."&nbsp;";
+}
+
+$espacio1 = null;
+for ($k=0; $k <10 ; $k++) { 
+  $espacio1=$espacio1."&nbsp;";
+}
+$espacio4 = null;
+for ($k=0; $k <13 ; $k++) { 
+  $espacio4=$espacio4."&nbsp;";
+}
+
+
+
+$arrayH[$i].='
+
+<br /><br /><br /><br /><br />
+
+<!-- /. Firmas -->
+<div class="row text-left">
+  
+    
+    ________________________  '.$espacio.' ________________________
+
+    <b> <br />'.$espacio1.''. $anio->anioRectora .' '.$espacio2.' '.  $director .'<br />'.$espacio4.'Rector(a) '.$espacio3.'Director(a)</b>
+  
+
+  
+  
+    
+
+  
+</div>
+
+<br />
+
+';
+
+}
+
+
+  Load::lib('mpdf');
+
+$mpdf = new mPDF('c', 'A4');
+
+$arrayH[$i] = mb_convert_encoding($arrayH[$i], 'UTF-8', 'UTF-8');
+
+$mpdf->WriteHTML($css, 1);
+
+
+for ($i=0; $i <count($listaM) ; $i++) { 
+
+    $mpdf->WriteHTML($arrayH[$i]);
+   
+
+    
+     $mpdf->AddPage();
+    }
+
+ 
+   
+
+$mpdf->Output('boletinGrado.pdf', 'I');
+
+exit;
+
+?>

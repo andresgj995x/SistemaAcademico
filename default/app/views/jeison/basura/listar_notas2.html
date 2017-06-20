@@ -1,0 +1,193 @@
+<?php View::content(); ?>
+<head>
+
+<!-- Jquery JS file -->
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+ 
+ <!-- Custom JS file -->
+<script type="text/javascript" src="js/script.js"></script>
+
+
+
+</head>
+<div class="row">
+
+
+<div class="modal fade" id="update_user_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+   
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<div class ="text-center" style ="color:white;">
+                <h4 class="modal-title" id="myModalLabel">Actualizar Notas</h4>
+                </div>
+            </div>
+            <div class="modal-body">
+             <div class="container-fluid"> <!--hace que pueda existir una estructura de tablas dentor del modal-body-->
+             
+            <h4 >Estudiante: <b>Yeison Eduardo Caicedo Garzón</b></h4> <!-- TODO: Cambiar a que se ponga dinámico según estudiante-->
+           
+           <hr>
+
+<?php echo Form::open(); ?> <!--Pensaba llevarme las variables de este form mediante el boton tipo SUBMIT de abajo pero aún no me funciona-->
+
+<div class="col-lg-3">
+                <div class="form-group">
+                    <label for="update_email">Faltas</label>
+                    <input type="text" id="faltas" name ="faltas"placeholder="Introducir Faltas"  class="form-control"/>
+                </div>
+</div>
+
+<div class="col-lg-3">
+                <div class="form-group">
+                    <label for="update_first_name">Taller</label>
+                    <input type="text" id="taller" name ="taller"placeholder="Introducir Nota" class="form-control"/>
+                </div></div>
+
+<div class="col-lg-3">
+                <div class="form-group">
+                    <label for="update_last_name">Prueba Escrita</label>
+                    <input type="text" id="prueba_escrita" name="prueba_escrita" placeholder="Introducir Nota" class="form-control"/>
+                </div>
+                </div>
+<div class="col-lg-3">
+                <div class="form-group">
+                    <label for="update_email">Laboratorios</label>
+                    <input type="text" id="laboratorios" name ="laboratorios"placeholder="Introducir Nota" class="form-control"/>
+                </div>
+</div>
+<div class="col-lg-3">
+                <div class="form-group">
+                    <label for="update_email">Evaluación Oral</label>
+                    <input type="text" id="evaluacion_oral" name ="evaluacion_oral" placeholder="Introducir Nota" class="form-control"/>
+                </div>
+</div>
+<div class="col-lg-3">
+                <div class="form-group">
+                    <label for="update_email">Evaluación Escrita</label>
+                    <input type="text" id="evaluacion_escrita" name ="evaluacion_escrita"placeholder="Introducir Nota" class="form-control"/>
+                </div>
+</div>
+
+<div class="col-lg-3">
+                <div class="form-group">
+                    <label for="update_email">Puntualidad</label>
+                    <input type="text" id="puntualidad" name ="puntualidad"placeholder="Introducir Nota" class="form-control"/>
+                </div>
+</div>
+<div class="col-lg-3">
+                <div class="form-group">
+                    <label for="update_email">Presentación Personal</label>
+                    <input type="text" id="presentacion_personal" name ="presentacion_personal" placeholder="Introducir Nota" class="form-control"/>
+                </div>
+</div>
+<div class="col-lg-3">
+                <div class="form-group">
+                    <label for="update_email">Comportamiento</label>
+                    <input type="text" id="comportamiento" name ="comportamiento"placeholder="Introducir Nota" class="form-control"/>
+                </div>
+</div>
+
+<div class="col-lg-3">
+                <div class="form-group">
+                    <label for="update_email">Interés y Participación</label>
+                    <input type="text" id="interes_participacion" name ="interes_participacion" placeholder="Introducir Nota" class="form-control"/>
+                </div>
+</div>
+
+
+</form>
+            </div> <!--Fin del cuerpo del modal para actuallizar notas -->
+        
+          
+            <div class="modal-footer" >
+             
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary" name ="ActualizarNota" >Guardar cambios!</button>
+                <input type="hidden" id="hidden_nota_id"> 
+               
+             </div>
+            </div>
+          
+           
+      
+    </div>
+</div>
+</div>
+</div>
+<?php echo Form::close() ?>
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="table-responsive">     
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                                <th>Faltas</th>
+                                <th>Taller</th>
+                                <th>Prueba Escrita</th>
+                                <th>Laboratorios</th>
+                                <th>Evaluación Oral</th>
+                                <th>Evaluación Escrita</th>
+                                <th>Puntualidad</th>
+                                <th>Presentación Personal</th>
+                                <th>Comportamiento</th>
+                                <th>Interés y Participación</th>
+                               <th>Nota Final</th>
+                               <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                 <!-- Este vector representa todas las columnas traídas con la siguiente sentencia SQL:
+
+                 $sql="SELECT idAlumno,nombres,apellidos,faltas,taller,prueba_escrita,
+                 laboratorios,evaluacion_oral,evaluacion_escrita,puntualidad,presentacion_personal,
+                 comportamiento,interes_participacion,
+                  valorFinal from alumno inner join nota on idAlumno=alumno_idAlumno inner join nota_final on idNota=nota_idNota "; -->
+
+                         <?php for($i=0; $i<count($listaAlumnos); $i++) { ?>
+                            <tr>
+                                <td><?php echo $listaAlumnos[$i]->idAlumno ?></td>    
+                                <td><?php echo $listaAlumnos[$i]->nombres ?></td>
+                                <td><?php echo $listaAlumnos[$i]->apellidos ?></td>
+                                <td><?php echo $listaAlumnos[$i]->faltas ?></td>
+                                <td><?php echo $listaAlumnos[$i]->taller ?></td>
+                                <td><?php echo $listaAlumnos[$i]->prueba_escrita ?></td>
+                                <td><?php echo $listaAlumnos[$i]->laboratorios ?></td>
+                                <td><?php echo $listaAlumnos[$i]->evaluacion_oral ?></td>
+                                <td><?php echo $listaAlumnos[$i]->evaluacion_escrita ?></td>
+                                <td><?php echo $listaAlumnos[$i]->puntualidad ?></td>
+                               <td><?php  echo $listaAlumnos[$i]->presentacion_personal ?></td>
+                                <td><?php echo $listaAlumnos[$i]->comportamiento?></td>
+                                <td><?php echo $listaAlumnos[$i]->interes_participacion ?></td>
+                                <td><?php echo $listaAlumnos[$i]->valorFinal ?></td>
+                                <td>
+                                   <?php  $temp=intval($listaAlumnos[$i]->idAlumno); ?>
+                                    <i class="fa fa-fw fa-edit"></i><a href="#update_user_modal" data-toggle="modal" data-target="#update_user_modal" >Editar</a> 
+                                    <i class="fa fa-fw fa-eraser"></i><?php echo Html::linkAction("del/$temp/", ' Borrar') ?>
+                                </td>
+                            </tr>
+                             <?php } ?>
+                        </tbody>
+                    </table>
+                     
+            
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+
+<div class="row">
+
+    <div class="col-lg-1">
+        <div class="actions">
+            <?= Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->

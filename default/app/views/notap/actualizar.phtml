@@ -1,0 +1,156 @@
+<?php View::content(); ?>
+
+
+<?php echo Form::open(); ?>
+
+<div class="row">
+
+  <div class="col-lg-12">
+
+    <div class="panel panel-warning">
+       <div class="panel-heading">Editando notas de....</div>
+       <div class="panel-body">Nombres : <b> <?php echo $nombresAl;?>  </b> &nbsp;   Apellidos: <b><?php echo $apellidosAl;?></b>  &nbsp; Año:<b> <?php   $anioSel=$_SESSION['idAnioSel']; echo $anioSel; ?> </b> &nbsp; Periodo:<b> <?php $numP=$_SESSION['periodoGlobal']; echo $numP; ?> </b> &nbsp; Materia: <b> <?php  echo $materia->nombreMateria; ?></b> &nbsp;  Profesor Asignado: <b> <?php echo $materia->nombrePro; ?></b> &nbsp;<b> <?php echo $materia->apellidoPro; ?></b></div>
+    </div>
+
+  </div>  
+
+</div> <!-- Fin Header Row 1-->
+
+
+
+<div class="row">
+
+         <div class="col-lg-2">
+              
+
+             <div class="form-group">
+                <label for="tallerNota" >Taller</label>
+              <input type ="hidden"  class="form-control" value='<?php echo $idAlumno; ?>' id="idAlF" name="idAlF"  />
+                    <input type ="number" step="0.1" min="0" max="5" class="form-control" placeholder="Taller" id="tallerNota" name="tallerNota" value ='<?php echo $notap->taller ?>' required/>
+              
+            </div>
+
+            <div class="form-group">
+              <label for="pEscritaNota" >Prueba Escrita</label>
+              
+                <input type ="number" step="0.1" min="0" max="5" class="form-control" placeholder="Prueba Escrita" id="pEscritaNota" name="pEscritaNota" value ='<?php echo $notap->pEscrita ?>' required  />
+              
+            </div>
+
+            
+
+        </div> <!-- Fin Columna 1  ******************************************   -->
+        
+        <div class="col-lg-2">
+
+
+
+            <div class="form-group">
+              <label for="labsNota" >Laboratorios</label>
+              
+                <input type ="number" step="0.1" min="0" max="5" class="form-control" placeholder="Laboratorio" id="labsNota" name="labsNota" value ='<?php echo $notap->labs ?>' required/>
+              
+            </div>
+
+
+           <div class="form-group">
+              <label for="eOralNota" >Evaluación Oral</label>
+              
+                <input type ="number" step="0.1" min="0" max="5" class="form-control" placeholder="Evaluación Oral" id="eOralNota" name="eOralNota" value ='<?php echo $notap->eOral ?>' required  />
+              
+            </div>
+
+         
+
+            
+
+        </div><!-- Fin Columna 2  ******************************************   -->
+        
+        <div class="col-lg-2">
+
+
+         <div class="form-group">
+              <label for="eEscritaNota" >Evaluación Escrita</label>
+              
+                <input type ="number" step="0.1" min="0" max="5" class="form-control" placeholder="Evaluación Escrita" id="eEscritaNota" name="eEscritaNota" value ='<?php echo $notap->eEscrita ?>' required  />
+              
+            </div>
+
+        <div class="form-group">
+              <label for="punNota" >Puntualidad</label>
+              
+                <input type ="number" step="0.1" min="0" max="5" class="form-control" placeholder="Puntualidad" id="punNota" name="punNota" value ='<?php echo $notap->punt ?>' required />
+              
+            </div>
+
+         
+
+            
+
+
+
+        </div><!-- Fin Columna 3  ******************************************   -->
+
+   <div class="col-lg-2">
+
+    <div class="form-group">
+              <label for="pPersonalNota" >Presentación Personal</label>
+              
+                <input type ="number" step="0.1" min="0" max="5" class="form-control" placeholder="Presentación Personal" id="pPersonalNota" name="pPersonalNota"  value ='<?php echo $notap->pPersonal ?>' required />
+              
+            </div>
+
+          <div class="form-group">
+              <label for="compNota" >Comportamiento</label>
+              
+                <input type ="number" step="0.1" min="0" max="5" class="form-control" placeholder="Comportamiento" id="compNota" name="compNota" value ='<?php echo $notap->comp ?>'  required />
+              
+            </div>
+            </div>
+<div class="col-lg-2">
+
+
+            <div class="form-group">
+              <label for="ipNota" >Interés y Participacion</label>
+              
+                <input type ="number" step="0.1"  min="0" max="5" class="form-control" placeholder="Interés y Participación" id="ipNota" name="ipNota" value ='<?php echo $notap->iParticipacion ?>'  required  />
+              
+            </div>
+
+            <div class="form-group">
+                 <label for="faltasNota" >Faltas</label>
+              
+                   <input type ="number" class="form-control" placeholder="Faltas" id="faltasNota" name="faltasNota" value ='<?php echo $notap->faltas ?>'  required />
+                   <input type="hidden" value='<?php echo $notap->idNotaP ?>' id="idNotaP" name="idNotaP">
+                 
+              
+               </div>
+
+
+
+
+   </div><!-- Fin Columna 3  ******************************************   -->
+
+</div> <!-- Fin Row 1 -->
+
+
+<div class="row">
+
+    <div class="col-lg-1">
+        <button class="btn btn-success waves-effect waves-light" type="submit" name="Ingresar">Actualizar Nota
+            <!--?php echo Form::submit("Ingresar","class: boton"); ?-->	
+        </button>
+    </div>
+       <div class="col-lg-1">
+        <div class="actions">
+            <? echo Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+
+</div>
+<!-- /.row -->
+
+<?php echo Form::close(); ?>
+
+
