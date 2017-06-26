@@ -93,17 +93,19 @@ for ($i=0; $i<count($listaM); $i++) {
   </div>
   <br />
   
+ 
   <div class="text-center"><small>
     REPUBLICA DE COLOMBIA <br />
     SECRETARÍA DE EDUCACIÓN DEPARTAMENTAL <br />
     COLEGIO DEPARTAMENTAL INSTITUCIÓN EDUCATIVA BELÉN <br />
-    RESOLUCIÓN No. 9999 DE 2015 DECRETO 999 DE 2004 <br />
-    NIT: XXXX DANE 241359000160 <br />
+    DECRETO No 706 DEL 22 DE JUNIO DE 2004
+    RESOLUCION DE APROBACION No 1936 DEL 2016 <br />
+    NIT: 813.011.815-2 DANE 241359000160 <br />
     ISNOS - HUILA</small><br />
     BOLETÍN '.$nombrePeriodo.'
   </div>
 
-   <div  style="float: right; position: fixed;overflow: visible; padding-left:600px;padding-top:-122px;">
+   <div  style="float: right; position: fixed;overflow: visible; padding-left:600px;padding-top:-152px;">
     <img src="../public/img/e.png" height="120" width="120" />
   </div>
   <br />
@@ -742,7 +744,7 @@ $faltasTotales=$listaPro[$i]->faltas+$listaMate[$i]->faltas+$listaEsp[$i]->falta
     <b>OBSERVACIONES: ' . $observaciones .' </b>
     <hr>
     <hr>
-    <hr>
+      
   </div>
 </div>';
 
@@ -775,23 +777,24 @@ for ($k=0; $k <20 ; $k++) {
 
 $arrayH[$i].='
 
-<br /><br /><br /><br /><br />
+<br /><br /><br /><br />
 
 <!-- /. Firmas -->
-<div class="row text-left">
-  
-    
-    ________________________  '.$espacio.' ________________________
 
-    <b> <br />'.$espacio1.''. $anio->anioRectora .' '.$espacio2.' '.  $director .'<br />'.$espacio4.'Rector(a) '.$espacio3.'Director(a)</b>
-  
+  <div style="width:100%;">
+    <div style="width:50%;float:left">__________________________</div>
+    <div style="width:50%;text-align:right">__________________________</div>
+  </div>
 
-  
-  
-    
+   <div style="width:100%;">
+    <div style="width:50%;float:left">'.$profesorEscogido->nombrePro.' '.$profesorEscogido->apellidoPro.'</div>
+    <div style="width:50%;text-align:right">'.$anio->anioRectora .'</div>
+  </div>
 
-  
-</div>
+ <div style="width:100%;">
+    <div style="width:50%;float:left">Director(a) de curso</div>
+    <div style="width:50%;text-align:right">Rectora(a)</div>
+  </div>
 
 
 
@@ -799,7 +802,7 @@ $arrayH[$i].='
 
 }
 
-$mpdf = new mPDF('c', 'A4');
+$mpdf = new mPDF('c', 'Letter');
 
 $arrayH[$i] = mb_convert_encoding($arrayH[$i], 'UTF-8', 'UTF-8');
 
@@ -811,8 +814,6 @@ for ($i=0; $i <count($listaM) ; $i++) {
     $mpdf->WriteHTML($arrayH[$i]);
    
 
-    
-     $mpdf->AddPage();
     }
 
  

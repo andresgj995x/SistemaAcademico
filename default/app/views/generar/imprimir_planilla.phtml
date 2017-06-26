@@ -347,13 +347,6 @@ $html.=' <td class="text-center" >'.round($promedioF,2) .'</td> ';
 
 } 
 
-
- 
-
-
- 
-
-
                
 
 
@@ -404,7 +397,9 @@ $html.=' <td class="text-center" >'.round($promedioF,2) .'</td> ';
 
 //}
 Load::lib('mpdf');
-    $mpdf = new mPDF('c', 'A4-L');
+
+    $mpdf = new mPDF('c', 'Letter-L');
+    $mpdf->debug = true;
     
 $html = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
 

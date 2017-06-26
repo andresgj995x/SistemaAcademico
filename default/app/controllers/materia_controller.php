@@ -69,7 +69,7 @@ class MateriaController extends AppController {
         }
     }
 
-    public function edit($idM,$n,$a) {
+    public function edit($idM,$idPro) {
 
         $this->titulo = "Gestión de Materias";
         $this->subtitulo = "Actualización de Materia";
@@ -82,9 +82,11 @@ class MateriaController extends AppController {
                 $materia = new Materia();
                 $profesor = new Profesor();
 
+                $profeEntrante = $profesor->find($idPro);
+
                 $this->idMat = $idM;
-                $this->nombreP=$n;
-                $this->apellidoP=$a;
+                $this->nombreP=$profeEntrante->nombrePro;
+                $this->apellidoP=$profeEntrante->apellidoPro;
 
 
 

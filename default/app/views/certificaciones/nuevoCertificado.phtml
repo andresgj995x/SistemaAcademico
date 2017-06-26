@@ -1,0 +1,47 @@
+<?php View::content(); ?>
+
+
+<div class="row">
+<div class="col-lg-7">
+<div class="panel panel-primary">
+  <div class="panel-heading">Generando certificado a :  </div>
+  <div class="panel-body"><?php echo $paciente->nombre."&nbsp".$paciente->apellido; ?></div>
+</div>
+</div>
+</div>
+
+
+
+<div class ="row">
+
+ <?php echo Form::open(); ?>
+ <input type ="hidden" name ="temp" id ="temp" value="2">
+
+<div class="col-lg-7">
+
+
+
+
+<br>
+<label>Fecha del certificado </label>
+<input type="date" name ="fechaCer" id="fechaCer" class="form-control"  required>
+
+
+<br>
+<label>Razón del certificado</label>
+  <textarea class="form-control" rows="3" id="reason" name ="reason" placeholder ="Escribir el motivo o entidad que lo solicitó
+
+" required></textarea>
+<hr>
+<button class="btn btn-danger" type="submit" name="Buscar">Generar Certificado</button>
+</div>
+
+</div>
+
+ 
+
+ <?php echo Form::close(); ?>
+
+
+
+</div>

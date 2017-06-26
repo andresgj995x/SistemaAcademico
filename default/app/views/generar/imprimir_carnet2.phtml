@@ -14,111 +14,94 @@ $arrayH= array();
 
 for ($i=0; $i<1; $i++) { 
 
-  $arrayH[$i] = '
-<!doctype html>
+   $arrayH[$i] = '
 <html>
 
 <head>
-    <meta charset="UTF-8">
+
+
+
+    <style>
+        @page {
+            sheet-size: Letter;
+        }
+        #example1 {
+            background-image: url(img/carnet/plantillaC1.jpg);
+            ;
+            background-position: right bottom, left top;
+            background-repeat: no-repeat, repeat;
+            width: 816px;
+            height: 220px;
+        }
+    </style>
+
+
 </head>
-<link rel=”stylesheet” type=”text/css” href=”http://fonts.googleapis.com/css?family=Roboto”>
-<style>
 
-* {
+<body>
 
-font-family: ‘Roboto’;
-font-weight: normal;
-font-style: normal;
-}
+    <div id="example1">
+        <div style="margin-left:150px; padding-top:73px;">
+            <h6></h6>
+        </div>
 
+        <div style="margin-left:106px; padding-top:15px;">
+            <h6>'. $alumno->nombre .'</h6>
+        </div>
 
-.gradient1 {
-     padding-top:0px;
- margin: 0 !important;
-    padding: 0 !important;
-     
-     //  border:0.1mm solid #220044; 
-}
-.gradient2 {
-}
-h4 {
-      margin-top: 1em;
-      margin-bottom: 0.5em;
-}
-div {
-      padding:1em;
-      margin-bottom: 1em;
-      text-align:justify;
-}
+        <div style="margin-left:106px; padding-top:-2px;">
+            <h6>'.  $alumno->apellido.'</h6>
+        </div>
 
-</style>
-
-<div class="gradient1" style="float: left; width: 40%; margin-bottom: 0pt; font-size:60%; position: absolute;overflow: visible; height:220px; ">
-<h1 style="text-align: center; font-size:160%;padding-top:20px;"><b>CARNET ESTUDIANTIL</b></h1>
-<h2 style="text-align: center;font-size:120%;">INSTITUCIÓN EDUCATIVA BELÉN</h2>
-<h5 style="text-align: center; font-size:12px;">SEDE PRINCIPAL</h5>
-
-<img src="http://placehold.it/100x110" style="float:center" />
-
-<h4 style="padding-left:8px; font-size:10px;">GRADO:<b>'. $grado->nombreGrado .'</b></h4>
-</div>
-
-<div class="gradient2" style="float: right; width: 54%; margin-bottom: 0pt;  font-size: 80%; position:sticky; margin-right:150px; padding-top:1px; ;padding-left:-50px; ">
-<br />
-<br />
-<br />
-<br />
-
-<label>Nombres : <b>'. $alumno->nombre .'</b> </label><br />
-<label>Apellidos :<b>'.  $alumno->apellido.'</b></label><br />
-<label>ID :<b> '.$alumno->identidadAl .'</b></label><br />
-<label>RH :<b> '. $alumno->rh .' </b></label><br />
-<label>Cel Acu :<b> '. $alumno->celAcu .' </b></label><br />
-<label >DANE: 241359000160 </label><br />
-</div>
+        <div style="margin-left:106px; padding-top:-4px;">
+            <h6>'.$alumno->identidadAl .'</h6>
+        </div>
 
 
-<div class="gradient3" style="float: right;padding-left:350px;   font-size:160%; width: 65%; pading-top:-30px;  margin-bottom: 0pt;margin-right:60px;  position: fixed; height:220px; ">
+        <div style="margin-left:108px; padding-top:-8px; ">
+            <h6>'. $alumno->rh .'</h6>
 
-<table class="table">
-    <tr>
-        <th colspan="2"> Este carnet es personal e instrasferible, acreditando al titular su vinculación con esta institución. Su uso está
-            reglamentado a términos y condiciones estipulados por la misma.</th>
-    </tr>
-    <tr>
-        <td>FECHA EXPEDICIÓN</td>
-        <td>FECHA DE VENCIMIENTO</td>
-    </tr>
-    <tr>
-        <td>'. $start .'</td>
-        <td>'. $end .'</td>
-    </tr>
-    <tr>
-        <th colspan="2" class="text-center">JORNADA COMPLETA</th>
-    </tr>
-    <tr>
-        <td>DIRECCIÓN:</td>
-        <td>'. $alumno->dir .'</td>
-    </tr>
-
-    <tr>
-        <td>LIC</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>RECTOR</td>
-        <td>'. $anio->anioRectora .'</td>
-    </tr>
-</table>
+            <div style="margin-left:107px; padding-top:-8px; ">
+                <h6>'. $grado->nombreGrado .'</h6>
 
 
-</div>
+
+
+
+                <div style="margin-left:250px; padding-top:-88px;">
+                    <h6>'.$start.'</h6>
+                </div>
+
+                <div style="margin-left:460px; padding-top:-25px;">
+                    <h6>'.$end.'</h6>
+                </div>
+
+                <div style="margin-left:324px; padding-top:2px;">
+                    <h6><small>'. $alumno->dirAcu .'</small></h6>
+                </div>
+
+
+                <div style="margin-left:324 px; padding-top:-8px; ">
+                    <h6><small>'. $alumno->celAcu .'</small></h6>
+
+                    <div style="margin-left:384px; padding-top:1px; ">
+                        <h6><small>'. $anio->anioRectora .'</small></h6>
+
+
+                    </div>
+
+
+
+
+
+                </div>
+
+</body>
 
 </html>
-
-
-
 ';
+
+
 
 }
 
@@ -126,7 +109,7 @@ div {
 
 $html2='<br> <br>';
      Load::lib('mpdf');
-    $mpdf = new mPDF('c', 'A4');
+    $mpdf = new mPDF('c','', 0, '', '0', '0', '0', '0', '0', '0', 'Letter');
     $arrayH[$i] = mb_convert_encoding($arrayH[$i], 'UTF-8', 'UTF-8');
         $html2 = mb_convert_encoding($html2, 'UTF-8', 'UTF-8');
     $mpdf->WriteHTML($css, 1);

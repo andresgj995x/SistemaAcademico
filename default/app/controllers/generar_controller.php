@@ -15,7 +15,8 @@ class GenerarController extends AppController {
         $this->start= Input::post('start');
         $this->end = Input::post ('end');
 
-        View::select('imprimir_carnet3');
+       View::select('imprimir_carnet3');
+        
     }
 
 
@@ -86,7 +87,7 @@ public function recibirDatos(){
     }else{
 
 
-        Redirect::to('generar/create_carnet');
+        
     }
 
 
@@ -202,7 +203,7 @@ public function create_planilla () {
 
         $idYearF=Input::post('idAnioF');
         $periodoF= Input::post('periodoF');
-        $gradoF=Input::post('gradoF');
+        $gradoF=intval(Input::post('gradoF'));
 
 
         $this->gradoF=$grado->find($gradoF);
@@ -216,21 +217,21 @@ public function create_planilla () {
         $this->periodo = $periodo->find_by_sql("SELECT * FROM PERIODO where numeroPeriodo=$periodoF 
             AND  anio_idAnio=$idYearF");
 
-        if(intval($gradoF)<6 or intval($gradoF)==13 ){
+        if($gradoF<6 or $gradoF==13 ){
 
-          $this->cuenta=$notap->find_by_sql("SELECT COUNT(*) as cuenta from notap inner join alumno
-  on notap.alumno_idAlumno=alumno.idAlumno inner join materia on 
-  notap.materia_idMateria=materia.idMateria inner join logros on 
-  materia.idMateria=logros.materia_idMateria inner join matricula on 
-  alumno.matricula_idMatricula=matricula.idMatricula inner join estado on
-   alumno.estado_idEstado= estado.idEstado inner join grado on
-    alumno.grado_idGrado=grado.idGrado inner join periodo on 
-    notap.periodo_idPeriodo=periodo.idPeriodo inner join promedio
-     on alumno.idAlumno=promedio.alumno_idAlumno where matricula.anio_idAnio=$idYearF 
-     and estado.tipoEstado='Activo' and notap.periodo_idPeriodo=$periodoF
-      and notap.grado_idGrado=$gradoF and materia.nombreMateria='LENGUA CASTELLANA'
-       and logros.periodo_idPeriodo=$periodoF and materia.gradoMateria=$gradoF
-       and promedio.periodo_idPeriodo=$periodoF  "); // variable para saber cuantos alumnos hay
+            $this->cuenta=$notap->find_by_sql("SELECT COUNT(*) as cuenta from notap inner join alumno
+                    on notap.alumno_idAlumno=alumno.idAlumno inner join materia on 
+                    notap.materia_idMateria=materia.idMateria inner join logros on 
+                    materia.idMateria=logros.materia_idMateria inner join matricula on 
+                    alumno.matricula_idMatricula=matricula.idMatricula inner join estado on
+                    alumno.estado_idEstado= estado.idEstado inner join grado on
+                        alumno.grado_idGrado=grado.idGrado inner join periodo on 
+                        notap.periodo_idPeriodo=periodo.idPeriodo inner join promedio
+                        on alumno.idAlumno=promedio.alumno_idAlumno where matricula.anio_idAnio=$idYearF 
+                        and estado.tipoEstado='Activo' and notap.periodo_idPeriodo=$periodoF
+                        and notap.grado_idGrado=$gradoF and materia.nombreMateria='LENGUA CASTELLANA'
+                        and logros.periodo_idPeriodo=$periodoF and materia.gradoMateria=$gradoF
+                        and promedio.periodo_idPeriodo=$periodoF  "); // variable para saber cuantos alumnos hay
 
           $this->listaNotasM=$notap->find_all_by_sql("SELECT nombre,apellido,identidadAl,faltas,
             nombreMateria,notaFinal,numeroPeriodo,notap.anio_idAnio FROM alumno inner join notap 

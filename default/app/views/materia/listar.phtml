@@ -54,12 +54,11 @@
                       
                         <td>
                         <?php $idM = $listaMaterias[$i]->idMateria?>
-                         <?php $n = $listaMaterias[$i]->nombrePro?>
-
-                          <?php $a = $listaMaterias[$i]->apellidoPro?>
+                         <?php $idPro = $listaMaterias[$i]->profesor_idPro?>
 
 
-                       <i class="fa fa-fw fa-edit"></i><?php echo Html::linkAction("edit/$idM/$n/$a", ' Cambiar Profesor') ?>
+
+                       <i class="fa fa-fw fa-edit"></i><?php echo Html::linkAction("edit/$idM/$idPro", ' Cambiar Profesor') ?>
                             
                         </td>
                     </tr>

@@ -1398,7 +1398,7 @@ VALUES (0,0,0,0,0,0,0,0,0,0,2017,$tempID,$i,2,$tempG,$j)";
 			
 			
 			$sql = "UPDATE alumno SET identidadAl=$identidadAl,nombre='$nombre',apellido='$apellido',
-        nacimiento=$edad,genero='$genero',dir='$dir',celular=$celular,rh='$rh', grado_idGrado=$gradoTemp,
+        nacimiento='$nacimiento',genero='$genero',dir='$dir',celular=$celular,rh='$rh', grado_idGrado=$gradoTemp,
         estado_idEstado=$estadoTemp,matricula_idMatricula=$matriculaTemp WHERE idAlumno=$id";
 			
 			

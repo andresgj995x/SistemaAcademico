@@ -87,9 +87,20 @@
 
 
 <div class="row">
+<?php 
+
+    
+        
+        if($limite>0){
+               $estadoBoton = "";  
+        }else{
+            $estadoBoton = "disabled";
+           
+        }
+?>
 
     <div class="col-lg-2">
-        <button class="btn btn-success waves-effect waves-light" type="submit" name="Ingresar" target="_blank" >Generar Boletines
+        <button class="btn btn-success waves-effect waves-light"  type="submit" name="Ingresar" target="_blank" <?php echo $estadoBoton; ?> >Generar Boletines
             <!--?php echo Form::submit("Ingresar","class: boton"); ?--> 
         </button>
     </div>
