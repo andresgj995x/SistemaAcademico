@@ -59,20 +59,27 @@ class NotapController extends AppController
             $_SESSION['semestre']            = $var3;
             $anioParcial                     = intval(Input::post('idAnioF'));
             $gradoParcial                    = intval(Input::post('gradoF'));
+
+            $i = $semestre->find_by_sql("SELECT * from matricula where estadoMatricula = 'Inicial' and anio_idAnio = $anioSel");
+            $inicial = $i->idMatricula;
+
+            $_SESSION['inicial'] = $inicial;
+            //$e = $semestre->find_by_sql("SELECT * from matricula where estadoMatricula = 'Extraordinaria' and anio_idAnio = $anioSel");
+            //$extra = $e->idMatricula;
             
             // AQUÍ TENGO QUE APLICAR UN COMPARADOR DE GRADO 
-            $sql                             = "SELECT * FROM alumno inner join notap on alumno.idAlumno =
+            $sql                             = "SELECT * FROM alumno inner join matricula on alumno.matricula_idMatricula = matricula.idMatricula inner join notap on alumno.idAlumno =
      notap.alumno_idAlumno inner join materia on notap.materia_idMateria=materia.idMateria inner join
       periodo on notap.periodo_idPeriodo=periodo.idPeriodo inner join estado  on alumno.estado_idEstado=estado.idEstado where alumno.grado_idGrado=$gradoMateria
-       and materia.nombreMateria='$nombreMateria' and notap.anio_idAnio=$anioSel and matricula_idMatricula= 
+       and materia.nombreMateria='$nombreMateria' and notap.anio_idAnio=$anioSel and matricula_idMatricula= $inicial 
        and  periodo.numeroPeriodo=$periodoSel  and  materia.gradoMateria=$gradoMateria and estado.tipoEstado='Activo' and alumno.sede = '$globalSede'
         order by alumno.nombre ";
 
-            $this->listaNotas3               = $nota4->find_all_by_sql("SELECT * FROM alumno inner join notap on alumno.idAlumno =
-     notap.alumno_idAlumno inner join materia on notap.materia_idMateria=materia.idMateria inner join
+            $this->listaNotas3               = $nota4->find_all_by_sql("SELECT * FROM alumno inner join matricula on alumno.matricula_idMatricula = matricula.idMatricula
+             inner join notap on alumno.idAlumno =  notap.alumno_idAlumno inner join materia on notap.materia_idMateria=materia.idMateria inner join
       periodo on notap.periodo_idPeriodo=periodo.idPeriodo inner join estado  on alumno.estado_idEstado=estado.idEstado where alumno.grado_idGrado=$gradoMateria
-       and materia.nombreMateria='$nombreMateria' and notap.anio_idAnio=$anioSel and
-        periodo.numeroPeriodo=$periodoSel   and materia.gradoMateria=$gradoMateria and estado.tipoEstado='Activo' and alumno.sede = '$globalSede'
+       and materia.nombreMateria='$nombreMateria' and notap.anio_idAnio=$anioSel  and matricula_idMatricula= $inicial 
+        and periodo.numeroPeriodo=$periodoSel   and materia.gradoMateria=$gradoMateria and estado.tipoEstado='Activo' and alumno.sede = '$globalSede'
 
         order by alumno.nombre ");
             $_SESSION['arrayNotas']          = $notap->find_all_by_sql($sql);
@@ -110,13 +117,13 @@ class NotapController extends AppController
         $this->periodoSel    = $_SESSION['periodoGlobal'];
         $this->anioSel       = $_SESSION['idAnioSel'];
         $nota3               = new Notap();
-        $sql                 = "SELECT * FROM alumno inner join notap on alumno.idAlumno =
-     notap.alumno_idAlumno inner join materia on notap.materia_idMateria=materia.idMateria inner join
-      periodo on notap.periodo_idPeriodo=periodo.idPeriodo inner join estado  on alumno.estado_idEstado=estado.idEstado where alumno.grado_idGrado=$gradoMateria
-       and materia.nombreMateria='$nombreMateria' and notap.anio_idAnio=$anioSel and
-        periodo.numeroPeriodo=$periodoSel and materia.gradoMateria=$gradoMateria and estado.tipoEstado='Activo' and alumno.sede = '$globalSede'
-
-        order by alumno.nombre";
+        $inicial = $_SESSION['inicial'];
+        $sql                 = "SELECT * FROM alumno inner join matricula on alumno.matricula_idMatricula = matricula.idMatricula inner join notap on alumno.idAlumno =
+        notap.alumno_idAlumno inner join materia on notap.materia_idMateria=materia.idMateria inner join
+         periodo on notap.periodo_idPeriodo=periodo.idPeriodo inner join estado  on alumno.estado_idEstado=estado.idEstado where alumno.grado_idGrado=$gradoMateria
+          and materia.nombreMateria='$nombreMateria' and notap.anio_idAnio=$anioSel and matricula_idMatricula= $inicial 
+          and  periodo.numeroPeriodo=$periodoSel  and  materia.gradoMateria=$gradoMateria and estado.tipoEstado='Activo' and alumno.sede = '$globalSede'
+           order by alumno.nombre ";
         $this->listaNotas3   = $nota3->find_all_by_sql($sql);
         View::select('listar');
     }
