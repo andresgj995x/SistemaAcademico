@@ -74,6 +74,7 @@ class NotapController extends AppController
        and materia.nombreMateria='$nombreMateria' and notap.anio_idAnio=$anioSel and matricula_idMatricula= $inicial and notap.grado_idGrado=$gradoMateria
        and  periodo.numeroPeriodo=$periodoSel  and  materia.gradoMateria=$gradoMateria and estado.tipoEstado='Activo' and alumno.sede = '$globalSede'
         order by alumno.nombre ";
+        
 
             $this->listaNotas3               = $nota4->find_all_by_sql("SELECT * FROM alumno inner join matricula on alumno.matricula_idMatricula = matricula.idMatricula
              inner join notap on alumno.idAlumno =  notap.alumno_idAlumno inner join materia on notap.materia_idMateria=materia.idMateria inner join
