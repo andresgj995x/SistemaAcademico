@@ -7,14 +7,173 @@ Load::models('usuarios');
 Load::models('anio');
 
 View::template('sbadmin');
+
+session_start();
 // Vamos a comenzar con el Sistema Controller
 
 class SistemaController extends AppController {
 
+
+
+
+    public function copiaseguridad(){
+
+        $this->titulo = "Copia de Seguridad";
+        $this->subtitulo = "Con un click guarde una copia de seguridad de toda la información.";
+        $this->informacion = "Se recomienda sacar este archivo semanal o mensualmente.";
+
+
+        if(Input::hasPost('copia')){
+
+             
+    $host ="localhost";
+    $user="root";
+    $pass="";
+    $name="mydb";
+    $tables = '*';
+
+    $link = mysql_connect($host,$user,$pass);
+	mysql_select_db($name,$link);
+	
+	//get all of the tables
+	if($tables == '*')
+	{
+		$tables = array();
+		$result = mysql_query('SHOW TABLES');
+		while($row = mysql_fetch_row($result))
+		{
+			$tables[] = $row[0];
+		}
+	}
+	else
+	{
+		$tables = is_array($tables) ? $tables : explode(',',$tables);
+	}
+	
+    $return = "";
+	//cycle through
+	foreach($tables as $table)
+	{
+		$result = mysql_query('SELECT * FROM '.$table);
+		$num_fields = mysql_num_fields($result);
+		
+		$return.= 'DROP TABLE '.$table.';';
+		$row2 = mysql_fetch_row(mysql_query('SHOW CREATE TABLE '.$table));
+		$return.= "\n\n".$row2[1].";\n\n";
+		
+		for ($i = 0; $i < $num_fields; $i++) 
+		{
+			while($row = mysql_fetch_row($result))
+			{
+				$return.= 'INSERT INTO '.$table.' VALUES(';
+				for($j=0; $j < $num_fields; $j++) 
+				{
+					$row[$j] = addslashes($row[$j]);
+					$row[$j] = ereg_replace("\n","\\n",$row[$j]);
+					if (isset($row[$j])) { $return.= '"'.$row[$j].'"' ; } else { $return.= '""'; }
+					if ($j < ($num_fields-1)) { $return.= ','; }
+				}
+				$return.= ");\n";
+			}
+		}
+		$return.="\n\n\n";
+	}
+	
+	//save file
+	$handle = fopen('CopiaSeguridadAcademic.sql','w+');
+	fwrite($handle,$return);
+	fclose($handle);
+
+    Flash::valid('Copia de seguridad creada correctamente');
+    Flash::valid('Ruta del archivo: C:/xampp/htdocs/SistemaAcademico/default/public---Nombre:CopiaSeguridadAcademic.sql');
+
+    header('Content-Disposition: attachment; filename="CopiaSeguridadAcademic.sql"');
+    Redirect::to('sistema/copiaseguridad');
+
+        }//ENF IF
+   
+
+
+    }
+    public function cambiarSede(){
+        
+        if($_SESSION['globalSede']==null){
+
+            $_SESSION['globalSede']="belen";
+        }else{
+
+            $_SESSION['globalSede']=$_SESSION['globalSede'];
+
+        }
+
+        
+        if(Input::hasPost('sedeF')){
+
+            $_SESSION['globalSede']=Input::post('sedeF');
+
+               $t = $_SESSION['globalSede'];
+
+        if($t=='belen'){
+
+          $t2= "BELÉN";
+        }elseif($t=='florida'){
+
+         $t2= "LA FLORIDA";
+        }
+        elseif($t=='marqueza'){
+
+           $t2= "LA MARQUEZA";
+        }
+        elseif($t=='lorenzo'){
+           $t2= "SAN LORENZO";
+          
+        }else{
+
+          $t2= "BELLAVISTA";
+        }
+        
+
+            
+            Flash::valid("La sede se ha cambiado a :".$t2);
+            
+           
+           Redirect::to('sistema/index');
+        }
+
+
+    }
+
+
+    public function cambiar(){
+
+
+
+        if($_SESSION['globalYear']==null){
+
+            $_SESSION['globalYear']=date("Y");
+        }else{
+
+            $_SESSION['globalYear']=$_SESSION['globalYear'];
+
+        }
+
+
+        if(Input::hasPost('globalYear')){
+
+            $_SESSION['globalYear']=intval(Input::post('globalYear'));
+            Flash::valid("Año lectivo actual cambiado a :".strval($_SESSION['globalYear']));
+            
+           
+           Redirect::to('sistema/index');
+        }
+
+        
+
+
+    }
+
     public function buscar() {
-        $this->titulo = "Gestión de Años Lectivos";
-        $this->subtitulo = "Por favor introduzca el año actual en formáto de 4 cifras: Ej = 2018 .";
-        $this->informacion = "Aquí podrás Crear años lectivos para el correcto enlazamiento de la información respectiva.";
+       
         
 
         $this->listaLectivos=null;

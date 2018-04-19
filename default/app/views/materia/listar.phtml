@@ -46,7 +46,10 @@
                         <td><?php echo $i ?></td>  
                         <td><?php echo $listaMaterias[$i]->idMateria ?></td>  
                          <td><?php echo $listaMaterias[$i]->nombreMateria ?></td>  
-                          <td><?php echo $listaMaterias[$i]->gradoMateria ?></td>  
+                          <td><?php if($listaMaterias[$i]->gradoMateria==13){
+
+                              echo "PREESCOLAR";
+                          }else{echo $listaMaterias[$i]->gradoMateria;} ?></td>  
                           <td><?php echo $listaMaterias[$i]->nombrePro ?></td>
                           <td><?php echo $listaMaterias[$i]->apellidoPro ?></td>          
                      

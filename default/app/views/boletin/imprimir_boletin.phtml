@@ -127,9 +127,9 @@ for ($i=0; $i<count($listaM); $i++) {
           <tr>
             <th class="text-center"><small>CÓDIGO</small></th>
             <th class="text-center"><small>ASIGNATURA</small></th>
-            <th class="text-center"><small>VALORACIÓN</small></th>
+            <th class="text-center"><small>DEF</small></th>
             <th class="text-center"><small>DESEMPEÑO</small></th>
-            <th class="text-center"><small>ESCALA NACIONAL</small></th>
+            <th class="text-center"><small>ESC.NAL</small></th>
             <th class="text-center"><small>FALTAS</small></th>
             
           </tr>
@@ -201,11 +201,23 @@ if($j<1){
 
 
   if(floatval($listaM[$i]->notaFinal)<3){
-$arrayH[$i].=' <td class="text-center">'.$logroM->debilidad.'</td>  ';
+$arrayH[$i].=' <td class="text-center">'.$logroM->logroBajo.'</td>  ';
 
 
-  }else{
-$arrayH[$i].=' <td class="text-center">'.$logroM->fortaleza.'</td>  ';
+  }
+  
+  elseif(floatval($listaM[$i]->notaFinal)<3.8 and floatval($listaM[$i]->notaFinal)>=3 ){
+    $arrayH[$i].=' <td class="text-center">'.$logroM->logroBasico.'</td>  ';
+
+  }
+  elseif(floatval($listaM[$i]->notaFinal)<4.5 and floatval($listaM[$i]->notaFinal)>=3.8){
+
+    $arrayH[$i].=' <td class="text-center">'.$logroM->logroAlto.'</td>  ';
+  }
+  
+  
+  else{
+$arrayH[$i].=' <td class="text-center">'.$logroM->logroSuperior.'</td>  ';
 
   }
 
@@ -214,10 +226,21 @@ $arrayH[$i].=' <td class="text-center">'.$logroM->fortaleza.'</td>  ';
 }elseif($j==1 and $j<2){
   // Añadir las otras notas
 if(floatval($listaL[$i]->notaFinal)<3){
-$arrayH[$i].=' <td class="text-center">'.$logroL->debilidad.'</td>  ';
+$arrayH[$i].=' <td class="text-center">'.$logroL->logroBajo.'</td>  ';
 
-  }else{
-$arrayH[$i].=' <td class="text-center">'.$logroL->fortaleza.'</td>  ';
+  } 
+  elseif(floatval($listaL[$i]->notaFinal)<3.8 and floatval($listaL[$i]->notaFinal)>=3 ){
+    $arrayH[$i].=' <td class="text-center">'.$logroL->logroBasico.'</td>  ';
+
+  }
+  elseif(floatval($listaL[$i]->notaFinal)<4.5 and floatval($listaL[$i]->notaFinal)>=3.8){
+
+    $arrayH[$i].=' <td class="text-center">'.$logroL->logroAlto.'</td>  ';
+  }
+  
+  
+  else{
+$arrayH[$i].=' <td class="text-center">'.$logroL->logroSuperior.'</td>  ';
 
   }
 
@@ -225,73 +248,152 @@ $arrayH[$i].=' <td class="text-center">'.$logroL->fortaleza.'</td>  ';
   // Añadir las otras notas
 
   if(floatval($listaI[$i]->notaFinal)<3){
-$arrayH[$i].=' <td class="text-center">'.$logroI->debilidad.'</td>  ';
+$arrayH[$i].=' <td class="text-center">'.$logroI->logroBajo.'</td>  ';
 
-  }else{
-$arrayH[$i].=' <td class="text-center">'.$logroI->fortaleza.'</td>  ';
+  }
+   
+  elseif(floatval($listaI[$i]->notaFinal)<3.8 and floatval($listaI[$i]->notaFinal)>=3 ){
+    $arrayH[$i].=' <td class="text-center">'.$logroI->logroBasico.'</td>  ';
+
+  }
+  elseif(floatval($listaI[$i]->notaFinal)<4.5 and floatval($listaI[$i]->notaFinal)>=3.8){
+
+    $arrayH[$i].=' <td class="text-center">'.$logroI->logroAlto.'</td>  ';
+  }
+  
+  else{
+$arrayH[$i].=' <td class="text-center">'.$logroI->logroSuperior.'</td>  ';
 
   }
 }elseif($j==3 and $j<4){
   // Añadir las otras notas
 if(floatval($listaS[$i]->notaFinal)<3){
-$arrayH[$i].=' <td class="text-center">'.$logroS->debilidad.'</td>  ';
+$arrayH[$i].=' <td class="text-center">'.$logroS->logroBajo.'</td>  ';
 
-  }else{
-$arrayH[$i].=' <td class="text-center">'.$logroS->fortaleza.'</td>  ';
+  }
+   
+  elseif(floatval($listaS[$i]->notaFinal)<3.8 and floatval($listaS[$i]->notaFinal)>=3 ){
+    $arrayH[$i].=' <td class="text-center">'.$logroS->logroBasico.'</td>  ';
+
+  }
+  elseif(floatval($listaS[$i]->notaFinal)<4.5 and floatval($listaS[$i]->notaFinal)>=3.8){
+
+    $arrayH[$i].=' <td class="text-center">'.$logroS->logroAlto.'</td>  ';
+  }
+  else{
+$arrayH[$i].=' <td class="text-center">'.$logroS->logroSuperior.'</td>  ';
 
   }
 }elseif($j==4 and $j<5){
   // Añadir las otras notas
 if(floatval($listaN[$i]->notaFinal)<3){
-$arrayH[$i].=' <td class="text-center">'.$logroN->debilidad.'</td>  ';
+$arrayH[$i].=' <td class="text-center">'.$logroN->logroBajo.'</td>  ';
 
-  }else{
+  } 
+  elseif(floatval($listaN[$i]->notaFinal)<3.8 and floatval($listaN[$i]->notaFinal)>=3 ){
+    $arrayH[$i].=' <td class="text-center">'.$logroN->logroBasico.'</td>  ';
+
+  }
+  elseif(floatval($listaN[$i]->notaFinal)<4.5 and floatval($listaN[$i]->notaFinal)>=3.8){
+
+    $arrayH[$i].=' <td class="text-center">'.$logroN->logroAlto.'</td>  ';
+  }
+  
+  else{
 $arrayH[$i].=' <td class="text-center">'.$logroN->fortaleza.'</td>  ';
 
   }
 }elseif($j==5 and $j<6){
   // Añadir las otras notas
 if(floatval($listaA[$i]->notaFinal)<3){
-$arrayH[$i].=' <td class="text-center">'.$logroA->debilidad.'</td>  ';
+$arrayH[$i].=' <td class="text-center">'.$logroA->logroBajo.'</td>  ';
 
-  }else{
-$arrayH[$i].=' <td class="text-center">'.$logroA->fortaleza.'</td>  ';
+  }
+  elseif(floatval($listaA[$i]->notaFinal)<3.8 and floatval($listaA[$i]->notaFinal)>=3 ){
+    $arrayH[$i].=' <td class="text-center">'.$logroA->logroBasico.'</td>  ';
+
+  }
+  elseif(floatval($listaA[$i]->notaFinal)<4.5 and floatval($listaA[$i]->notaFinal)>=3.8){
+
+    $arrayH[$i].=' <td class="text-center">'.$logroA->logroAlto.'</td>  ';
+  }
+  
+  else{
+$arrayH[$i].=' <td class="text-center">'.$logroA->logroSuperior.'</td>  ';
 
   }
 }elseif($j==6 and $j<7){
   // Añadir las otras notas
 if(floatval($listaR[$i]->notaFinal)<3){
-$arrayH[$i].=' <td class="text-center">'.$logroR->debilidad.'</td>  ';
+$arrayH[$i].=' <td class="text-center">'.$logroR->logroBajo.'</td>  ';
 
-  }else{
-$arrayH[$i].=' <td class="text-center">'.$logroR->fortaleza.'</td>  ';
+  }elseif(floatval($listaR[$i]->notaFinal)<3.8 and floatval($listaR[$i]->notaFinal)>=3 ){
+    $arrayH[$i].=' <td class="text-center">'.$logroR->logroBasico.'</td>  ';
+
+  }
+  elseif(floatval($listaR[$i]->notaFinal)<4.5 and floatval($listaR[$i]->notaFinal)>=3.8){
+
+    $arrayH[$i].=' <td class="text-center">'.$logroR->logroAlto.'</td>  ';
+  }
+  
+  
+  else{
+$arrayH[$i].=' <td class="text-center">'.$logroR->logroSuperior.'</td>  ';
 
   }
 }elseif($j==7 and $j<8){
   // Añadir las otras notas
 if(floatval($listaF[$i]->notaFinal)<3){
-$arrayH[$i].=' <td class="text-center">'.$logroF->debilidad.'</td>  ';
+$arrayH[$i].=' <td class="text-center">'.$logroF->logroBajo.'</td>  ';
 
-  }else{
-$arrayH[$i].=' <td class="text-center">'.$logroF->fortaleza.'</td>  ';
+  }elseif(floatval($listaF[$i]->notaFinal)<3.8 and floatval($listaF[$i]->notaFinal)>=3 ){
+    $arrayH[$i].=' <td class="text-center">'.$logroF->logroBasico.'</td>  ';
+
+  }
+  elseif(floatval($listaF[$i]->notaFinal)<4.5 and floatval($listaF[$i]->notaFinal)>=3.8){
+
+    $arrayH[$i].=' <td class="text-center">'.$logroF->logroAlto.'</td>  ';
+  }
+  
+  
+  else{
+$arrayH[$i].=' <td class="text-center">'.$logroF->logroSuperior.'</td>  ';
 
   }
 }elseif($j==8 and $j<9){
   // Añadir las otras notas
 if(floatval($listaE[$i]->notaFinal)<3){
-$arrayH[$i].=' <td class="text-center">'.$logroE->debilidad.'</td>  ';
+$arrayH[$i].=' <td class="text-center">'.$logroE->logroBajo.'</td>  ';
 
-  }else{
-$arrayH[$i].=' <td class="text-center">'.$logroE->fortaleza.'</td>  ';
+  }elseif(floatval($listaE[$i]->notaFinal)<3.8 and floatval($listaE[$i]->notaFinal)>=3 ){
+    $arrayH[$i].=' <td class="text-center">'.$logroE->logroBasico.'</td>  ';
+
+  }
+  elseif(floatval($listaE[$i]->notaFinal)<4.5 and floatval($listaE[$i]->notaFinal)>=3.8){
+
+    $arrayH[$i].=' <td class="text-center">'.$logroE->logroAlto.'</td>  ';
+  }
+  
+  else{
+$arrayH[$i].=' <td class="text-center">'.$logroE->logroSuperior.'</td>  ';
 
   }
 }else{
 
 if(floatval($listaT[$i]->notaFinal)<3){
-$arrayH[$i].=' <td class="text-center">'.$logroT->debilidad.'</td>  ';
+$arrayH[$i].=' <td class="text-center">'.$logroT->logroBajo.'</td>  ';
 
-  }else{
-$arrayH[$i].=' <td class="text-center">'.$logroT->fortaleza.'</td>  ';
+  }elseif(floatval($listaT[$i]->notaFinal)<3.8 and floatval($listaT[$i]->notaFinal)>=3 ){
+    $arrayH[$i].=' <td class="text-center">'.$logroT->logroBasico.'</td>  ';
+
+  }
+  elseif(floatval($listaT[$i]->notaFinal)<4.5 and floatval($listaT[$i]->notaFinal)>=3.8){
+
+    $arrayH[$i].=' <td class="text-center">'.$logroT->logroAlto.'</td>  ';
+  }
+  
+  else{
+$arrayH[$i].=' <td class="text-center">'.$logroT->logroSuperior.'</td>  ';
 
   }
 
@@ -598,7 +700,7 @@ $faltasTotales=$listaM[$i]->faltas+$listaL[$i]->faltas+$listaI[$i]->faltas+
   </div>
   <div class="col-lg-12">
   <br>
-    <b>OBSERVACIONES: ' . $observaciones .' </b>
+    <b>OBSERVACIONES:  </b>
     <hr>
     <hr>
     
@@ -663,6 +765,7 @@ $arrayH[$i].='
   Load::lib('mpdf');
 
 $mpdf = new mPDF('c', 'Letter');
+$mpdf->debug=true;
 
 $arrayH[$i] = mb_convert_encoding($arrayH[$i], 'UTF-8', 'UTF-8');
 

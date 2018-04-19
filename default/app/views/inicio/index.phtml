@@ -3,21 +3,89 @@
 <head>
 
 </head>
+
 <body>
 
+  <div class="row">
 
-  <div class="container">
- <h1> Información Útil </h1>
+    
+       <div class="col-lg-6">
 
- <h2>Teléfonos</h2>
+         <div class="panel panel-warning">
+            <div class="panel-heading"> <center>AÑO LECTIVO ACTUAL</center></div>
+            <div class="panel-body"> <center><h4 style ="color:#880e4f;"><b> <?php echo $_SESSION['globalYear']; ?></b></h4></center></div>
+        </div>
+        
+      </div>
 
- <h2>Horario de entrada y Salida </h2>
- <h3>08:00 am a 3:30 pm Lunes a Viernes</h3>
+
+       <div class="col-lg-6">
+
+          <div class="panel panel-warning">
+            <div class="panel-heading"><center>SEDE ACTUAL</center></div>
+            <div class="panel-body"> 
+                <h4 style ="color:#880e4f;"> <center><b><?php 
+        
+        $t = $_SESSION['globalSede'];
+
+        if($t=='belen'){
+
+          echo "BELÉN";
+        }elseif($t=='florida'){
+
+        echo "LA FLORIDA";
+        }
+        elseif($t=='marqueza'){
+
+          echo "LA MARQUEZA";
+        }
+        elseif($t=='lorenzo'){
+          echo "SAN LORENZO";
+          
+        }else{
+
+         echo "BELLAVISTA";
+        }
+        
+         ?></b></h4></center>
+            </div>
+        </div>
+       
+      
+      </div>
 
 
- <h1>Servicios y otra información de Interés</h1>
- 
+
   </div>
+
+
+  
+
+  <div class="row">
+     
+     <h3 style="margin-left:15px;">Información de utilidad</h3>
+     <br>
+
+       <div class="col-lg-4">
+       Fechas importantes
+      </div>
+
+       <div class="col-lg-4">
+       Teléfonos
+      </div>
+
+       <div class="col-lg-4">
+       Eventos próximos
+      </div>
+  
+  </div>
+  <hr>
+
+  
+
+  
+
+  
 
  <?php
 echo Tag:: js ( 'jquery/jquery' ); //Adiciona un archivo

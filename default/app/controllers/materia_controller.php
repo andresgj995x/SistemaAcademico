@@ -4,6 +4,7 @@ View::template('sbadmin');
 Load::models('materia');
 
 Load::models('profesor');
+session_start();
 
 class MateriaController extends AppController {
 
@@ -89,7 +90,7 @@ class MateriaController extends AppController {
                 $this->apellidoP=$profeEntrante->apellidoPro;
 
 
-
+                $this->profesorF = $profesor->find_all_by_sql('SELECT * from profesor order by nombrePro');
                 $this->profesor = $profesor->getAllProfesores();
 
                 if (Input::hasPost('idMateria')) {
@@ -149,7 +150,7 @@ class MateriaController extends AppController {
         $this->subtitulo = "Materias Registradas";
         $this->informacion = "P.A es un acrónimo de <b>P</b>rofesor <b>A</b>signado";
 
-        session_start();
+        
         $materia = new Materia();
 
         $gradoS = $_SESSION['gradoS'];
@@ -204,6 +205,7 @@ class MateriaController extends AppController {
 
             
             $this->gradoS=$_SESSION['gradoS'];
+            $this->profesorF = $profesor->find_all_by_sql('SELECT * from profesor order by nombrePro');
             $this->profesor = $profesor->getAllProfesores();
 
 

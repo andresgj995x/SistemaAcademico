@@ -1,0 +1,423 @@
+<?php View::content(); 
+
+?>
+
+<?php echo Form::open("promocion/graduar");
+
+if($gradoSel ==13){
+
+  $gradoString = "PREESCOLAR";
+}elseif($gradoSel==1){
+
+  $gradoString="PRIMERO";
+}
+elseif($gradoSel==2){
+
+  $gradoString="SEGUNDO";
+}
+elseif($gradoSel==3){
+
+  $gradoString="TERCERO";
+}
+elseif($gradoSel==4){
+
+  $gradoString="CUARTO";
+}
+elseif($gradoSel==5){
+
+  $gradoString="QUINTO";
+}
+elseif($gradoSel==6){
+
+  $gradoString="SEXTO";
+}
+elseif($gradoSel==7){
+
+  $gradoString="SÉPTIMO";
+}
+elseif($gradoSel==8){
+
+  $gradoString="OCTAVO";
+}
+elseif($gradoSel==9){
+
+  $gradoString="NOVENO";
+}
+elseif($gradoSel==10){
+
+  $gradoString="DÉCIMO";
+}
+elseif($gradoSel==11){
+
+  $gradoString="UNDÉCIMO";
+}else{
+
+  $gradoString="INDEFINIDO";
+}
+
+ ?>
+
+<div class="row">
+
+  <div class="col-lg-12">
+
+    <div class="panel panel-primary">
+     <div class="panel-heading"># de estudiantes</div>
+     <div class="panel-body">
+     Curso Actual :<b> <?php echo $gradoString; ?></b> - Sede Actual :<b> <?php echo strtoupper($_SESSION['globalSede'])?></b> - Año Lectivo Actual :<b> <?php echo strtoupper($_SESSION['globalYear'])?></b>
+      -- Año de matricula anterior: <b> <?php echo $anioEstudiantes;  ?></b>
+     <hr>
+     En este momento hay <b><?php  echo count($listaNotasP1);?> </b>estudiantes activos en este curso.
+     </div>
+   </div>
+
+ </div>  
+
+</div> <!-- Fin Header Row 1-->
+
+<h4 style="color:#b71c1c;">Escoja la sede de destino (Importante)</h4>
+<div class ="row">
+    <div class="col-lg-4">
+      <div class="form-group">
+            <select class="form-control"  name ="sede" id="sede" >
+             <optgroup label="Sedes Actuales">            
+                <option value ="belen" selected >Belen</option>
+                <option value ="bellavista">Bellavista</option>
+                <option value ="florida">La Florida</option>
+                <option value ="marqueza">La Marqueza</option>
+                <option value ="lorenzo">San Lorenzo</option>
+                <option value ="otra">OTRA</option>          
+             </optgroup>
+          </select>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- /.row -->
+<div class="row">
+
+  <div class="col-lg-12">
+    <div class="table-responsive">     
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>NOMBRES</th>
+            <th>APELLIDOS</th>
+            <th>ID</th>
+            <th class="primary">PROMOCIONAR</th>
+            <th class="warning">PERDIDAS</th>
+            <th>PROYECTO P.P.P</th>
+            <th>MATEMATICAS</th>
+            <th>ESPANOL</th>
+            <th>QUIMICA</th>
+            <th>INGLES</th>
+            <th>EDUCACION FISICA </th>
+            <th>FILOSOFIA</th>
+            <th>ARTISTICA </th>
+            <th>ETICA</th>
+            <th>ECONOMIA</th>
+            <th>FISICA</th>
+            <th>RELIGION</th>
+            <th>INFORMATICA</th>
+            
+            
+            
+            
+
+
+
+          </tr>
+        </thead>
+        <tbody>
+          <?php $contador =array();
+
+        for($j=0; $j<count($listaNotasP1); $j++){
+
+          $contador[$j]=0;
+        }
+        ?>
+         <?php for($i=0; $i<count($listaNotasP1); $i++) { ?>
+
+        <?php 
+
+          
+    $notaProyecto = round(($listaNotasP1[$i]->notaFinal + $listaNotasP2[$i]->notaFinal + 
+    $listaNotasP3[$i]->notaFinal + $listaNotasP4[$i]->notaFinal )/4,2);
+
+    $notaMatematicas = round(($listaNotasM1[$i]->notaFinal + $listaNotasM2[$i]->notaFinal + 
+    $listaNotasM3[$i]->notaFinal + $listaNotasM4[$i]->notaFinal )/4,2);
+
+    $notaEspanol = round(($listaNotasES1[$i]->notaFinal + $listaNotasES2[$i]->notaFinal + 
+    $listaNotasES3[$i]->notaFinal + $listaNotasES4[$i]->notaFinal )/4,2);
+
+    $notaQuimica = round(($listaNotasQ1[$i]->notaFinal + $listaNotasQ2[$i]->notaFinal + 
+    $listaNotasQ3[$i]->notaFinal + $listaNotasQ4[$i]->notaFinal )/4,2);
+
+    $notaIngles = round(($listaNotasI1[$i]->notaFinal + $listaNotasI2[$i]->notaFinal + 
+    $listaNotasI3[$i]->notaFinal + $listaNotasI4[$i]->notaFinal )/4,2);
+
+    $notaEducacionFisica = round(($listaNotasEF1[$i]->notaFinal + $listaNotasEF2[$i]->notaFinal + 
+    $listaNotasEF3[$i]->notaFinal + $listaNotasEF4[$i]->notaFinal )/4,2);
+
+    $notaFilosofia= round(($listaNotasFI1[$i]->notaFinal + $listaNotasFI2[$i]->notaFinal + 
+    $listaNotasFI3[$i]->notaFinal + $listaNotasFI4[$i]->notaFinal )/4,2);
+
+    $notaArtistica = round(($listaNotasA1[$i]->notaFinal + $listaNotasA2[$i]->notaFinal + 
+    $listaNotasA3[$i]->notaFinal + $listaNotasA4[$i]->notaFinal )/4,2);
+
+
+    $notaEtica = round(($listaNotasE1[$i]->notaFinal + $listaNotasE2[$i]->notaFinal + 
+    $listaNotasE3[$i]->notaFinal + $listaNotasE4[$i]->notaFinal )/4,2);
+
+    $notaEconomia = round(($listaNotasECO1[$i]->notaFinal + $listaNotasECO2[$i]->notaFinal + 
+    $listaNotasECO3[$i]->notaFinal + $listaNotasECO4[$i]->notaFinal )/4,2);
+
+    $notaFisica   = round(($listaNotasF1[$i]->notaFinal + $listaNotasF2[$i]->notaFinal + 
+    $listaNotasF3[$i]->notaFinal + $listaNotasF4[$i]->notaFinal )/4,2);
+    
+    $notaReligion = round(($listaNotasR1[$i]->notaFinal + $listaNotasR2[$i]->notaFinal + 
+    $listaNotasR3[$i]->notaFinal + $listaNotasR4[$i]->notaFinal )/4,2);
+
+    $notaInformatica = round(($listaNotasIN1[$i]->notaFinal + $listaNotasIN2[$i]->notaFinal + 
+    $listaNotasIN3[$i]->notaFinal + $listaNotasIN4[$i]->notaFinal )/4,2);
+
+
+    /* SUMARIAZACION DE FALTAS*/
+
+    
+          
+    $faltaProyecto = $listaNotasP1[$i]->faltas + $listaNotasP2[$i]->faltas + 
+    $listaNotasP3[$i]->faltas + $listaNotasP4[$i]->faltas;
+
+    $faltaMatematicas = $listaNotasM1[$i]->faltas + $listaNotasM2[$i]->faltas + 
+    $listaNotasM3[$i]->faltas + $listaNotasM4[$i]->faltas;
+
+    $fataEspanol = $listaNotasES1[$i]->faltas + $listaNotasES2[$i]->faltas + 
+    $listaNotasES3[$i]->faltas + $listaNotasES4[$i]->faltas;
+
+    $faltaQuimica = $listaNotasQ1[$i]->faltas + $listaNotasQ2[$i]->faltas + 
+    $listaNotasQ3[$i]->faltas + $listaNotasQ4[$i]->faltas;
+
+    $faltaIngles = $listaNotasI1[$i]->faltas + $listaNotasI2[$i]->faltas + 
+    $listaNotasI3[$i]->faltas + $listaNotasI4[$i]->faltas;
+
+    $faltaEducacionFisica = $listaNotasEF1[$i]->faltas + $listaNotasEF2[$i]->faltas + 
+    $listaNotasEF3[$i]->faltas + $listaNotasEF4[$i]->faltas;
+
+    $faltaFilosofia= $listaNotasFI1[$i]->faltas + $listaNotasFI2[$i]->faltas + 
+    $listaNotasFI3[$i]->faltas + $listaNotasFI4[$i]->faltas;
+
+    $faltaArtistica = $listaNotasA1[$i]->faltas + $listaNotasA2[$i]->faltas + 
+    $listaNotasA3[$i]->faltas + $listaNotasA4[$i]->faltas;
+
+    $faltaEtica = $listaNotasE1[$i]->faltas + $listaNotasE2[$i]->faltas + 
+    $listaNotasE3[$i]->faltas + $listaNotasE4[$i]->faltas;
+
+    $faltaEconomia = $listaNotasECO1[$i]->faltas + $listaNotasECO2[$i]->faltas + 
+    $listaNotasECO3[$i]->faltas + $listaNotasECO4[$i]->faltas;
+
+    $faltaFisica   = $listaNotasF1[$i]->faltas + $listaNotasF2[$i]->faltas + 
+    $listaNotasF3[$i]->faltas + $listaNotasF4[$i]->faltas;
+    
+    $faltaReligion = $listaNotasR1[$i]->faltas + $listaNotasR2[$i]->faltas + 
+    $listaNotasR3[$i]->faltas + $listaNotasR4[$i]->faltas;
+
+    $faltaInformatica = $listaNotasIN1[$i]->faltas + $listaNotasIN2[$i]->faltas + 
+    $listaNotasIN3[$i]->faltas + $listaNotasIN4[$i]->faltas;
+
+  $promedioP = $notaProyecto + $notaMatematicas + $notaEspanol + $notaQuimica + $notaIngles + $notaEducacionFisica + $notaFilosofia 
++ $notaArtistica + $notaEtica + $notaEconomia+ $notaFisica + $notaReligion + $notaInformatica;
+
+
+$promedioF=$promedioP/13;
+
+if($notaProyecto<3){
+
+  $contador[$i] +=1;
+  $casillaPro="danger";
+}else{
+ $contador[$i] =$contador[$i];
+  $casillaPro="success";
+
+}
+
+  if($notaMatematicas<3){
+
+    $contador[$i] +=1;
+    $casillaMat="danger";
+  }else{
+   $contador[$i] =$contador[$i];
+    $casillaMat="success";
+
+  }
+  if($notaEspanol<3){
+
+    $contador[$i] +=1;
+    $casillaEsp="danger";
+  }else{
+   $contador[$i] =$contador[$i];
+    $casillaEsp="success";
+
+  }
+  if($notaQuimica<3){
+
+    $contador[$i] +=1;
+    $casillaQui="danger";
+  }else{
+   $contador[$i] =$contador[$i];
+    $casillaQui="success";
+
+  }
+  if($notaIngles<3){
+
+    $contador[$i] +=1;
+    $casillaIng="danger";
+  }else{
+   $contador[$i] =$contador[$i];
+    $casillaIng="success";
+
+  }
+
+  if($notaEducacionFisica<3){
+
+    $contador[$i] +=1;
+    $casillaEdu="danger";
+  }else{
+   $contador[$i] =$contador[$i];
+    $casillaEdu="success";
+
+  }
+  if($notaFilosofia<3){
+
+    $contador[$i] +=1;
+    $casillaFilo="danger";
+  }else{
+   $contador[$i] =$contador[$i];
+    $casillaFilo="success";
+
+  }
+  if($notaArtistica<3){
+
+    $contador[$i] +=1;
+    $casillaArt="danger";
+  }else{
+   $contador[$i] =$contador[$i];
+    $casillaArt="success";
+
+  }
+ 
+  if($notaEtica<3){
+
+    $contador[$i] +=1;
+    $casillaEti="danger";
+  }else{
+   $contador[$i] =$contador[$i];
+    $casillaEti="success";
+
+  }
+  if($notaEconomia<3){
+
+    $contador[$i] +=1;
+    $casillaEco="danger";
+  }else{
+   $contador[$i] =$contador[$i];
+    $casillaEco="success";
+
+  }
+  if($notaFisica<3){
+
+    $contador[$i] +=1;
+    $casillaFis="danger";
+  }else{
+   $contador[$i] =$contador[$i];
+    $casillaFis="success";
+
+  }
+  if($notaReligion<3){
+
+    $contador[$i] +=1;
+    $casillaRel="danger";
+  }else{
+   $contador[$i] =$contador[$i];
+    $casillaRel="success";
+
+  }
+  if($notaInformatica<3){
+
+    $contador[$i] +=1;
+    $casillaInf="danger";
+  }else{
+   $contador[$i] =$contador[$i];
+    $casillaInf="success";
+
+  }
+        ?><!-- FIN SECTION PHP -->
+
+         <tr>
+          <td><?php echo ($i+1) ?></td>    
+          <td ><?php echo $listaNotasP1[$i]->nombre ?></td>
+          <td><?php echo $listaNotasP1[$i]->apellido ?></td>
+          <td><?php echo $listaNotasP1[$i]->identidadAl ?></td>
+           <td><input type="checkbox"  name="promociones[]" value="<?=$listaNotasP1[$i]->idAlumno?>" /></td>
+           
+          <td><?php echo $contador[$i] ?></td>
+          <td class="<?php echo $casillaPro; ?>"><?php echo $notaProyecto?></td>
+          <td class="<?php echo $casillaMat; ?>"><?php echo $notaMatematicas ?></td>
+          <td class="<?php echo $casillaEsp; ?>"><?php echo $notaEspanol ?></td>
+          <td class="<?php echo $casillaQui; ?>"><?php echo $notaQuimica?></td>
+          <td class="<?php echo $casillaIng; ?>"><?php echo $notaIngles ?></td>
+          <td class="<?php echo $casillaEdu; ?>"><?php echo $notaEducacionFisica ?></td>
+          <td class="<?php echo $casillaFilo; ?>"><?php echo $notaFilosofia?></td>
+          <td class="<?php echo $casillaArt; ?>"><?php echo $notaArtistica ?></td>
+          <td class="<?php echo $casillaEti; ?>"><?php echo $notaEtica ?></td>
+          <td class="<?php echo $casillaEco; ?>"><?php echo $notaEconomia?></td>
+          <td class="<?php echo $casillaFis; ?>"><?php echo $notaFisica ?></td>
+          <td class="<?php echo $casillaRel; ?>"><?php echo $notaReligion ?></td>
+          <td class="<?php echo $casillaInf; ?>"><?php echo $notaInformatica?></td>
+          <?php 
+              $_SESSION['globalGrado1'] = $listaNotasP1[$i]->anio_idAnio;
+            ?>
+          
+         
+
+          
+          
+          <input type="hidden" name ="temporal" value ="2">
+         
+
+          <?php 
+
+
+         
+
+          ?>
+
+        </tr>
+        <?php } ?>
+      </tbody>
+    </table>
+
+
+  </div>
+</div>
+</div>
+<hr>
+
+<div class="row">
+
+  <div class="col-lg-2">
+    <button class="btn btn-success waves-effect waves-light" type="submit" name="Ingresar" >Promocionar Seleccionados
+      <!--?php echo Form::submit("Ingresar","class: boton"); ?--> 
+    </button>
+  </div>
+
+</div>
+
+
+<!-- /.row -->
+
+<?php echo Form::close(); ?>

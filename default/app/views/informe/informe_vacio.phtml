@@ -1,8 +1,6 @@
 <?php
     View::content(); 
-    Load::lib('pdf/mpdf');
-
-    $space ="&nbsp;";
+    Load::lib('mpdf');
 
     $css = file_get_contents('css/sbadmin/bootstrap.css');
 
@@ -14,9 +12,9 @@
                     <tr>
                         <th class="text-center">INSTITUCIÓN EDUCATIVA BELÉN</th>
                         <th class="text-center">SISTEMA ACADEMICO</th>
-                        <th class="text-center">AÑO ESCOLAR '.$anio->numeroAnio.'</th>
-                        <th class="text-center">CURSO '. $grado->nombreGrado . '</th>
-                        <th class="text-center">PERIODO '. $periodoSel .' </th>
+                        <th class="text-center">AÑO ESCOLAR 2017</th>
+                        <th class="text-center">CURSO:'. $grado->nombreGrado .'</th>
+                        <th class="text-center">PERIODO:'. $periodo.' </th>
                     </tr>
                 </thead>
             </table>
@@ -30,9 +28,9 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="text-center"> '. $profesor->identidadPro.' </td>
-                        <td class="text-center"> '.$profesor->nombrePro.$space.$profesor->apellidoPro .' </td>
-                        <td class="text-center"> '. $materia->nombreMateria .' </td>
+                        <th class="text-center" > '. $profesor->identidadPro .' </th>
+                        <th class="text-center"> '.$profesor->nombrePro.' '.$profesor->apellidoPro.' </th>
+                        <th class="text-center"> '. $materia->nombreMateria .' </th>
                     </tr>
                 </tbody>
             </table>
@@ -40,37 +38,82 @@
                 <thead>
                     <tr>
                         <th class="text-center">No.</th>
-                        <th class="text-center">Identificación</th>
                         <th class="text-center">Nombres</th>
                         <th class="text-center">Apellidos</th>
-                        <th class="text-center">Faltas</th>
-                        <th class="text-center">Taller</th>
-                        <th class="text-center">Prueba Escrita</th>
-                        <th class="text-center">Laboratorios</th>
-                        <th class="text-center">Evaluación Oral</th>
-                        <th class="text-center">Evaluación Escrita</th>
-                        <th class="text-center">Puntualidad</th>
-                        <th class="text-center">Presentación Personal</th>
-
-                        <th class="text-center">Comportamiento</th>
-                        <th class="text-center">Interés y Participación</th>
-                        <th class="text-center">Valoración</th>
-                        <th class="text-center">Nota</th>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">FALT</th>
+                        <th class="text-center">TALLER</th>
+                        <th class="text-center">PRUEBA ESCRITA</th>
+                        <th class="text-center">LABORATORIOS</th>
+                        <th class="text-center">EVALUACION ORAL</th>
+                        <th class="text-center">EVALUACION ESCRITA</th>
+                        <th class="text-center">PUNTUALIDAD</th>
+                        <th class="text-center">PRESENTACION PERSONAL</th>
+                        <th class="text-center">COMPORTAMIENTO</th>
+                        <th class="text-center">INTERES Y PARTICIPACION</th>
+                        <th class="text-center">VALORACION</th>
+                        <th class="text-center">NOTA</th>
                         <th class="text-center">PUESTO</th>
                     </tr>
                 </thead>
-                <tbody>';
-                  
-       for ($i=0; $i < count($listaAlumnos) ; $i++) { 
-           
-$html.=' <tr><td class="text-center">'.$listaAlumnos[$i]->nombre.'</td> ';
-$html.=' <tr><td class="text-center">'.$listaAlumnos[$i]->apellido.'</td></tr> ';
+                <tbody>  ';
+// AQUÍ VA LA MATERIA MATEMATICAS
+ 
+// TR Fila TD Casilla dentro de la fila
+   
+for ($i=0; $i <$cuenta->cuenta ; $i++) { 
+    
 
-       }
+   $nF = round($listaAlumnos[$i]->notaFinal,2);
+    if($nF>=0 and $nF <=2.9){
+
+        $escala="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escala="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escala="A"; 
+    }else{
+
+      $escala="S"; 
+    }
 
 
 
-                $html.='</tbody>
+
+$html.=' <tr><td class="text-center">'.($i+1).'</td> ';
+$html.=' <td class="text-center">'.$listaAlumnos[$i]->nombre.'</td> ';
+$html.=' <td class="text-center">'.$listaAlumnos[$i]->apellido.'</td> ';
+$html.=' <td class="text-center">'.$listaAlumnos[$i]->identidadAl.'</td> '; 
+$html.=' <td class="text-center"></td> '; 
+$html.=' <td class="text-center"></td> '; 
+$html.=' <td class="text-center"></td> '; 
+$html.=' <td class="text-center"></td> '; 
+$html.=' <td class="text-center"></td> '; 
+$html.=' <td class="text-center"></td> '; 
+$html.=' <td class="text-center"></td> '; 
+$html.=' <td class="text-center"></td> '; 
+$html.=' <td class="text-center"></td> '; 
+$html.=' <td class="text-center"></td> '; 
+$html.=' <td class="text-center"></td> ';
+$html.=' <td class="text-center"></td> ';
+$html.=' <td class="text-center"></td></tr> ';
+
+
+
+
+
+} 
+
+               
+
+
+                $html.='
+                    
+
+                </tbody>
             </table>
             <table class="table table-bordered table-hover">
                 <thead>
@@ -100,14 +143,18 @@ $html.=' <tr><td class="text-center">'.$listaAlumnos[$i]->apellido.'</td></tr> '
     <div class="col-lg-2">
         ___________________________
 
-        <b> <br />'. $nombreRector .'<br />Rector</b>
+          <b> <br />'. $anio->anioRectora .'<br />Rector(a)</b>
     </div>
 </div>';
 
 
-$mpdf = new mPDF('c', 'A4-L');
+$mpdf = new mPDF('c', 'Letter-L');
+$mpdf->debug = true;
+
+$html = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
 $mpdf->WriteHTML($css, 1);
 $mpdf->WriteHTML($html);
 $mpdf->Output('informe.pdf', 'I');
+exit;
 
 ?>

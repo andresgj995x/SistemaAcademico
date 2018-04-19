@@ -80,8 +80,11 @@ public function edit($idLogro){
          if(Input::hasPost('periodoA')){
 
 
-           $fortaleza=Input::post('fortalezaF');
-           $debilidad=Input::post('debilidadF');
+           $logroBajo=Input::post('logroBajoF');
+		   $logroBasico=Input::post('logroBasicoF');
+		   
+           $logroAlto=Input::post('logroAltoF');
+           $logroSuperior=Input::post('logroSuperiorF');
 
             $servername = "localhost";
             $username = "root";
@@ -96,7 +99,7 @@ public function edit($idLogro){
                 die("Falló la conexión de Academic. Revise por favor que tenga  Xampp corriendo en su equipo.: " . $conn->connect_error);
             }
 
-            $sql = "UPDATE logros SET fortaleza='$fortaleza',debilidad='$debilidad' WHERE idLogro=$idLogro";
+            $sql = "UPDATE logros SET logroBajo='$logroBajo',logroBasico='$logroBasico',logroAlto='$logroAlto',logroSuperior='$logroSuperior' WHERE idLogro=$idLogro";
 
             if ($conn->query($sql) === TRUE) {
 

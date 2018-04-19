@@ -1,0 +1,108 @@
+<?php View::content(); ?>
+
+<?php echo Form::open(); ?>
+
+<div class="row">
+   
+ <h4 style="margin-left:15px; color:#3f51b5">Datos globales</h4>
+ <hr>
+<div class="col-lg-2">
+    
+        <label for="example">Sede</label>
+
+        <div class="form-group">
+            <select class="form-control"  name ="sede" id="sede" disabled>
+             <optgroup label="Grados Actuales">
+                <option value ="<?php echo $_SESSION['globalSede'] ?>"><?php echo $_SESSION['globalSede'] ?></option>
+               
+            </optgroup>
+          </select>
+        </div>
+
+</div>
+
+<div class="col-lg-2">
+    
+        <label for="example">Año Lectivo Actual</label>
+
+        <div class="form-group">
+            <select class="form-control"  name ="sede" id="sede" disabled>
+             <optgroup label="Grados Actuales">
+                <option value ="<?php echo $_SESSION['globalYear'] ?>"><?php echo $_SESSION['globalYear'] ?></option>
+               
+            </optgroup>
+          </select>
+        </div>
+
+</div>
+
+
+
+
+</div>
+
+<div class="row">
+
+ <div class="col-lg-2">
+    
+        <label for="example">Grado</label>
+
+        <div class="form-group">
+            <select class="form-control"  name ="gradoF" id="gradoF">
+             <optgroup label="Grados Actuales">
+                <option value ="13">Preescolar</option>
+                <option value ="1">Primero</option>
+                <option value ="2">Segundo</option>
+                <option value ="3">Tercero</option>
+                <option value ="4">Cuarto</option>
+                <option value ="5">Quinto</option>
+                <option value ="6">Sexto</option>
+                <option value ="7">Séptimo</option>
+                <option value ="8">Octavo</option>
+                <option value ="9">Noveno</option>
+                <option value ="10">Décimo</option> 
+                <option value ="11">Undécimo</option> 
+                
+            </optgroup>
+          </select>
+        </div>
+
+</div>
+
+
+
+ <div class="col-lg-3">
+    
+        <label for="example">Año cuando se matriculo el actual curso</label>
+
+        <div class="form-group">
+            <select class="form-control"  name ="anioEstudiantes" id="anioEstudiantes">
+             <optgroup label="Matriculas Anteriores">
+                <option value ="2017">2017</option>
+                <option value ="2018">2018</option>
+             
+            </optgroup>
+          </select>
+        </div>
+
+</div>
+
+
+ 
+
+
+
+ <div class="col-lg-2" style="padding-top:25px;">
+    <button class="btn btn-primary waves-effect waves-light" type="submit" name="Ingresar">Siguiente paso
+        <!--?php echo Form::submit("Ingresar","class: boton"); ?--> 
+    </button>
+</div>
+
+
+</div>
+
+
+
+
+<!-- /.row -->
+<?php echo Form::close(); ?>

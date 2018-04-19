@@ -11,6 +11,10 @@ for($i=0; $i<count($periodo); $i++){
     
 
     $_SESSION['tempIdPeriodo']=$tempIdPeriodo;
+    if($_SESSION['globalYear']==2018){
+
+        $tempIdPeriodo=$tempIdPeriodo-4;    
+    }
 
 }
 
@@ -208,7 +212,7 @@ $gradoM="DÉCIMO";
                               //La variable es $temp2
 
                             ?>
-                       <i class="fa fa-fw fa-edit"></i><?php echo Html::linkAction("edit/$nombre/$temp2/$tempIdMateria/$tempIdPeriodo/$nomMateria1/$gradoMateria1/$tempIdSemestre/$idAlumno/$id", ' Editar Nota') ?>
+                       <i class="fa fa-fw fa-edit"></i><?php echo Html::linkAction("edit/$nombre/$temp2/$tempIdMateria/$tempIdPeriodo/$nomMateria1/$gradoMateria1/$idAlumno/$id", ' Editar Nota') ?>
                             
                         </td>
                     </tr>

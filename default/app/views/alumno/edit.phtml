@@ -19,6 +19,7 @@ for($i=0; $i<count($matricula2); $i++){
 <?php echo Form::open(); ?>
 
 <div class="row">
+<h4 style="margin-left:15px; color:#3f51b5">Datos estudiante (Obligatorios)</h4>
  <div class="col-lg-3">
 
   <div class="form-group">
@@ -94,7 +95,7 @@ for($i=0; $i<count($matricula2); $i++){
 
 
         <div class="form-group">
-            <label for="celF">Celular</label>
+            <label for="celF">Celular (No Obligatorio)</label>
             <input type="number" value="<?php echo $alumno->celular; ?>"  maxlength="10" size="10" name="celF" id="celF" class="form-control"  placeholder="Celular" >
         </div>
 
@@ -131,59 +132,15 @@ for($i=0; $i<count($matricula2); $i++){
             </select>
         </div>
 
-       <div class="form-group">
 
-
-        <?php $array = array();
-            if ($alumno->grado_idGrado == 13) $array[0] = 'selected'; else $array[0] = '';
-            if ($alumno->grado_idGrado == 1) $array[1] = 'selected'; else $array[1] = '';
-            if ($alumno->grado_idGrado == 2) $array[2] = 'selected'; else $array[2] = '';
-            if ($alumno->grado_idGrado == 3) $array[3] = 'selected'; else $array[3] = '';
-            if ($alumno->grado_idGrado == 4) $array[4] = 'selected'; else $array[4] = '';
-            if ($alumno->grado_idGrado == 5) $array[5] = 'selected'; else $array[5] = '';
-            if ($alumno->grado_idGrado == 6) $array[6] = 'selected'; else $array[6] = '';
-            if ($alumno->grado_idGrado == 7) $array[7] = 'selected'; else $array[7] = '';
-            if ($alumno->grado_idGrado == 8) $array[9] = 'selected'; else $array[8] = '';
-            if ($alumno->grado_idGrado == 9) $array[9] = 'selected'; else $array[9] = '';
-            if ($alumno->grado_idGrado == 10) $array[10] = 'selected'; else $array[10] = '';
-            if ($alumno->grado_idGrado == 11) $array[11] = 'selected'; else $array[11] = '';
-        ?>
-            <label for ="gradoF">Grado Actual</label>
-            <select class="form-control" name ="gradoZ" id="gradoZ" data-style="btn-info">
-                 <option value ="13" <?= $array[0] ?> >Preescolar</option>
-                <option  value ="1" <?= $array[1] ?> >Primero</option>
-                <option  value ="2" <?= $array[2] ?> >Segundo</option>
-                <option  value ="3" <?= $array[3] ?> >Tercero</option>
-                <option  value ="4" <?= $array[4] ?> >Cuarto</option>
-                <option  value ="5" <?= $array[5] ?> >Quinto</option>
-                <option  value ="6" <?= $array[6] ?> >Sexto</option>
-                <option  value ="7" <?= $array[7] ?> >Séptimo</option>
-                <option  value ="8" <?= $array[8] ?> >Octavo</option>
-                <option  value ="9" <?= $array[9] ?> >Noveno</option>
-                <option  value ="10" <?= $array[10] ?> >Décimo</option>
-                <option  value ="11" <?= $array[11] ?> >Undécimo</option>
-            </select>
-        </div>
-
-         
-
-          <div class="form-group">
-            <label for ="idAcuF">Matricula Actual</label>
-
-            <input type="text"  value="<?php $var="-"; echo $estadoMatricula . $var . $anioMatricula;  ?>" class="form-control"  disabled>
+        <div class="form-group">
+            <label for ="idAcuF">Grado Actual</label>
+            <input type="text"  value="<?php echo $matriculaFinal->nombreGrado; ?>" 
+            class="form-control" disabled>
 
         </div>
-<div class="bg-danger">
- <div class="form-group">
-            <label for="tipoMatF">Cambiar matricula a:</label> 
-           
-            <select class="form-control" name ="tipoMatF" id="tipoMatF">
-                <?php foreach ($matricula->items as $item) : ?>
-                    <option value="<?php echo $item->idMatricula ?>"> <?php echo $item->estadoMatricula ?> - <?php echo $item->anio_idAnio ?></option>
-                <?php endforeach; ?>
-            </select>
-        </div>    
-  </div>    
+     
+
 
 
 
@@ -228,6 +185,160 @@ for($i=0; $i<count($matricula2); $i++){
 
 
 </div><!-- FIN FILA FORMULARIOOOOOOOOOOOOOOOOOO 1 *************************************** NO TOCAR--> 
+
+<hr style="border-color:#2196f3">
+
+<h4 style="color:#3f51b5">Tipo de matrícula y sede (Importante)</h4>
+
+    <div class="row">
+
+        <div class="col-lg-4">
+
+            
+          <div class="form-group">
+            <label for ="idAcuF">Matricula Actual</label>
+            <input type="text"  value="<?php $var="-"; echo $estadoMatricula . $var . $anioMatricula;  ?>" class="form-control"  disabled>
+          </div>
+
+          <?php 
+
+
+        ?>
+
+          <div class="bg-danger">
+                <div class="form-group">
+                     <label for="tipoMatF">Cambiar matricula a:</label> 
+
+                      <?php 
+                $array = array();
+            if ($matriculaFinal->estadoMatricula == 'Inicial') $array[0] = 'selected'; else $array[0] = '';
+            if ($matriculaFinal->estadoMatricula == 'Extraordinaria') $array[1] = 'selected'; else $array[1] = '';
+            if ($matriculaFinal->estadoMatricula == 'Trasladado') $array[2] = 'selected'; else $array[2] = '';
+            if ($matriculaFinal->estadoMatricula == 'Desertor') $array[3] = 'selected'; else $array[3] = '';
+
+                  /* Necesito el año global y el número para sacar el id*/
+            ?>
+           
+                         <select class="form-control" name ="tipoU" id="tipoU">
+
+            <option value='1' <?= $array[0] ?>>Inicial </option>
+            <option value='2' <?= $array[1] ?>>Extraordinaria </option>
+            <option value='3' <?= $array[2] ?>>Trasladado(a) </option>
+            <option value='4' <?= $array[3] ?>>Desertor(a) </option>
+                         </select>
+              </div>    
+        </div>   
+        
+        <div class="col-lg-2"></div>
+
+
+
+        </div><!-- end col 1-->
+
+          <div class="col-lg-4">
+
+             <div class="form-group">
+            <label for ="idAcuF">Sede Actual</label>
+            <input type="text"  value="<?php echo $alumno->sede;  ?>" class="form-control"  disabled>
+          </div>
+
+          <?php 
+                $array = array();
+            if ($alumno->sede == 'belen') $array[0] = 'selected'; else $array[0] = '';
+            if ($alumno->sede == 'bellavista') $array[1] = 'selected'; else $array[1] = '';
+            if ($alumno->sede == 'florida') $array[2] = 'selected'; else $array[2] = '';
+            if ($alumno->sede == 'marqueza') $array[3] = 'selected'; else $array[3] = '';
+            if ($alumno->sede == 'lorenzo') $array[4] = 'selected'; else $array[4] = '';
+
+            ?>
+
+          <div class="bg-danger">
+                <div class="form-group">
+                     <label for="tipoMatF">Cambiar sede a:</label> 
+           
+                         <select class="form-control" name ="sedeU" id="sedeU">
+                                    <option value='belen' <?= $array[0] ?> >Belén(Principal) </option>
+                                            <option value='bellavista' <?= $array[1] ?> >Bellavista </option>
+                                            <option value='florida' <?= $array[2] ?> >La Florida </option>
+                                            <option value='marqueza' <?= $array[3] ?> >La Marqueza</option>
+                                            <option value='lorenzo' <?= $array[4] ?> >San Lorenzo </option>
+                         </select>
+              </div>    
+        </div>    
+
+        </div><!-- end col 2-->
+
+    </div><!--end row 2-->
+
+
+<hr style="border-color:#2196f3">
+
+
+    <div class="row">
+    <h4 style="margin-left:15px; color:#3f51b5">Datos familiares </h4>
+   <div class="col-lg-3">
+
+      <div class="form-group">
+         <label>Identificación TI-CC(Madre)</label>
+         <input type="number" maxlength="15"  name="ccMadre" value="<?php echo $alumno->idMadreA; ?>" id="ccMadre" class="form-control" placeholder="Cédula Madre" >
+      </div>
+
+       <div class="form-group">
+         <label>Identificación TI-CC(Padre)</label>
+         <input type="number" maxlength="15"  name="ccPadre" value="<?php echo $alumno->idPadreA; ?>" id="ccPadre" class="form-control" placeholder="cédulaPadre" >
+      </div>
+
+    
+
+   </div>
+   <!-- Fin Columna 1 -->
+   <div class="col-lg-3">
+
+
+      <div class="form-group">
+         <label>Nombres (Madre)</label>
+         <input type="text" name="nombreMadre" id="nombreMadre" value="<?php echo $alumno->madreNombreA; ?>"  class="form-control" placeholder="Nombres Madre" >
+      </div>
+
+      <div class="form-group">
+         <label>Nombres (Padre)</label>
+         <input type="text"  name="nombrePadre" id="nombrePadre"  value="<?php echo $alumno->padreNombreA; ?>" class="form-control" placeholder="Nombres Padre">
+      </div>
+   </div>
+   <!-- Fin Columna 2 -->
+   <div class="col-lg-3">
+      <div class="form-group">
+         <label>Apellidos (Madre)</label>
+         <input type="text" name="apellidoMadre" id="apellidoMadre" value="<?php echo $alumno->madreApellidoA; ?>"  class="form-control" placeholder="Apellidos Madre" >
+      </div>
+
+      <div class="form-group">
+         <label>Apellidos (Padre)</label>
+         <input type="text"  name="apellidoPadre" id="apellidoPadre" value="<?php echo $alumno->padreApellidoA; ?>"  class="form-control" placeholder="Apellidos Padre" >
+      </div>
+      
+   </div>
+   <!-- Fin Columna 3-->
+   <!-- Columna 4-->
+   <div class="col-lg-3">
+      <div class="form-group">
+         <label>Celular(Madre)</label>
+         <input type="number"  maxlength="15" name ="celMadre" id ="celMadre" value="<?php echo $alumno->celMadreA; ?>" class="form-control" placeholder=" Celular Madre" >
+      </div>
+  <div class="form-group">
+         <label>Celular(Padre)</label>
+         <input type="number"  maxlength="15" name ="celPadre" id ="celPadre" value="<?php echo $alumno->celPadreA; ?>"  class="form-control" placeholder=" Celular Padre" >
+      </div>
+     
+      
+     
+   </div>
+   
+   <!-- Fin Columna 4-->
+</div>
+
+
+<hr style="border-color:#2196f3">
 
 
 <div class="row"> <!-- INICIO BOTÓN ACCIONES **********************************-->

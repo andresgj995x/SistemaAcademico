@@ -15,13 +15,15 @@
 
 <div class="col-lg-4">
 
-    <div class="form-group">
-            <label>Profesores Siguiente: Esocoger uno</label>
+     <div class="form-group">
+            <label>Escoger profesor(a) de grado completo</label>
             <select class="form-control" name ="idPro" id="idPro">
              <optgroup label="Seleccione el nuevo profesor">
-              <?php foreach ($profesor->items as $item) : ?>
-                <option value='<?php echo $item->idPro ?>'> <?php echo $item->nombrePro ?> &nbsp; <?php echo $item->apellidoPro ?> </option>
-              <?php endforeach; ?>
+              <?php for($i=0; $i<count($profesorF); $i++) {  
+                  
+                  ?>
+                <option value='<?php echo $profesorF[$i]->idPro ?>'> <?php echo $profesorF[$i]->nombrePro ?> &nbsp;<?php echo $profesorF[$i]->apellidoPro ?> </option>
+              <?php } ?>
               </optgroup>
             </select>
         </div>  

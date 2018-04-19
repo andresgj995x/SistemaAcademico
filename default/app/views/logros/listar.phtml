@@ -28,31 +28,42 @@
     
     
     $array = array();
-    if ($selectorM == "MATEMATICAS") $array[0] = 'selected'; else $array[0] = '';
-    if ($selectorM == "LENGUA CASTELLANA") $array[1] = 'selected'; else $array[1] = '';
-    if ($selectorM == "INGLES") $array[2] = 'selected'; else $array[2] = '';
-    if ($selectorM == "CIENCIAS SOCIALES") $array[3] = 'selected'; else $array[3] = '';
-    if ($selectorM == "CIENCIAS NATURALES") $array[4] = 'selected'; else $array[4] = '';
-    if ($selectorM == "EDUCACION ARTISTICA") $array[5] = 'selected'; else $array[5] = '';
-    if ($selectorM == "EDUCACION RELIGIOSA") $array[6] = 'selected'; else $array[6] = '';
-    if ($selectorM == "EDUCACION FISICA") $array[7] = 'selected'; else $array[7] = '';
-    if ($selectorM == "ETICA Y VALORES") $array[8] = 'selected'; else $array[8] = '';
-    if ($selectorM == "TECNOLOGIA E INFORMATICA") $array[9] = 'selected'; else $array[9] = '';
-    if ($selectorM == "PROYECTO") $array[10] = 'selected'; else $array[10] = '';
-    if ($selectorM == "MATEMATICAS") $array[11] = 'selected'; else $array[11] = '';
 
-    if ($selectorM == "ESPAÑOL") $array[12] = 'selected'; else $array[12] = '';
-    if ($selectorM == "QUIMICA") $array[13] = 'selected'; else $array[13] = '';
-    if ($selectorM == "INGLES") $array[14] = 'selected'; else $array[14] = '';
-    if ($selectorM == "EDUCACION FISICA") $array[15] = 'selected'; else $array[15] = '';
-    if ($selectorM == "FILOSOFIA") $array[16] = 'selected'; else $array[16] = '';
+    if ($selectorM == "CORPORAL") $array[0] = 'selected'; else $array[0] = '';
+    if ($selectorM == "COMUNICATIVA") $array[1] = 'selected'; else $array[1] = '';
+    if ($selectorM == "COGNITIVA") $array[2] = 'selected'; else $array[2] = '';
+    if ($selectorM == "ETICA Y VALORES") $array[3] = 'selected'; else $array[3] = '';
+    if ($selectorM == "ESTETICA") $array[4] = 'selected'; else $array[4] = '';
+    if ($selectorM == "SOCIOAFECTIVA") $array[5] = 'selected'; else $array[5] = '';
+    if ($selectorM == "ESPIRITUAL") $array[6] = 'selected'; else $array[6] = '';
 
-    if ($selectorM == "ARTISTICA") $array[17] = 'selected'; else $array[17] = '';
-    if ($selectorM == "ETICA") $array[18] = 'selected'; else $array[18] = '';
-    if ($selectorM == "ECONOMIA") $array[19] = 'selected'; else $array[19] = '';
-    if ($selectorM == "FISICA") $array[20] = 'selected'; else $array[20] = '';
-    if ($selectorM == "RELIGION") $array[21] = 'selected'; else $array[21] = '';
-    if ($selectorM == "INFORMATICA") $array[21] = 'selected'; else $array[22] = '';
+
+
+    if ($selectorM == "MATEMATICAS") $array[7] = 'selected'; else $array[7] = '';
+    if ($selectorM == "LENGUA CASTELLANA") $array[8] = 'selected'; else $array[8] = '';
+    if ($selectorM == "INGLES") $array[9] = 'selected'; else $array[9] = '';
+    if ($selectorM == "CIENCIAS SOCIALES") $array[10] = 'selected'; else $array[10] = '';
+    if ($selectorM == "CIENCIAS NATURALES") $array[11] = 'selected'; else $array[11] = '';
+    if ($selectorM == "EDUCACION ARTISTICA") $array[12] = 'selected'; else $array[12] = '';
+    if ($selectorM == "EDUCACION RELIGIOSA") $array[13] = 'selected'; else $array[13] = '';
+    if ($selectorM == "EDUCACION FISICA") $array[14] = 'selected'; else $array[14] = '';
+    if ($selectorM == "ETICA Y VALORES") $array[15] = 'selected'; else $array[15] = '';
+    if ($selectorM == "TECNOLOGIA E INFORMATICA") $array[16] = 'selected'; else $array[16] = '';
+    if ($selectorM == "PROYECTO") $array[17] = 'selected'; else $array[17] = '';
+    if ($selectorM == "MATEMATICAS") $array[18] = 'selected'; else $array[18] = '';
+
+    if ($selectorM == "ESPAÑOL") $array[19] = 'selected'; else $array[19] = '';
+    if ($selectorM == "QUIMICA") $array[20] = 'selected'; else $array[20] = '';
+    if ($selectorM == "INGLES") $array[21] = 'selected'; else $array[21] = '';
+    if ($selectorM == "EDUCACION FISICA") $array[22] = 'selected'; else $array[22] = '';
+    if ($selectorM == "FILOSOFIA") $array[23] = 'selected'; else $array[23] = '';
+
+    if ($selectorM == "ARTISTICA") $array[24] = 'selected'; else $array[24] = '';
+    if ($selectorM == "ETICA") $array[25] = 'selected'; else $array[25] = '';
+    if ($selectorM == "ECONOMIA") $array[26] = 'selected'; else $array[26] = '';
+    if ($selectorM == "FISICA") $array[27] = 'selected'; else $array[27] = '';
+    if ($selectorM == "RELIGION") $array[28] = 'selected'; else $array[28] = '';
+    if ($selectorM == "INFORMATICA") $array[29] = 'selected'; else $array[29] = '';
     
  $_SESSION['selectorM']=$selectorM;
 
@@ -95,33 +106,44 @@
 
     <div class="form-group">
         <select class="form-control"  name ="materiaF" id="materiaF">
+
+
+        <optgroup label="Materias Preescolar">
+                <option value ="CORPORAL" <?= $array[0] ?>>Corporal</option>
+                <option value ="COMUNICATIVA" <?= $array[1] ?>>Comunicativa</option>
+                <option value ="COGNITIVA" <?= $array[2] ?>>Cognitiva</option>
+                <option value ="ETICA Y VALORES" <?= $array[3] ?>>Etica Y Valores</option>
+                <option value ="ESTETICA" <?= $array[4] ?>>Estetica</option>
+                <option value ="SOCIOAFECTIVA" <?= $array[5] ?>>Socioafectiva</option>
+                <option value ="ESPIRITUAL" <?= $array[6] ?>>Espiritual</option>
+
            <optgroup label="Materias Primaria">
-            <option value ="MATEMATICAS" <?= $array[0] ?>>Matemáticas</option>
-            <option value ="LENGUA CASTELLANA" <?= $array[1] ?>>Lengua Castellana</option>
-            <option value ="INGLES" <?= $array[2] ?>>Inglés</option>
-            <option value ="CIENCIAS SOCIALES" <?= $array[3] ?>>Ciencias Sociales</option>
-            <option value ="CIENCIAS NATURALES" <?= $array[4] ?>>Ciencias Naturales</option>
-            <option value ="EDUCACION ARTISTICA"<?= $array[5] ?>>Educación Artística</option>
-            <option value ="EDUCACION RELIGIOSA" <?= $array[6] ?>>Educación Religiosa</option>
-            <option value ="EDUCACION FISICA" <?= $array[7] ?>>Educación Física</option>
-            <option value ="ETICA Y VALORES" <?= $array[8] ?>>Ética y Valores</option>
-            <option value ="TECNOLOGIA E INFORMATICA" <?= $array[9] ?>>Tenología e Informática</option>
+            <option value ="MATEMATICAS" <?= $array[7] ?>>Matemáticas</option>
+            <option value ="LENGUA CASTELLANA" <?= $array[8] ?>>Lengua Castellana</option>
+            <option value ="INGLES" <?= $array[9] ?>>Inglés</option>
+            <option value ="CIENCIAS SOCIALES" <?= $array[10] ?>>Ciencias Sociales</option>
+            <option value ="CIENCIAS NATURALES" <?= $array[11] ?>>Ciencias Naturales</option>
+            <option value ="EDUCACION ARTISTICA"<?= $array[12] ?>>Educación Artística</option>
+            <option value ="EDUCACION RELIGIOSA" <?= $array[13] ?>>Educación Religiosa</option>
+            <option value ="EDUCACION FISICA" <?= $array[14] ?>>Educación Física</option>
+            <option value ="ETICA Y VALORES" <?= $array[15] ?>>Ética y Valores</option>
+            <option value ="TECNOLOGIA E INFORMATICA" <?= $array[16] ?>>Tenología e Informática</option>
 
         </optgroup>
         <optgroup label="Materias Secundaria">
-            <option value ="PROYECTO" <?= $array[10] ?>>Proyecto P.P.P</option>
-            <option value ="MATEMATICAS" <?= $array[11] ?>>Matemáticas</option>
-            <option value ="ESPAÑOL" <?= $array[12] ?>>Español</option>
-            <option value ="QUIMICA" <?= $array[13] ?>>Química</option>
-            <option value ="INGLES" <?= $array[14] ?>>Inglés</option>
-            <option value ="EDUCACION FISICA" <?= $array[15] ?>>Educación Física</option>
-            <option value ="FILOSOFIA" <?= $array[16] ?> >Filosofía</option>
-            <option value ="ARTISTICA" <?= $array[17] ?>>Artística</option>
-            <option value ="ETICA" <?= $array[18] ?>>Ética</option>
-            <option value ="ECONOMIA" <?= $array[19] ?>>Economía</option>
-            <option value ="FISICA" <?= $array[20] ?>>Física</option>
-            <option value ="RELIGION" <?= $array[21] ?>>Religión</option>  
-            <option value ="INFORMATICA" <?= $array[22] ?>>Religión</option>  
+            <option value ="PROYECTO" <?= $array[17] ?>>Proyecto P.P.P</option>
+            <option value ="MATEMATICAS" <?= $array[18] ?>>Matemáticas</option>
+            <option value ="ESPAÑOL" <?= $array[19] ?>>Español</option>
+            <option value ="QUIMICA" <?= $array[20] ?>>Química</option>
+            <option value ="INGLES" <?= $array[21] ?>>Inglés</option>
+            <option value ="EDUCACION FISICA" <?= $array[22] ?>>Educación Física</option>
+            <option value ="FILOSOFIA" <?= $array[23] ?> >Filosofía</option>
+            <option value ="ARTISTICA" <?= $array[24] ?>>Artística</option>
+            <option value ="ETICA" <?= $array[25] ?>>Ética</option>
+            <option value ="ECONOMIA" <?= $array[26] ?>>Economía</option>
+            <option value ="FISICA" <?= $array[27] ?>>Física</option>
+            <option value ="RELIGION" <?= $array[28] ?>>Religión</option>  
+            <option value ="INFORMATICA" <?= $array[29] ?>>Informática</option>  
         </optgroup>
 
 
@@ -151,8 +173,10 @@
                     <tr>
                         <th>ID Logro</th>
                         <th>Materia</th>
-                        <th>Fortaleza</th>
-                        <th>Debilidad</th>
+                        <th>Logro Bajo</th>
+                        <th>Logro Basico</th>
+                        <th>Logro Alto</th>
+                        <th>Logro Superior</th>
                         <th>Periodo</th>
                         <th>Grado</th>
                         <th>Acciones</th>
@@ -175,8 +199,10 @@ if( $listaLogros[$i]->gradoMateria==13){
 
                         <td><?php echo $listaLogros[$i]->idLogro ?></td>  
                         <td><?php echo $listaLogros[$i]->nombreMateria ?></td>  
-                        <td><?php echo $listaLogros[$i]->fortaleza ?></td>  
-                        <td><?php echo $listaLogros[$i]->debilidad ?></td>
+                        <td><?php echo $listaLogros[$i]->logroBajo ?></td> 
+                        <td><?php echo $listaLogros[$i]->logroBasico ?></td>
+                        <td><?php echo $listaLogros[$i]->logroAlto ?></td> 
+                        <td><?php echo $listaLogros[$i]->logroSuperior ?></td>
                         <td><?php echo $listaLogros[$i]->periodo_idPeriodo ?></td>          
                         <td><?php echo $listaLogros[$i]->gradoMateria ?></td>   
 

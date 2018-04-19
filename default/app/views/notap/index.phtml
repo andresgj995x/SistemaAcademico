@@ -1,25 +1,63 @@
 <?php View::content(); ?>
 <?php echo Form::open() ?>
 
+ <div class="row">
+
+    
+       <div class="col-lg-6">
+
+         <div class="panel panel-warning">
+            <div class="panel-heading"> <center>AÑO LECTIVO ACTUAL</center></div>
+            <div class="panel-body"> <center><h4 style ="color:#880e4f;"><b> <?php echo $_SESSION['globalYear']; ?></b></h4></center></div>
+        </div>
+        
+      </div>
 
 
+       <div class="col-lg-6">
+
+          <div class="panel panel-warning">
+            <div class="panel-heading"><center>SEDE ACTUAL</center></div>
+            <div class="panel-body"> 
+                <h4 style ="color:#880e4f;"> <center><b><?php 
+        
+        $t = $_SESSION['globalSede'];
+
+        if($t=='belen'){
+
+          echo "BELÉN";
+        }elseif($t=='florida'){
+
+        echo "LA FLORIDA";
+        }
+        elseif($t=='marqueza'){
+
+          echo "LA MARQUEZA";
+        }
+        elseif($t=='lorenzo'){
+          echo "SAN LORENZO";
+          
+        }else{
+
+         echo "BELLAVISTA";
+        }
+        
+         ?></b></h4></center>
+            </div>
+        </div>
+       
+      
+      </div>
+
+
+
+  </div>
+  <hr>
 
 <div class="row">
 
-    <div class="col-lg-2">
+  
 
-       <div class="form-group">
-        <label>Años Lectivos</label>
-        <select class="form-control" name ="idAnioF" id="idAnioF">
-           <optgroup label="Años Lectivos Actuales">
-              <?php foreach ($anio->items as $item) : ?>
-                <option value='<?php echo $item->idAnio ?>'> <?php echo $item->idAnio?> </option>
-            <?php endforeach; ?>
-        </optgroup>
-    </select>
-</div>  
-
-</div>
 
 <div class="col-lg-3">
 
@@ -65,6 +103,7 @@
             <option value ="8">8</option>
             <option value ="9">9</option>
             <option value ="10">10</option>
+            <option value ="11">11</option>
         </optgroup>
     </select>
 
@@ -83,6 +122,16 @@
 
     <div class="form-group">
      <select class="form-control"  name ="idMateriaF" id="idMateriaF">
+
+     <optgroup label="Materias Preescolar">
+                <option value ="CORPORAL">Corporal</option>
+                <option value ="COMUNICATIVA">Comunicativa</option>
+                <option value ="COGNITIVA">Cognitiva</option>
+                <option value ="ETICA Y VALORES">Etica Y Valores</option>
+                <option value ="ESTETICA">Estetica</option>
+                <option value ="SOCIOAFECTIVA">Socioafectiva</option>
+                <option value ="ESPIRITUAL">Espiritual</option>
+                
              <optgroup label="Materias Primaria">
                 <option value ="MATEMATICAS">Matemáticas</option>
                 <option value ="LENGUA CASTELLANA">Lengua Castellana</option>

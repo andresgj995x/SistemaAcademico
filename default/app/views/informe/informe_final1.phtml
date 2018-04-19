@@ -1,0 +1,583 @@
+<?php
+
+View::content();
+
+
+$css = file_get_contents('css/sbadmin/bootstrap.css');
+
+//for ($i=0; $i<count($listaAlumnos); $i++) { 
+
+$html = '<div class="row text-center">
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="text-center">INFORME FINAL</th>
+                </tr>
+            </thead>
+            </table>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center">INSTITUCIÓN EDUCATIVA BELÉN</th>
+                        <th class="text-center">AÑO ESCOLAR '.$anioG.'</th>
+                        <th class="text-center">GRADO :'.$gradoSel.'</th>
+                        
+                        <th class="text-center">PERIODO:1-4 </th>
+                    </tr>
+                </thead>
+             </table>
+             <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th  class="middle text-center">#</th>
+                        <th  class="text-center"><small>NOMBRES</small></th>
+                        <th  class="text-center"><small>APELLIDOS</small></th>
+                        <th  class="text-center"><small>ID</small></th>
+                        <th  colspan ="3" class="text-center"><small>PROYECTO</small></th>
+                        <th colspan ="3" class="text-center"><small>MATEMATICAS</small></th>
+                        <th  colspan ="3" class="text-center"><small>ESPAÑOL</small></th>
+                        <th  colspan ="3" class="text-center"><small>QUIMICA</small></th>
+                        <th  colspan ="3" class="text-center"><small>INGLES</small></th>
+                        <th  colspan ="3" class="text-center"><small>EDUCACIÓN FISICA</small></th>
+                        <th  colspan ="3" class="text-center"><small>FILOSOFIA</small></th>
+                        <th colspan ="3" class="text-center"><small>ARTISTICA</small></th>
+                        <th colspan ="3" class="text-center"><small>ÉTICA</small></th>
+                        <th colspan ="3" class="text-center"><small>ECONOMIA</small></th>
+                        <th colspan ="3" class="text-center"><small>FISICA</small></th>
+                        <th colspan ="3" class="text-center"><small>RELIGION</small></th>
+                        <th colspan ="3" class="text-center"><small>INFORMATICA</small></th>
+                        <th colspan ="3" class="text-center"><small>VALORACIÓN</small></th>
+                    </tr>
+
+                    <tr>
+                        <th  colspan="4" class="text-center"></th>
+                       
+
+                        <th class="text-center">N</th>
+                        <th class="text-center">E</th>
+                        <th class="text-center">F</th>
+
+                        <th class="text-center">N</th>
+                        <th class="text-center">E</th>
+                        <th class="text-center">F</th>
+
+                        <th class="text-center">N</th>
+                        <th class="text-center">E</th>
+                        <th class="text-center">F</th>
+
+                        <th class="text-center">N</th>
+                        <th class="text-center">E</th>
+                        <th class="text-center">F</th>
+
+                        <th class="text-center">N</th>
+                        <th class="text-center">E</th>
+                        <th class="text-center">F</th>
+
+                         <th class="text-center">N</th>
+                        <th class="text-center">E</th>
+                        <th class="text-center">F</th>
+
+                        <th class="text-center">N</th>
+                        <th class="text-center">E</th>
+                        <th class="text-center">F</th>
+
+                        <th class="text-center">N</th>
+                        <th class="text-center">E</th>
+                        <th class="text-center">F</th>
+
+                         <th class="text-center">N</th>
+                        <th class="text-center">E</th>
+                        <th class="text-center">F</th>
+
+                        <th class="text-center">N</th>
+                        <th class="text-center">E</th>
+                        <th class="text-center">F</th>
+
+                        <th class="text-center">N</th>
+                        <th class="text-center">E</th>
+                        <th class="text-center">F</th>
+
+                         <th class="text-center">N</th>
+                        <th class="text-center">E</th>
+                        <th class="text-center">F</th>
+
+                        <th class="text-center">N</th>
+                        <th class="text-center">E</th>
+                        <th class="text-center">F</th>
+
+                        <th class="text-center">PM</th>
+                        <th class="text-center">PSTO</th>
+                        <th class="text-center">FT</th>
+                       
+         
+                    </tr>
+                </thead>
+
+                <tbody>  ';
+// AQUÍ VA LA MATERIA MATEMATICAS
+   $arrayP= array();
+   $arrayZ= array();
+
+for ($i=0; $i <$cuenta->cuenta ; $i++) { 
+    $arrayZ[$i]=$i+1;
+}
+
+
+
+for ($i=0; $i <$cuenta->cuenta ; $i++) { 
+    $html.=' <tr><td class="text-center">'.($i+1).'</td> ';
+
+   
+
+    /* VARIABLES TEMPORALES PARA GUARDAR LOS PROMEDIOS */
+
+    $notaProyecto = round(($listaNotasP1[$i]->notaFinal + $listaNotasP2[$i]->notaFinal + 
+    $listaNotasP3[$i]->notaFinal + $listaNotasP4[$i]->notaFinal )/4,2);
+
+    $notaMatematicas = round(($listaNotasM1[$i]->notaFinal + $listaNotasM2[$i]->notaFinal + 
+    $listaNotasM3[$i]->notaFinal + $listaNotasM4[$i]->notaFinal )/4,2);
+
+    $notaEspanol = round(($listaNotasES1[$i]->notaFinal + $listaNotasES2[$i]->notaFinal + 
+    $listaNotasES3[$i]->notaFinal + $listaNotasES4[$i]->notaFinal )/4,2);
+
+    $notaQuimica = round(($listaNotasQ1[$i]->notaFinal + $listaNotasQ2[$i]->notaFinal + 
+    $listaNotasQ3[$i]->notaFinal + $listaNotasQ4[$i]->notaFinal )/4,2);
+
+    $notaIngles = round(($listaNotasI1[$i]->notaFinal + $listaNotasI2[$i]->notaFinal + 
+    $listaNotasI3[$i]->notaFinal + $listaNotasI4[$i]->notaFinal )/4,2);
+
+    $notaEFisica = round(($listaNotasEF1[$i]->notaFinal + $listaNotasEF2[$i]->notaFinal + 
+    $listaNotasEF3[$i]->notaFinal + $listaNotasEF4[$i]->notaFinal )/4,2);
+
+    $notaFilosofia= round(($listaNotasFI1[$i]->notaFinal + $listaNotasFI2[$i]->notaFinal + 
+    $listaNotasFI3[$i]->notaFinal + $listaNotasFI4[$i]->notaFinal )/4,2);
+
+    $notaEtica = round(($listaNotasE1[$i]->notaFinal + $listaNotasE2[$i]->notaFinal + 
+    $listaNotasE3[$i]->notaFinal + $listaNotasE4[$i]->notaFinal )/4,2);
+
+    $notaEconomia = round(($listaNotasECO1[$i]->notaFinal + $listaNotasECO2[$i]->notaFinal + 
+    $listaNotasECO3[$i]->notaFinal + $listaNotasECO4[$i]->notaFinal )/4,2);
+
+    $notaFisica = round(($listaNotasF1[$i]->notaFinal + $listaNotasF2[$i]->notaFinal + 
+    $listaNotasF3[$i]->notaFinal + $listaNotasF4[$i]->notaFinal )/4,2);
+
+    $notaReligion = round(($listaNotasR1[$i]->notaFinal + $listaNotasR2[$i]->notaFinal + 
+    $listaNotasR3[$i]->notaFinal + $listaNotasR4[$i]->notaFinal )/4,2);
+
+    $notaInformatica = round(($listaNotasIN1[$i]->notaFinal + $listaNotasIN2[$i]->notaFinal + 
+    $listaNotasIN3[$i]->notaFinal + $listaNotasIN4[$i]->notaFinal )/4,2);
+
+    $notaArtistica = $listaNotasA1[$i]->notaFinal + $listaNotasA2[$i]->notaFinal + 
+    $listaNotasA3[$i]->notaFinal + $listaNotasA4[$i]->notaFinal;
+
+
+    /* SUMARIAZACION DE FALTAS*/
+
+     $faltaProyecto = $listaNotasP1[$i]->faltas + $listaNotasP2[$i]->faltas + 
+    $listaNotasP3[$i]->faltas + $listaNotasP4[$i]->faltas ;
+
+    $faltaMatematicas = $listaNotasM1[$i]->faltas + $listaNotasM2[$i]->faltas + 
+    $listaNotasM3[$i]->faltas + $listaNotasM4[$i]->faltas ;
+
+    $faltaEspanol = $listaNotasES1[$i]->faltas + $listaNotasES2[$i]->faltas + 
+    $listaNotasES3[$i]->faltas + $listaNotasES4[$i]->faltas ;
+
+    $faltaQuimica = $listaNotasQ1[$i]->faltas + $listaNotasQ2[$i]->faltas + 
+    $listaNotasQ3[$i]->faltas + $listaNotasQ4[$i]->faltas ;
+
+    $faltaIngles = $listaNotasI1[$i]->faltas + $listaNotasI2[$i]->faltas + 
+    $listaNotasI3[$i]->faltas + $listaNotasI4[$i]->faltas ;
+
+    $faltaEFisica = $listaNotasEF1[$i]->faltas + $listaNotasEF2[$i]->faltas + 
+    $listaNotasEF3[$i]->faltas + $listaNotasEF4[$i]->faltas ;
+
+    $faltaFilosofia= $listaNotasFI1[$i]->faltas + $listaNotasFI2[$i]->faltas + 
+    $listaNotasFI3[$i]->faltas + $listaNotasFI4[$i]->faltas ;
+
+    $faltaArtistica = $listaNotasA1[$i]->faltas + $listaNotasA2[$i]->faltas + 
+    $listaNotasA3[$i]->faltas + $listaNotasA4[$i]->faltas;
+
+    $faltaEtica = $listaNotasE1[$i]->faltas + $listaNotasE2[$i]->faltas + 
+    $listaNotasE3[$i]->faltas + $listaNotasE4[$i]->faltas ;
+
+    $faltaEconomia = $listaNotasECO1[$i]->faltas + $listaNotasECO2[$i]->faltas + 
+    $listaNotasECO3[$i]->faltas + $listaNotasECO4[$i]->faltas ;
+
+    $faltaFisica = $listaNotasF1[$i]->faltas + $listaNotasF2[$i]->faltas + 
+    $listaNotasF3[$i]->faltas + $listaNotasF4[$i]->faltas;
+
+
+    $faltaReligion = $listaNotasR1[$i]->faltas + $listaNotasR2[$i]->faltas + 
+    $listaNotasR3[$i]->faltas + $listaNotasR4[$i]->faltas ;
+
+    $faltaInformatica = $listaNotasIN1[$i]->faltas + $listaNotasIN2[$i]->faltas + 
+    $listaNotasIN3[$i]->faltas + $listaNotasIN4[$i]->faltas;
+
+    
+
+
+
+     $nF=$notaProyecto;
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaP="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaP="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaP="A"; 
+    }else{
+
+      $escalaP="S"; 
+    }
+
+     $nF = $notaMatematicas;
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaM="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaM="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaM="A"; 
+    }else{
+
+      $escalaM="S"; 
+    }
+
+    ////////////////
+
+      $nF = $notaEspanol;
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaES="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaES="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaES="A"; 
+    }else{
+
+      $escalaES="S"; 
+    }
+
+////////////// 
+    $nF = $notaQuimica;
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaQ="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaQ="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaQ="A"; 
+    }else{
+
+      $escalaQ="S"; 
+    }
+
+    ////////////// 
+    $nF = $notaIngles;
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaI="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaI="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaI="A"; 
+    }else{
+
+      $escalaI="S"; 
+    }
+
+    ////////////// 
+    $nF = $notaEFisica;
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaEF="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaEF="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaEF="A"; 
+    }else{
+
+      $escalaEF="S"; 
+    }
+
+    ////////////// 
+    $nF = $notaFilosofia;
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaFI="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaFI="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaFI="A"; 
+    }else{
+
+      $escalaFI="S"; 
+    }
+
+    
+
+      ////////////// 
+    $nF = $notaArtistica;
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaA="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaA="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaA="A"; 
+    }else{
+
+      $escalaA="S"; 
+    }
+
+    $nF = $notaEtica;
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaE="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaE="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaE="A"; 
+    }else{
+
+      $escalaE="S"; 
+    }
+
+      ////////////// 
+    $nF = $notaEconomia;
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaECO="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaECO="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaECO="A"; 
+    }else{
+
+      $escalaECO="S"; 
+    }
+      ////////////// 
+    $nF = $notaFisica;
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaF="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaF="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaF="A"; 
+    }else{
+
+      $escalaF="S"; 
+    }
+      ////////////// 
+    $nF = $notaReligion;
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaR="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaR="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaR="A"; 
+    }else{
+
+      $escalaR="S"; 
+    }
+      ////////////// 
+    $nF = $notaInformatica;
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaIN="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaIN="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaIN="A"; 
+    }else{
+
+      $escalaIN="S"; 
+
+
+    
+    }
+
+
+
+
+$html.=' <td class="text-center">'.$listaNotasM1[$i]->nombre.'</td> ';
+$html.=' <td class="text-center">'.$listaNotasM1[$i]->apellido.'</td> ';
+$html.=' <td class="text-center">'.$listaNotasM1[$i]->identidadAl.'</td> '; 
+
+$html.=' <td class="text-center">'.$notaProyecto.'</td> '; 
+$html.=' <td class="text-center">'.$escalaP .'</td> '; 
+$html.=' <td class="text-center">'.$faltaProyecto.'</td> '; 
+
+$html.=' <td class="text-center">'.$notaMatematicas.'</td> '; 
+$html.=' <td class="text-center">'.$escalaM .'</td> '; 
+$html.=' <td class="text-center">'.$faltaMatematicas.'</td> '; 
+
+$html.=' <td class="text-center">'.$notaEspanol.'</td> '; 
+$html.=' <td class="text-center">'.$escalaES .'</td> '; 
+$html.=' <td class="text-center">'.$faltaEspanol.'</td> '; 
+
+$html.=' <td class="text-center">'.$notaQuimica.'</td> '; 
+$html.=' <td class="text-center">'.$escalaQ .'</td> '; 
+$html.=' <td class="text-center">'.$faltaQuimica.'</td> '; 
+
+$html.=' <td class="text-center">'.$notaIngles.'</td> '; 
+$html.=' <td class="text-center">'.$escalaI .'</td> '; 
+$html.=' <td class="text-center">'.$faltaIngles.'</td> '; 
+
+$html.=' <td class="text-center">'.$notaEFisica.'</td> '; 
+$html.=' <td class="text-center">'.$escalaEF .'</td> '; 
+$html.=' <td class="text-center">'.$faltaEFisica.'</td> '; 
+
+$html.=' <td class="text-center">'.$notaFilosofia.'</td> '; 
+$html.=' <td class="text-center">'.$escalaFI .'</td> '; 
+$html.=' <td class="text-center">'.$faltaFilosofia.'</td> '; 
+
+$html.=' <td class="text-center">'.$notaArtistica.'</td> '; 
+$html.=' <td class="text-center">'.$escalaA .'</td> '; 
+$html.=' <td class="text-center">'.$faltaArtistica.'</td>'; 
+
+$html.=' <td class="text-center">'.$notaEtica.'</td> '; 
+$html.=' <td class="text-center">'.$escalaE .'</td> '; 
+$html.=' <td class="text-center">'.$faltaEtica.'</td>'; 
+ 
+$html.=' <td class="text-center">'.$notaEconomia.'</td> '; 
+$html.=' <td class="text-center">'.$escalaECO .'</td> '; 
+$html.=' <td class="text-center">'.$faltaEconomia.'</td>'; 
+
+
+$html.=' <td class="text-center">'.$notaFisica.'</td> '; 
+$html.=' <td class="text-center">'.$escalaF .'</td> '; 
+$html.=' <td class="text-center">'.$faltaFisica.'</td>'; 
+
+$html.=' <td class="text-center">'.$notaReligion.'</td> '; 
+$html.=' <td class="text-center">'.$escalaR .'</td> '; 
+$html.=' <td class="text-center">'.$faltaReligion.'</td>'; 
+ 
+$html.=' <td class="text-center">'.$notaInformatica.'</td> '; 
+$html.=' <td class="text-center">'.$escalaIN .'</td> '; 
+$html.=' <td class="text-center">'.$faltaInformatica.'</td>'; 
+
+// Código para calcular promedio
+
+$promedioP = $notaProyecto + $notaMatematicas + $notaEspanol + $notaQuimica + $notaIngles + $notaEFisica 
++ $notaFilosofia + $notaArtistica + $notaEtica+ $notaEconomia + $notaFisica + $notaReligion + $notaInformatica;
+
+
+$promedioF=$promedioP/13;
+
+$faltasTotales = $faltaProyecto + $faltaMatematicas + $faltaEspanol + $faltaQuimica + $faltaIngles + $faltaEFisica 
++ $faltaFilosofia + $faltaArtistica + $faltaEtica+ $faltaEconomia + $faltaFisica + $faltaReligion + $faltaInformatica;
+
+$html.=' <td class="text-center" >'.round($promedioF,2) .'</td> '; 
+
+ 
+ $html.=' <td class="text-center">'.$arrayZ[$i].'</td>';
+
+ $html.=' <td class="text-center">'.$faltasTotales.'</td></tr>';
+
+} 
+
+               
+
+
+                $html.='
+                    
+
+                </tbody>
+            </table>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center">S = SUPERIOR</th>
+                        <th class="text-center">A = ALTO</th>
+                        <th class="text-center">B+ = BÁSICO</th>
+                        <th class="text-center">B- = BAJO</th>
+                    </tr>
+                </thead>
+             </table>
+
+                </table>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center">N= NOTA FINAL</th>
+                        <th class="text-center">E = ESCALA NACIONAL</th>
+                        <th class="text-center">F = FALTAS</th>
+                        <th class="text-center">PM = PROMEDIO </th>
+                    </tr>
+
+
+                </thead>
+             </table>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<!-- /. Firmas -->
+<div class="row text-center">
+    <div class="col-lg-12">
+        ________________________________
+        <b> <br /> Test rector<br />Rector(a)</b>
+    </div>
+</div>
+
+<br />';
+
+//}
+Load::lib('mpdf');
+
+    $mpdf = new mPDF('c', 'Letter-L');
+    $mpdf->debug = true;
+    
+$html = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
+
+    $mpdf->WriteHTML($css, 1);
+    $mpdf->WriteHTML($html);
+    $mpdf->Output('informeFinal.pdf', 'I');
+    exit;
+?>

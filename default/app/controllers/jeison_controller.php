@@ -6,6 +6,7 @@
 Load::models('nota');
 View::template('sbadmin');
 Load::models('nota2');
+session_start();
 
 class JeisonController extends AppController {
 

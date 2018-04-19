@@ -1,0 +1,319 @@
+<?php View::content(); 
+
+?>
+
+<?php echo Form::open("promocion/graduar");
+
+if($gradoSel ==13){
+
+  $gradoString = "PREESCOLAR";
+}elseif($gradoSel==1){
+
+  $gradoString="PRIMERO";
+}
+elseif($gradoSel==2){
+
+  $gradoString="SEGUNDO";
+}
+elseif($gradoSel==3){
+
+  $gradoString="TERCERO";
+}
+elseif($gradoSel==4){
+
+  $gradoString="CUARTO";
+}
+elseif($gradoSel==5){
+
+  $gradoString="QUINTO";
+}
+elseif($gradoSel==6){
+
+  $gradoString="SEXTO";
+}
+elseif($gradoSel==7){
+
+  $gradoString="SÉPTIMO";
+}
+elseif($gradoSel==8){
+
+  $gradoString="OCTAVO";
+}
+elseif($gradoSel==9){
+
+  $gradoString="NOVENO";
+}
+elseif($gradoSel==10){
+
+  $gradoString="DÉCIMO";
+}
+elseif($gradoSel==11){
+
+  $gradoString="UNDÉCIMO";
+}else{
+
+  $gradoString="INDEFINIDO";
+}
+
+ ?>
+
+<div class="row">
+
+  <div class="col-lg-12">
+
+    <div class="panel panel-primary">
+     <div class="panel-heading"># de estudiantes</div>
+     <div class="panel-body">
+     Curso Actual :<b> <?php echo $gradoString; ?></b> - Sede Actual :<b> <?php echo strtoupper($_SESSION['globalSede'])?></b> - Año Lectivo Actual :<b> <?php echo strtoupper($_SESSION['globalYear'])?></b>
+      -- Año de matricula anterior: <b> <?php echo $anioEstudiantes;  ?></b>
+     <hr>
+     En este momento hay <b><?php  echo count($listaNotasCorp1);?> </b>estudiantes activos en este curso.
+     </div>
+   </div>
+
+ </div>  
+
+</div> <!-- Fin Header Row 1-->
+
+<h4 style="color:#b71c1c;">Escoja la sede de destino (Importante)</h4>
+<div class ="row">
+    <div class="col-lg-4">
+      <div class="form-group">
+            <select class="form-control"  name ="sede" id="sede" >
+             <optgroup label="Sedes Actuales">            
+                <option value ="belen" selected >Belen</option>
+                <option value ="bellavista">Bellavista</option>
+                <option value ="florida">La Florida</option>
+                <option value ="marqueza">La Marqueza</option>
+                <option value ="lorenzo">San Lorenzo</option>      
+             </optgroup>
+          </select>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- /.row -->
+<div class="row">
+
+  <div class="col-lg-12">
+    <div class="table-responsive">     
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>NOMBRES</th>
+            <th>APELLIDOS</th>
+            <th>ID</th>
+            <th class="primary">PROMOCIONAR</th>
+            <th class="warning">PERDIDAS</th>
+            <th>CORPORAL</th>
+            <th>COMUNICATIVA</th>
+            <th>COGNITIVA</th>
+            <th>ETICA Y VALORES</th>
+            <th>ESTETICA</th>
+            <th>SOCIOAFECTIVA</th>
+            <th>ESPIRITUAL</th>
+           
+            
+            
+            
+            
+
+
+
+          </tr>
+        </thead>
+        <tbody>
+          <?php $contador =array();
+
+        for($j=0; $j<count($listaNotasCorp1); $j++){
+
+          $contador[$j]=0;
+        }
+?>
+         <?php for($i=0; $i<count($listaNotasCorp1); $i++) { ?>
+
+        <?php 
+
+          
+    $notaCorporal = round(($listaNotasCorp1[$i]->notaFinal + $listaNotasCorp2[$i]->notaFinal + 
+    $listaNotasCorp3[$i]->notaFinal + $listaNotasCorp4[$i]->notaFinal )/4,2);
+
+    $notaComunicativa = round(($listaNotasComu1[$i]->notaFinal + $listaNotasComu2[$i]->notaFinal + 
+    $listaNotasComu3[$i]->notaFinal + $listaNotasComu4[$i]->notaFinal )/4,2);
+
+    $notaCognitiva = round(($listaNotasCogn1[$i]->notaFinal + $listaNotasCogn2[$i]->notaFinal + 
+    $listaNotasCogn3[$i]->notaFinal + $listaNotasCogn4[$i]->notaFinal )/4,2);
+
+    $notaEstetica = round(($listaNotasEste1[$i]->notaFinal + $listaNotasEste2[$i]->notaFinal + 
+    $listaNotasEste3[$i]->notaFinal + $listaNotasEste4[$i]->notaFinal )/4,2);
+
+    $notaSocioafectiva = round(($listaNotasSoci1[$i]->notaFinal + $listaNotasSoci2[$i]->notaFinal + 
+    $listaNotasSoci3[$i]->notaFinal + $listaNotasSoci4[$i]->notaFinal )/4,2);
+
+    $notaEspiritual = round(($listaNotasEspi1[$i]->notaFinal + $listaNotasEspi2[$i]->notaFinal + 
+    $listaNotasEspi3[$i]->notaFinal + $listaNotasEspi4[$i]->notaFinal )/4,2);
+
+
+    $notaEtica = round(($listaNotasEti1[$i]->notaFinal + $listaNotasEti2[$i]->notaFinal + 
+    $listaNotasEti3[$i]->notaFinal + $listaNotasEti4[$i]->notaFinal )/4,2);
+
+
+    /* SUMARIAZACION DE FALTAS*/
+
+    $faltaCorporal = $listaNotasCorp1[$i]->faltas + $listaNotasCorp2[$i]->faltas + 
+    $listaNotasCorp3[$i]->faltas + $listaNotasCorp4[$i]->faltas ;
+
+    $faltaComunicativa = $listaNotasComu1[$i]->faltas + $listaNotasComu2[$i]->faltas + 
+    $listaNotasComu3[$i]->faltas + $listaNotasComu4[$i]->faltas ;
+
+    $faltaCognitiva = $listaNotasCogn1[$i]->faltas + $listaNotasCogn2[$i]->faltas + 
+    $listaNotasCogn3[$i]->faltas + $listaNotasCogn4[$i]->faltas ;
+
+    $faltaEstetica = $listaNotasEste1[$i]->faltas + $listaNotasEste2[$i]->faltas + 
+    $listaNotasEste3[$i]->faltas + $listaNotasEste4[$i]->faltas ;
+
+    $faltaSocioafectiva = $listaNotasSoci1[$i]->faltas + $listaNotasSoci2[$i]->faltas + 
+    $listaNotasSoci3[$i]->faltas + $listaNotasSoci4[$i]->faltas ;
+
+    $faltaEspiritual = $listaNotasEspi1[$i]->faltas + $listaNotasEspi2[$i]->faltas + 
+    $listaNotasEspi3[$i]->faltas + $listaNotasEspi4[$i]->faltas ;
+
+
+    $faltaEtica = $listaNotasEti1[$i]->faltas + $listaNotasEti2[$i]->faltas + 
+    $listaNotasEti3[$i]->faltas + $listaNotasEti4[$i]->faltas ;
+
+
+  $promedioP = $notaCorporal + $notaComunicativa + $notaCognitiva + $notaEstetica + $notaSocioafectiva + $notaEspiritual + $notaEtica;
+
+
+$promedioF=$promedioP/7;
+
+  if($notaCorporal<3){
+
+    $contador[$i] +=1;
+    $casillaM="danger";
+  }else{
+   $contador[$i] =$contador[$i];
+    $casillaM="success";
+
+  }
+  if($notaComunicativa<3){
+
+    $contador[$i] +=1;
+    $casillaL="danger";
+  }else{
+   $contador[$i] =$contador[$i];
+    $casillaL="success";
+
+  }
+  if($notaCognitiva<3){
+
+    $contador[$i] +=1;
+    $casillaI="danger";
+  }else{
+   $contador[$i] =$contador[$i];
+    $casillaI="success";
+
+  }
+  if($notaEstetica<3){
+
+    $contador[$i] +=1;
+    $casillaS="danger";
+  }else{
+   $contador[$i] =$contador[$i];
+    $casillaS="success";
+
+  }
+  if($notaSocioafectiva<3){
+
+    $contador[$i] +=1;
+    $casillaN="danger";
+  }else{
+   $contador[$i] =$contador[$i];
+    $casillaN="success";
+
+  }
+  if($notaEspiritual<3){
+
+    $contador[$i] +=1;
+    $casillaA="danger";
+  }else{
+   $contador[$i] =$contador[$i];
+    $casillaA="success";
+
+  }
+  if($notaEtica<3){
+
+    $contador[$i] +=1;
+    $casillaE="danger";
+  }else{
+   $contador[$i] =$contador[$i];
+    $casillaE="success";
+
+  }
+        ?><!-- FIN SECTION PHP -->
+
+         <tr>
+          <td><?php echo ($i+1) ?></td>    
+          <td ><?php echo $listaNotasCorp1[$i]->nombre ?></td>
+          <td><?php echo $listaNotasCorp1[$i]->apellido ?></td>
+          <td><?php echo $listaNotasCorp1[$i]->identidadAl ?></td>
+           <td><input type="checkbox"  name="promociones[]" value="<?=$listaNotasCorp1[$i]->idAlumno?>" /></td>
+           
+          <td><?php echo $contador[$i] ?></td>
+
+          <td class="<?php echo $casillaM; ?>"><?php echo $notaCorporal?></td>
+          <td class="<?php echo $casillaL; ?>"><?php echo $notaComunicativa ?></td>
+          <td class="<?php echo $casillaI; ?>"><?php echo $notaCognitiva ?></td>
+          <td class="<?php echo $casillaS; ?>"><?php echo $notaEstetica?></td>
+          <td class="<?php echo $casillaN; ?>"><?php echo $notaSocioafectiva ?></td>
+          <td class="<?php echo $casillaA; ?>"><?php echo $notaEspiritual ?></td>
+          <td class="<?php echo $casillaE; ?>"><?php echo $notaEtica ?></td>
+         
+          <?php 
+              $_SESSION['globalGrado1'] = $listaNotasCorp1[$i]->anio_idAnio;
+            ?>
+          
+         
+
+          
+          
+          <input type="hidden" name ="temporal" value ="2">
+         
+
+          <?php 
+
+
+         
+
+          ?>
+
+        </tr>
+        <?php } ?>
+      </tbody>
+    </table>
+
+
+  </div>
+</div>
+</div>
+<hr>
+
+<div class="row">
+
+  <div class="col-lg-2">
+    <button class="btn btn-success waves-effect waves-light" type="submit" name="Ingresar" >Promocionar Seleccionados
+      <!--?php echo Form::submit("Ingresar","class: boton"); ?--> 
+    </button>
+  </div>
+
+</div>
+
+
+<!-- /.row -->
+
+<?php echo Form::close(); ?>

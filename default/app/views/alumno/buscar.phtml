@@ -52,7 +52,7 @@
                         <th>Grado</th>
                         <th>Estado</th>
                         <th>Matricula</th>
-                        <th>Acudiente</th>
+                        <th>Sede</th>
                       
                         <th>Acciones</th>
                             </tr>
@@ -69,12 +69,12 @@
                                 <td><?php echo $listaAlumnos[$i]->nombreGrado ?></td>
                                 <td><?php echo $listaAlumnos[$i]->tipoEstado ?></td>
                                 <td><?php echo $listaAlumnos[$i]->estadoMatricula ?></td>
-                                <td><?php echo $listaAlumnos[$i]->nombreAcu ?></td>
+                                <td><?php echo $listaAlumnos[$i]->sede ?></td>
                                
                                 <td>
                                    <?php  $temp=intval($listaAlumnos[$i]->idAlumno); ?>
                                     <i class="fa fa-fw fa-edit"></i><?php echo Html::linkAction("edit/$temp/", ' Editar') ?>
-                                    <i class="fa fa-fw fa-eraser"></i><?php echo Html::linkAction("del/$temp/", ' Borrar') ?>
+                                    
                                 </td>
                             </tr>
                              <?php } ?>

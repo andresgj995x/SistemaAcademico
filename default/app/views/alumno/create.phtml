@@ -1,95 +1,60 @@
 <?php View::content(); 
-
-
-
-?>
-
+   ?>
 <?php echo Form::open("alumno/create"); ?>
-
 <div class="row">
+    <h4 style="margin-left:15px; color:#3f51b5">Datos estudiante (Obligatorios)</h4>
 
-
-<div class="col-lg-3">
-
-        <div class="form-group">
-        <label>Identificación TI-CC</label>
-        
-            <input type="number" maxlength="15"  name="idAF" id="idAF" class="form-control" placeholder="Identificación" required>
-            </div>
-        
-
-
-        <div class="form-group">
-        <label>Nombres</label>
-            
-             <input type="text-capitalize" name="nomF" id="nomF" class="form-control" placeholder="Nombres" required>
-            
-        </div>
-
-    <div class="form-group">
-        <label>Apellidos</label>
-            
-             <input type="text-capitalize" name="apeF" id="apeF" class="form-control" placeholder="Apellidos" required>
-            
-        </div>
-
-         <div class="form-group">
-            <label>Estado</label> <!-- No es necesario cuando se matricula  MOVER A  Alumnos EDITABLES-->
-            <select class="form-control" name ="estadoF" id ="estadoF">
+  
+   <div class="col-lg-3">
+      <div class="form-group">
+         <label>Identificación TI-CC</label>
+         <input type="number" maxlength="15"  name="idAF" id="idAF" class="form-control" placeholder="Identificación" required>
+      </div>
+      <div class="form-group">
+         <label>Nombres</label>
+         <input type="text-capitalize" name="nomF" id="nomF" class="form-control" placeholder="Nombres" required>
+      </div>
+      <div class="form-group">
+         <label>Apellidos</label>
+         <input type="text-capitalize" name="apeF" id="apeF" class="form-control" placeholder="Apellidos" required>
+      </div>
+      <div class="form-group">
+         <label>Estado</label> <!-- No es necesario cuando se matricula  MOVER A  Alumnos EDITABLES-->
+         <select class="form-control" name ="estadoF" id ="estadoF">
             <?php foreach ($estado->items as $item) : ?>
-                <option value='<?php echo $item->idEstado ?>'> <?php echo $item->tipoEstado?></option>
-              <?php endforeach; ?> 
-            </select>
-        </div>
-
-
-       
-
-
-</div> <!-- Fin Columna 1 -->
-
-<div class="col-lg-3">
-
-
-
-          <div class="form-group">
-        <label>Fecha de Nacimeinto</label>
-          
-             <input type="date"  name="edadF" id="edadF" class="form-control" placeholder="Edad" required>
-            
-        </div>
-
-
-           <div class="form-group">
+            <option value='<?php echo $item->idEstado ?>'> <?php echo $item->tipoEstado?></option>
+            <?php endforeach; ?> 
+         </select>
+      </div>
+   </div>
+   <!-- Fin Columna 1 -->
+   <div class="col-lg-3">
+      <div class="form-group">
+         <label>Fecha de Nacimeinto</label>
+         <input type="date"  name="edadF" id="edadF" class="form-control" placeholder="Edad" required>
+      </div>
+      <div class="form-group">
          <label>Género</label>
-            <select class="form-control"  name ="generoF"id="generoF">
-            
-                <option>Masculino</option>
-                <option>Femenino</option>
-             </select>
-            </div>
-
-
-          <div class="form-group">
-        <label>Dirección</label>
-            
-             <input type="text-uppercase" name="dirF" id="dirF" class="form-control" placeholder="Dirección" required>
-            
-        </div>
-          <div class="form-group">
-        <label>Celular</label>
-            
-             <input type="number"  maxlength="10" size="10" name="celF" id="celF" class="form-control" placeholder="Celular" >
-            
-        </div>
-
-        </div> <!-- Fin Columna 2 -->
-
-        <div class="col-lg-3">
-        <!-- COLUMNA 3-->
-       <div class="form-group">
-            <label>RH</label> <!-- No es necesario cuando se matricula  MOVER A  Alumnos EDITABLES-->
-            <select class="form-control" name ="rhF" id ="rhF">
+         <select class="form-control"  name ="generoF"id="generoF">
+            <option>Masculino</option>
+            <option>Femenino</option>
+         </select>
+      </div>
+      <div class="form-group">
+         <label>Dirección</label>
+         <input type="text-uppercase" name="dirF" id="dirF" class="form-control" placeholder="Dirección" required>
+      </div>
+      <div class="form-group">
+         <label>Celular</label>
+         <input type="number"  maxlength="10" size="10" name="celF" id="celF" class="form-control" placeholder="Celular (no obligatorio)" >
+      </div>
+   </div>
+   <!-- Fin Columna 2 -->
+   <div class="col-lg-3">
+      <!-- COLUMNA 3-->
+      <div class="form-group">
+         <label>RH</label> <!-- No es necesario cuando se matricula  MOVER A  Alumnos EDITABLES-->
+         <select class="form-control" name ="rhF" id ="rhF">
             <option>O+</option>
             <option>O-</option>
             <option>A+</option>
@@ -98,87 +63,148 @@
             <option>B-</option>
             <option>AB+</option>
             <option>AB-</option>
-            </select>
-        </div>
-
-<div class="form-group">
-            <label>Grado a matricular</label>
-            <select class="form-control" name ="gradoF" id="gradoF">
+         </select>
+      </div>
+      <div class="form-group">
+         <label style="color:#3f51b5">Grado a matricular</label>
+         <select class="form-control" name ="gradoF" id="gradoF">
             <?php for($i=0; $i<count($grado); $i++) { ?>
-                <option value='<?php echo $grado[$i]->idGrado ?>'> <?php echo $grado[$i]->nombreGrado?></option>
-              <?php } ?> 
-            </select>
-        </div>
+            <option value='<?php echo $grado[$i]->idGrado ?>'> <?php echo $grado[$i]->nombreGrado?></option>
+            <?php } ?> 
+         </select>
+      </div>
 
-        <div class="form-group">
-            <label>Tipo Matricula</label>
-            <select class="form-control" name ="tipoMatF" id="tipoMatF">
-              <?php foreach ($matricula->items as $item) : ?>
-                <option value='<?php echo $item->idMatricula ?>'> <?php echo $item->estadoMatricula?> - <?php echo $item->anio_idAnio?></option>
-              <?php endforeach; ?>
-            </select>
-        </div>    
-
-
-        </div> <!-- Fin Columna 3-->
-
-
-        <!-- Columna 4-->
-  <div class="col-lg-3">
- <div class="form-group">
-        <label>Cédula o TI (A)</label>
-           
-             <input type="number"  maxlength="15" name ="idAcuF" id ="idAcuF" class="form-control" placeholder=" CC Acudiente" required>
-            
-        </div>
-
-<div class="form-group">
-        <label>Nombre Completo (A)</label>
-            
-             <input type="text-capitalize"   name="nomAcuF" id="nomAcuF" class="form-control" placeholder="Nombre Completo" required>
-            
-        </div>
-
+      <div class="form-group">
+         <label>Tipo Matricula</label>
+         <select class="form-control" name ="tipoMatF" id="tipoMatF">
          
-
-
-          <div class="form-group">
-        <label>Dirección (A)</label>
+            <option value='Inicial' selected>Inicial -<?php echo $_SESSION['globalYear']; ?></option>
+            <option value='Extraordinaria'>Extraordinaria - <?php echo $_SESSION['globalYear']; ?></option>
+            <option value='Trasladado'>Trasladado(a) -<?php echo $_SESSION['globalYear']; ?></option>
+            <option value='Desertor'>Desertor(a) -<?php echo $_SESSION['globalYear']; ?></option>
             
-             <input type="text-uppercase" name="dirAcuF" id="dirAcuF" class="form-control" placeholder="Dirección Acudiente" required>
+         </select>
+      </div>
+
+      <div class="form-group">
+         <label style="color:#3f51b5">SEDE (Importante)</label>
+         <select class="form-control" name ="sedeF" id="sedeF">
+            <?php 
+
+             ?>
+          
+            <option value='belen' selected>Belén(Principal) </option>
+            <option value='bellavista'>Bellavista </option>
+            <option value='florida'  >La Florida </option>
+            <option value='marqueza' >La Marqueza</option>
+            <option value='lorenzo'  >San Lorenzo </option>
             
-        </div>
-          <div class="form-group">
-        <label>Celular (A)</label>
-         
-             <input type="number"  maxlength="10" size="10" name="celAcuF" id="celAcuF" class="form-control" placeholder="Celular Acudiente" >
-            
-        </div>
+         </select>
+      </div>
 
 
-        </div> <!-- Fin Columna 3-->
+   </div>
+   <!-- Fin Columna 3-->
+   <!-- Columna 4-->
+   <div class="col-lg-3">
+      <div class="form-group">
+         <label>Cédula o TI (Acudiente)</label>
+         <input type="number"  maxlength="15" name ="idAcuF" id ="idAcuF" class="form-control" placeholder=" CC Acudiente" required>
+      </div>
+      <div class="form-group">
+         <label>Nombre Completo (Acudiente)</label>
+         <input type="text-capitalize"   name="nomAcuF" id="nomAcuF" class="form-control" placeholder="Nombre Completo" required>
+      </div>
+      <div class="form-group">
+         <label>Dirección (Acudiente)</label>
+         <input type="text-uppercase" name="dirAcuF" id="dirAcuF" class="form-control" placeholder="Dirección Acudiente" required>
+      </div>
+      <div class="form-group">
+         <label>Celular (Acudiente)</label>
+         <input type="number"  maxlength="10" size="10" name="celAcuF" id="celAcuF" class="form-control" placeholder="Celular Acudiente" >
+      </div>
+   </div>
+   
+   <!-- Fin Columna 4-->
+</div>
+<hr style="border-color:#2196f3">
+    <div class="row">
+    <h4 style="margin-left:15px; color:#3f51b5">Datos familiares </h4>
+   <div class="col-lg-3">
 
-        <!-- Fin Columna 4-->
+      <div class="form-group">
+         <label>Identificación TI-CC(Madre)</label>
+         <input type="number" maxlength="15"  name="ccMadre" id="ccMadre" class="form-control" placeholder="Cédula Madre" >
+      </div>
 
-</div> <!-- Fin Row 1 -->
+       <div class="form-group">
+         <label>Identificación TI-CC(Padre)</label>
+         <input type="number" maxlength="15"  name="ccPadre" id="ccPadre" class="form-control" placeholder="cédulaPadre" >
+      </div>
+
+    
+
+   </div>
+   <!-- Fin Columna 1 -->
+   <div class="col-lg-3">
 
 
+      <div class="form-group">
+         <label>Nombres (Madre)</label>
+         <input type="text" name="nombreMadre" id="nombreMadre" class="form-control" placeholder="Nombres Madre" >
+      </div>
+
+      <div class="form-group">
+         <label>Nombres (Padre)</label>
+         <input type="text"  name="nombrePadre" id="nombrePadre" class="form-control" placeholder="Nombres Padre">
+      </div>
+   </div>
+   <!-- Fin Columna 2 -->
+   <div class="col-lg-3">
+      <div class="form-group">
+         <label>Apellidos (Madre)</label>
+         <input type="text" name="apellidoMadre" id="apellidosMadre" class="form-control" placeholder="Apellidos Madre" >
+      </div>
+
+      <div class="form-group">
+         <label>Apellidos (Padre)</label>
+         <input type="text"  name="apellidoPadre" id="apellidosPadre" class="form-control" placeholder="Apellidos Padre" >
+      </div>
+      
+   </div>
+   <!-- Fin Columna 3-->
+   <!-- Columna 4-->
+   <div class="col-lg-3">
+      <div class="form-group">
+         <label>Celular(Madre)</label>
+         <input type="number"  maxlength="15" name ="celMadre" id ="celMadre" class="form-control" placeholder=" Celular Madre" >
+      </div>
+  <div class="form-group">
+         <label>Celular(Padre)</label>
+         <input type="number"  maxlength="15" name ="celPadre" id ="celPadre" class="form-control" placeholder=" Celular Padre" >
+      </div>
+     
+      
+     
+   </div>
+   
+   <!-- Fin Columna 4-->
+</div>
+
+
+<hr style="border-color:#2196f3">
 <div class="row">
-
-    <div class="col-lg-1">
-        <button class="btn btn-success waves-effect waves-light" type="submit" name="Ingresar">Agregar
-            <!--?php echo Form::submit("Ingresar","class: boton"); ?-->	
-        </button>
-    </div>
-    <div class="col-lg-1">
-        <div class="actions">
-            <?= Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
-        </div>
-    </div>
-
+   <div class="col-lg-2">
+      <button class="btn btn-success waves-effect waves-light" type="submit" name="Ingresar">
+         Agregar alumno
+        	
+      </button>
+   </div>
+   <div class="col-lg-1">
+      <div class="actions">
+         <?= Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
+      </div>
+   </div>
 </div>
 <!-- /.row -->
-
 <?php echo Form::close(); ?>
-
-

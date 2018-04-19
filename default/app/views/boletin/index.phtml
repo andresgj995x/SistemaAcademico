@@ -1,67 +1,41 @@
 <?php View::content(); ?>
 
-<?php echo Form::open() ?>
-
-
-<div class="row">
-
-  <div class="col-lg-3">
-
-
-   <div class="form-group">
-       <h4>Seleccion el año lectivo actual</h4>
-       <select class="form-control" name ="idAnioF" id="idAnioF">
-           <optgroup label="Años Lectivos Actuales">
-              <?php foreach ($anio->items as $item) : ?>
-                <option value='<?php echo $item->idAnio ?>'> <?php echo $item->idAnio?> </option>
-            <?php endforeach; ?>
-        </optgroup>
-    </select>
-</div>  
-
-</div>
-
-
-
-<div class="col-lg-2">
-   <div class="actions" style="padding-top:38px;">
-    <button class="btn btn-danger waves-effect waves-light" type="submit" name="Ingresar">Guardar Año
-        <!--?php echo Form::submit("Ingresar","class: boton"); ?--> 
-    </button>
-</div>
-</div>
-
-
-
-</div>
-<?php echo Form::close(); ?>
-<hr>
 <?php echo Form::open("boletin/listar"); ?>
+
 <div class="row">
 
-   <div class="col-lg-2">
-       <?php 
-       $desactivador;
-       if($anioSel=="NO SELECCIONADO"){
+  <div class="col-lg-10">
 
-        $desactivador='disabled';
-        $style="pointer-events:none; color:#A9A9A9;";
-    }else{
+    <div class="panel panel-warning">
+     <div class="panel-heading">Información Importante</div>
+     <div class="panel-body">Para un boletín individual, es necesario que escoga el grado y el periodo.<br> Luego de esto, 
 
-      $desactivador='';
-      $style=NULL;
-  }
+        solo imprima la hoja correspondiente al estudiante.
+        
+        <hr>
+        Nota: Si no sabe el curso del estudiante, vaya a la sección de "Gestionar Alumnos" y luego busque por nombre,apellido o documento.
+        
+     </div>
+   </div>
 
-  ?>
+ </div>  
+
+</div> <!-- Fin Header Row 1-->
+
+
+<div class="row">
+
+   <div class="col-lg-1">
+       
 
   <h4>Año</h4>
 
   <div class="form-group">
-    <input  name="idAnio" id="idAnio" class="form-control" value="<?php echo $anioSel; ?>" disabled>
+    <input  name="idAnio" id="idAnio" class="form-control" value="<?php echo $_SESSION['globalYear']; ?>" disabled>
 </div>
 </div>
 
-<div class="col-lg-3">
+<div class="col-lg-2">
 
 
     <div class="form-group" style="display:none;">
@@ -69,13 +43,13 @@
     </div>
 
     <div class="form-group" style="display:none;">
-        <input type="number" name="idAnio2" id="idAnio2" class="form-control"  value="<?php echo $anioSel; ?>">
+        <input type="number" name="idAnio2" id="idAnio2" class="form-control"  value="<?php echo $_SESSION['globalYear']; ?>">
     </div>
 
     <h4>Seleccionar grado</h4>
 
     <div class="form-group">
-        <select class="form-control"  name ="gradoF" id="gradoF" <?php echo $desactivador;?>>
+        <select class="form-control"  name ="gradoF" id="gradoF" >>
             <optgroup label="Grados">
                 <option value ="13">Preescolar</option>
                 <option value ="1">1</option>
@@ -88,6 +62,7 @@
                 <option value ="8">8</option>
                 <option value ="9">9</option>
                 <option value ="10">10</option>
+                <option value ="11">11</option>
             </optgroup>
         </select>
 
@@ -95,11 +70,11 @@
     </div>
 </div>
 
-<div class="col-lg-3">
-   <h4>Seleccionar periodo</h4>
+<div class="col-lg-2">
+   <h4>Periodo</h4>
 
    <div class="form-group">
-   <select class="form-control"  name ="periodoA" id="periodoA" <?php echo $desactivador;?>>
+   <select class="form-control"  name ="periodoA" id="periodoA" >
        <optgroup label="Periodos">
         <option value ="1" selected >1</option>
         <option value ="2" >2</option>
@@ -109,14 +84,19 @@
     </optgroup>
 </select>
 
-</div>
+</div><!--periodo-->
+
+
 </div>
 
-<div class="col-lg-2">
-    <div class="actions" style="padding-top:38px; <?php echo $style?>;">
-        <?= Html::linkAction("buscar/", 'Buscar Alumnos Individuales', 'class="btn btn-primary"') ?>
+
+
+ <div class="col-lg-3" >
+        <button  style ="margin-top:38px;" class="btn btn-success waves-effect waves-light" type="submit" name="generar"  >Siguiente paso
+            <!--?php echo Form::submit("Ingresar","class: boton"); ?--> 
+        </button>
     </div>
-</div>
+
 
 
 
@@ -125,13 +105,7 @@
 
 <div class="row">
 
-    <div class="col-lg-3">
-        <button class="btn btn-success waves-effect waves-light" type="submit" name="generar" <?php echo $desactivador;?> >Generar Boletines por grados
-            <!--?php echo Form::submit("Ingresar","class: boton"); ?--> 
-        </button>
-    </div>
-
-
+   
 
 
 </div>

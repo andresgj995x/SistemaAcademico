@@ -4,6 +4,7 @@ Load::lib('auth');
 Load::models('usuarios');
 Load::models('profesor');
 
+
 View::template('iniciar_sesion');
 
 class UsuariosController extends AppController {

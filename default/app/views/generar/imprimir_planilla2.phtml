@@ -126,7 +126,7 @@ $html = '<div class="row text-center">
 }
                 
 for ($i=0; $i <$cuenta->cuenta ; $i++) { 
-    $html.=' <tr><td class="text-center">'.$i.'</td> ';
+    $html.=' <tr><td class="text-center">'.($i+1).'</td> ';
 
     $nF = round($listaNotasP[$i]->notaFinal,2);
     if($nF>=0 and $nF <=2.9){

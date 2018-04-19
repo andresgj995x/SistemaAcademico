@@ -4,6 +4,8 @@ Load::models('profesor');
 Load::models('usuarios');
 View::template('sbadmin');
 
+session_start();
+
 class ProfesorController extends AppController {
 
     public function buscar() {
@@ -63,7 +65,7 @@ class ProfesorController extends AppController {
               
 
                     $profesor = new Profesor();
-                    $profesor->idPro = Input::post('idProF');
+                    $profesor->idPro = Input::post('idF');
                     $profesor->nombrePro = strtoupper(Input::post('nombreF'));
                     $profesor->apellidoPro = strtoupper(Input::post('apellidoF'));
                     $profesor->identidadPro = Input::post('idF');

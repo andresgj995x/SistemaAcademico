@@ -45,14 +45,14 @@
 
 
         <div class="form-group">
-        <label>Fecha Expedición</label>
+        <label>Año Expedición</label>
             
-      <input type="text" name="dateE" id="dateE" class="form-control" value="<?php echo date("d-m-Y");  ?>" disabled>
+      <input type="text" name="dateE" id="dateE" class="form-control" value="<?php echo $_SESSION['globalYear'];  ?>" disabled>
             
         </div>
 
          <div class="form-group" style="display:none;">
-            <input  name="start" id="start" class="form-control"  value="<?php echo date("d-m-Y");  ?>" >
+            <input  name="start" id="start" class="form-control"  value="<?php echo intval($_SESSION['globalYear'])+1;  ?>" >
         </div>
 
         </div>
@@ -64,15 +64,15 @@
         <div class="col-lg-3">
 
     <div class="form-group">
-        <label>Fecha de Caducidad</label>
+        <label>Año de Caducidad</label>
         
             
-  <input type="date" name="dateC" id="dateC" class="form-control" placeholder="dd-mm--aaaa" value="<?php echo date('d-m-Y',strtotime('+1 years'));  ?>" disabled>
+  <input type="text" name="dateC" id="dateC" class="form-control" placeholder="dd-mm--aaaa" value="<?php echo intval($_SESSION['globalYear'])+1;//date('d-m-Y',strtotime('+1 years'));  ?>" disabled>
             
         </div>
 
           <div class="form-group" style="display:none;">
-            <input  name="end" id="end" class="form-control"  value="<?php echo date('d-m-Y',strtotime('+1 years'));  ?>" >
+            <input  name="end" id="end" class="form-control"  value="<?php echo intval($_SESSION['globalYear'])+1;//date('d-m-Y',strtotime('+1 years'));  ?>" >
         </div>
 
        
@@ -100,7 +100,7 @@
 ?>
 
     <div class="col-lg-2">
-        <button class="btn btn-success waves-effect waves-light"  type="submit" name="Ingresar" target="_blank" <?php echo $estadoBoton; ?> >Generar Boletines
+        <button class="btn btn-success waves-effect waves-light"  type="submit" name="Ingresar" target="_blank" <?php echo $estadoBoton; ?> >Generar Carnets
             <!--?php echo Form::submit("Ingresar","class: boton"); ?--> 
         </button>
     </div>
@@ -135,7 +135,7 @@
                         <tbody>
                          <?php for($i=0; $i<count($listaAlumnos); $i++) { ?>
                             <tr>
-                                <td><?php echo $i ?></td>    
+                                <td><?php echo $i+1 ?></td>    
                                 <td><?php echo $listaAlumnos[$i]->identidadAl ?></td>
                                 <td><?php echo $listaAlumnos[$i]->nombre ?></td>
                                 <td><?php echo $listaAlumnos[$i]->apellido ?></td>

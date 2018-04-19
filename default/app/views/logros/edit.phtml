@@ -8,7 +8,28 @@
 
     <div class="panel panel-primary">
      <div class="panel-heading">Datos del actual logro:</div>
-     <div class="panel-body">Materia: <b> <?php echo $materia->nombreMateria; ?> <?php echo $space; ?> </b> Grado:<b> <?php echo $materia->gradoMateria; ?><?php echo $space; ?></b> Profesor(a) actual:<b> <?php echo $profesor->nombrePro.$space.$profesor->apellidoPro; ?> </b></div>
+     <div class="panel-body">Materia: <b> <?php echo $materia->nombreMateria; ?> <?php echo $space; ?> </b> Grado:<b> <?php $gradoActual=$materia->gradoMateria; 
+          if($gradoActual==13){
+
+              $gradoTemporal = "PREESCOLAR";
+             
+
+          }elseif($gradoActual==1){$gradoTemporal = "PRIMERO";}
+          elseif($gradoActual==2){$gradoTemporal = "SEGUNDO";} 
+          elseif($gradoActual==3){$gradoTemporal = "TERCERO";} 
+          elseif($gradoActual==4){$gradoTemporal = "CUARTO";} 
+          elseif($gradoActual==5){$gradoTemporal = "QUINTO";} 
+          elseif($gradoActual==6){$gradoTemporal = "SEXTO";} 
+          elseif($gradoActual==7){$gradoTemporal = "SEPTIMO";} 
+          elseif($gradoActual==8){$gradoTemporal = "OCTAVO";} 
+          elseif($gradoActual==9){$gradoTemporal = "NOVENO";} 
+          elseif($gradoActual==10){$gradoTemporal = "DECIMO";} 
+          else{
+
+            $gradoTemporal = "ONCE";
+          }
+          echo $gradoTemporal;    
+     ?> <?php echo $space; ?></b> Profesor(a) actual:<b> <?php echo $profesor->nombrePro.$space.$profesor->apellidoPro; ?> </b></div>
    </div>
 
  </div>  
@@ -23,18 +44,39 @@
 <!-- /.row -->
 <div class="row">
 
-<div class="col-lg-5">
+<div class="col-lg-6">
  <div class="form-group">
-  <label >Fortaleza</label>
-  <textarea class="form-control" rows="2" id="fortalezaF" name ="fortalezaF" maxlength="120" > <?php echo $logro->fortaleza; ?></textarea>
+  <label >Logro Bajo</label>
+  <textarea class="form-control" rows="3" id="logroBajoF" name ="logroBajoF" maxlength="500" > <?php echo $logro->logroBajo; ?></textarea>
 </div>
 
 </div>
 
-  <div class="col-lg-5">
+  <div class="col-lg-6 ">
    <div class="form-group">
-    <label >Debilidad</label>
-    <textarea class="form-control" rows="2" id="debilidadF" name ="debilidadF" maxlength="120" ><?php echo $logro->debilidad; ?></textarea>
+    <label >Logro Basico</label>
+    <textarea class="form-control" rows="3" id="logroBasicoF" name ="logroBasicoF" maxlength="500" ><?php echo $logro->logroBasico; ?></textarea>
+  </div>
+</div>
+
+
+</div>
+<hr>
+
+<div class="row">
+
+<div class="col-lg-6">
+ <div class="form-group">
+  <label >Logro Alto</label>
+  <textarea class="form-control" rows="3" id="logroAltoF" name ="logroAltoF" maxlength="500" > <?php echo $logro->logroAlto; ?></textarea>
+</div>
+
+</div>
+
+  <div class="col-lg-6">
+   <div class="form-group">
+    <label >Logro Superior</label>
+    <textarea class="form-control" rows="3" id="logroSuperiorF" name ="logroSuperiorF" maxlength="500" ><?php echo $logro->logroSuperior; ?></textarea>
   </div>
 </div>
 
@@ -48,7 +90,7 @@
 
   </div>
 
-  <div class="col-lg-1">
+  <div class="col-lg-2">
 
   </div>
 
