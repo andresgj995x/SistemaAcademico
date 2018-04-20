@@ -45,7 +45,23 @@
     
     $css = file_get_contents('css/sbadmin/bootstrap.css');
 
-    $html = '<div class="row text-center">
+    $html = '
+    <html>
+    <head>
+    <style>
+        body {
+            background-image: url(img/certificado/belenOpacity.jpg);
+            background-position: center;
+            background-repeat: no-repeat, repeat;
+            background-attachment: fixed;
+            opacity: 0.5;
+            width: 400px;
+            height: 500px;
+        }
+    </style>
+    </head>
+    <body>
+    <div class="row text-center">
     <div class="col-lg-4">
         <img src="../public/img/escudopdf.png" />
     </div>
@@ -59,7 +75,7 @@
     </div>
     <br>
     <div class="col-lg-4">
-        <img src="../public/img/certificado/escudoBelen1Pequeno.png" />
+        <img src="../public/img/escudoIsnosSmall.png" />
     </div>
 </div>
 
@@ -81,6 +97,9 @@
 
 
         <p style ="text-align:left;">Esta constancia se expide por razón de :<b> '. $razon .'</b></p>
+        <b>
+
+        <p style ="text-align:left;">Certificado expedido a la fecha :<b> '. $fechaExp .'</b></p>
 
     </div>
 </div>
@@ -94,7 +113,7 @@
     </div>
 </div>
 
-<br />
+
 
 
 <br /><br />
@@ -111,12 +130,16 @@
     </div>
 </div>
 
-<br />';
+<br />
+
+</body>
+</html>
+';
 
     Load::lib('mpdf');
 
 
-    $mpdf = new mPDF('c', 'A4');
+    $mpdf = new mPDF('c', 'Letter');
 
     $html = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
 

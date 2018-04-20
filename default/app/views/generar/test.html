@@ -1,13 +1,4 @@
-<?php
-    View::content();
-
-    
-    $css = file_get_contents('css/sbadmin/bootstrap.css');
-
-
-
-    $html = '
-    <html> 
+<html>
 
 <head>
     <style>
@@ -107,22 +98,4 @@
 
 </body>
 
-<h1>AL FINALLLLLLLLLLLLL</h1>
-
 </html>
-';
-
-    Load::lib('mpdf');
-
-
-    $mpdf = new mPDF('c', 'Letter');
-
-    $html = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
-
-    $mpdf->WriteHTML($css, 1);
-    $mpdf->WriteHTML($html);
-    $mpdf->Output('certificado.pdf', 'I');
-exit;
-
-
-?>

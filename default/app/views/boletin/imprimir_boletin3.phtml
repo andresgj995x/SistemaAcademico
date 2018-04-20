@@ -622,7 +622,7 @@ $arrayH[$i].='
 
   Load::lib('mpdf');
 
-$mpdf = new mPDF('c', 'Letter');
+  $mpdf = new mPDF('utf-8', array(216,330)); // Size 'oficio' in colombia 21.6 x 33 cm
 $mpdf->debug=true;
 
 $arrayH[$i] = mb_convert_encoding($arrayH[$i], 'UTF-8', 'UTF-8');

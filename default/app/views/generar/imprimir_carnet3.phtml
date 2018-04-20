@@ -105,7 +105,7 @@ for ($i=0; $i<count($listaAlumnos); $i++) {
 $html2='<br> <br>';
 Load::lib('mpdf');
 
-   $mpdf = new mPDF('c','', 0, '', '0', '0', '0', '0', '0', '0', 'Letter');
+   $mpdf = new mPDF('c','', 0, '', '0', '0', '0', '0', '0', '0', 'Letter'); // Si algo, cambiar con ('utf-8',array(ancho, largo))
 
     $arrayH[$i] = mb_convert_encoding($arrayH[$i], 'UTF-8', 'UTF-8');
     $html2 = mb_convert_encoding($html2, 'UTF-8', 'UTF-8');
