@@ -220,9 +220,9 @@ class AlumnoController extends AppController
    //             Generador de promedios por alumno
    $inicial = 1;
    $final   = 5;
-   for ($i = $inicial; $i < $final; $i++) {
+   for ($l = 1; $l < 5; $l++) {
     $sql = "INSERT INTO promedio (valor, periodo_idPeriodo,alumno_idAlumno,anio_idAnio)
-                  VALUES (0,$i,$tempID,$globalYear)";
+                  VALUES (0,$l,$tempID,$globalYear)";
     if ($conn->query($sql) === TRUE) {
     } else {
      echo "Error al crear promedios por periodo por defecto: " . $conn->error;

@@ -93,6 +93,8 @@ class BoletinController extends AppController
             $_SESSION['grado'] = $gradoAlumno;
             $globalYear        = $_SESSION['globalYear'];
 
+            
+
 
             if (intval($gradoAlumno) < 6 ) {
                 $sql = "SELECT * from notap inner join alumno on notap.alumno_idAlumno=alumno.idAlumno
@@ -110,7 +112,7 @@ class BoletinController extends AppController
                  and promedio.periodo_idPeriodo=$numeroPeriodo  and notap.anio_idAnio = $anioMat
                  and notap.anio_idAnio=$globalYear and promedio.anio_idAnio = $globalYear
                   and matricula.anio_idAnio=$globalYear  and alumno.sede ='$sedeGlobal'
-                order by alumno.nombre asc"; ///////////// CAMBIAR POR PROMEDIO VALOR OJOOOOOOOOOOOOOOOOOOOOOO
+                  order by promedio.valor desc"; ///////////// CAMBIAR POR PROMEDIO VALOR OJOOOOOOOOOOOOOOOOOOOOOO
             } // En estas 2 sql guardo la lista de alumnos
 
             elseif(intval($gradoAlumno) == 13){
@@ -121,30 +123,35 @@ class BoletinController extends AppController
                  on alumno.matricula_idMatricula=matricula.idMatricula inner join estado 
                  on alumno.estado_idEstado= estado.idEstado inner join grado on 
                  alumno.grado_idGrado=grado.idGrado inner join periodo on 
-                 notap.periodo_idPeriodo=periodo.idPeriodo inner join promedio on alumno.idAlumno=promedio.alumno_idAlumno
+                 notap.periodo_idPeriodo=periodo.idPeriodo 
+                  inner join promedio on alumno.idAlumno=promedio.alumno_idAlumno
                   where matricula.anio_idAnio=$anioMat
                   and estado.tipoEstado='Activo' and notap.periodo_idPeriodo=$numeroPeriodo 
                   and notap.grado_idGrado=$gradoAlumno and  materia.nombreMateria='CORPORAL' and alumno.grado_idGrado = $gradoAlumno
                     and logros.periodo_idPeriodo=$numeroPeriodo and materia.gradoMateria=$gradoAlumno 
-                    and promedio.periodo_idPeriodo=$numeroPeriodo  and notap.anio_idAnio = $anioMat and matricula.anio_idAnio=$globalYear  and alumno.sede ='$sedeGlobal'
-                   order by promedio.valor desc";
+                    and promedio.periodo_idPeriodo=$numeroPeriodo  and notap.anio_idAnio = $anioMat
+                    and notap.anio_idAnio=$globalYear and promedio.anio_idAnio = $globalYear
+                     and matricula.anio_idAnio=$globalYear  and alumno.sede ='$sedeGlobal'
+                     order by promedio.valor desc";
 
             }
             else {
                 $sql = "SELECT * from notap inner join alumno on notap.alumno_idAlumno=alumno.idAlumno
-             inner join materia on notap.materia_idMateria=materia.idMateria inner join
-              logros on materia.idMateria=logros.materia_idMateria inner join matricula 
-              on alumno.matricula_idMatricula=matricula.idMatricula inner join estado 
-              on alumno.estado_idEstado= estado.idEstado inner join grado on 
-              alumno.grado_idGrado=grado.idGrado inner join periodo on 
-              notap.periodo_idPeriodo=periodo.idPeriodo inner join promedio on alumno.idAlumno=promedio.alumno_idAlumno 
-              where matricula.anio_idAnio=$anioMat
-               and estado.tipoEstado='Activo' and notap.periodo_idPeriodo=$numeroPeriodo 
-               and notap.grado_idGrado=$gradoAlumno and materia.nombreMateria='PROYECTO' and alumno.grado_idGrado = $gradoAlumno
-               and logros.periodo_idPeriodo=$numeroPeriodo and materia.gradoMateria=$gradoAlumno
-                and promedio.periodo_idPeriodo=$numeroPeriodo and matricula.anio_idAnio=$globalYear and promedio.anio_idAnio = $globalYear
-                 and alumno.sede ='$sedeGlobal'
-                order by promedio.valor desc";
+                inner join materia on notap.materia_idMateria=materia.idMateria inner join
+                 logros on materia.idMateria=logros.materia_idMateria inner join matricula 
+                 on alumno.matricula_idMatricula=matricula.idMatricula inner join estado 
+                 on alumno.estado_idEstado= estado.idEstado inner join grado on 
+                 alumno.grado_idGrado=grado.idGrado inner join periodo on 
+                 notap.periodo_idPeriodo=periodo.idPeriodo 
+                  inner join promedio on alumno.idAlumno=promedio.alumno_idAlumno
+                  where matricula.anio_idAnio=$anioMat
+                  and estado.tipoEstado='Activo' and notap.periodo_idPeriodo=$numeroPeriodo 
+                  and notap.grado_idGrado=$gradoAlumno and  materia.nombreMateria='PROYECTO' and alumno.grado_idGrado = $gradoAlumno
+                    and logros.periodo_idPeriodo=$numeroPeriodo and materia.gradoMateria=$gradoAlumno 
+                    and promedio.periodo_idPeriodo=$numeroPeriodo  and notap.anio_idAnio = $anioMat
+                    and notap.anio_idAnio=$globalYear and promedio.anio_idAnio = $globalYear
+                     and matricula.anio_idAnio=$globalYear  and alumno.sede ='$sedeGlobal'
+                     order by promedio.valor desc";
             }
 
 
@@ -170,39 +177,41 @@ class BoletinController extends AppController
             } elseif(intval($gradoAlumno) == 13){
 
                 $sql2 = "SELECT COUNT(*) as cuenta from notap inner join alumno on notap.alumno_idAlumno=alumno.idAlumno
-             inner join materia on notap.materia_idMateria=materia.idMateria inner join
-              logros on materia.idMateria=logros.materia_idMateria inner join matricula 
-              on alumno.matricula_idMatricula=matricula.idMatricula inner join estado 
-              on alumno.estado_idEstado= estado.idEstado inner join grado on 
-              alumno.grado_idGrado=grado.idGrado inner join periodo on 
-              notap.periodo_idPeriodo=periodo.idPeriodo inner join promedio on alumno.idAlumno=promedio.alumno_idAlumno
-               where matricula.anio_idAnio=$anioMat
-               and estado.tipoEstado='Activo' and notap.periodo_idPeriodo=$numeroPeriodo 
-               and notap.grado_idGrado=$gradoAlumno and  materia.nombreMateria='CORPORAL' and alumno.grado_idGrado = $gradoAlumno
-                 and logros.periodo_idPeriodo=$numeroPeriodo and materia.gradoMateria=$gradoAlumno 
-                 and promedio.periodo_idPeriodo=$numeroPeriodo 
-                 and promedio.anio_idAnio = $globalYear
-                  and matricula.anio_idAnio=$globalYear  and alumno.sede ='$sedeGlobal'
-                order by promedio.valor desc";
+                inner join materia on notap.materia_idMateria=materia.idMateria inner join
+                 logros on materia.idMateria=logros.materia_idMateria inner join matricula 
+                 on alumno.matricula_idMatricula=matricula.idMatricula inner join estado 
+                 on alumno.estado_idEstado= estado.idEstado inner join grado on 
+                 alumno.grado_idGrado=grado.idGrado inner join periodo on 
+                 notap.periodo_idPeriodo=periodo.idPeriodo 
+                  inner join promedio on alumno.idAlumno=promedio.alumno_idAlumno
+                  where matricula.anio_idAnio=$anioMat
+                  and estado.tipoEstado='Activo' and notap.periodo_idPeriodo=$numeroPeriodo 
+                  and notap.grado_idGrado=$gradoAlumno and  materia.nombreMateria='CORPORAL' and alumno.grado_idGrado = $gradoAlumno
+                    and logros.periodo_idPeriodo=$numeroPeriodo and materia.gradoMateria=$gradoAlumno 
+                    and promedio.periodo_idPeriodo=$numeroPeriodo  and notap.anio_idAnio = $anioMat
+                    and notap.anio_idAnio=$globalYear and promedio.anio_idAnio = $globalYear
+                     and matricula.anio_idAnio=$globalYear  and alumno.sede ='$sedeGlobal'
+                   order by promedio.valor desc";
             } 
             
             
             else {
                 $sql2 = "SELECT COUNT(*) as cuenta from notap inner join alumno on notap.alumno_idAlumno=alumno.idAlumno
-             inner join materia on notap.materia_idMateria=materia.idMateria inner join
-              logros on materia.idMateria=logros.materia_idMateria inner join matricula 
-              on alumno.matricula_idMatricula=matricula.idMatricula inner join estado 
-              on alumno.estado_idEstado= estado.idEstado inner join grado on 
-              alumno.grado_idGrado=grado.idGrado inner join periodo on 
-              notap.periodo_idPeriodo=periodo.idPeriodo inner join promedio on alumno.idAlumno=promedio.alumno_idAlumno 
-              where matricula.anio_idAnio=$anioMat
-               and estado.tipoEstado='Activo' and notap.periodo_idPeriodo=$numeroPeriodo 
-               and notap.grado_idGrado=$gradoAlumno and materia.nombreMateria='PROYECTO' and alumno.grado_idGrado = $gradoAlumno
-               and logros.periodo_idPeriodo=$numeroPeriodo and materia.gradoMateria=$gradoAlumno
-                and promedio.periodo_idPeriodo=$numeroPeriodo and matricula.anio_idAnio=$globalYear
-                and promedio.anio_idAnio = $globalYear
-                  and alumno.sede ='$sedeGlobal'
-                order by promedio.valor desc ";
+                inner join materia on notap.materia_idMateria=materia.idMateria inner join
+                 logros on materia.idMateria=logros.materia_idMateria inner join matricula 
+                 on alumno.matricula_idMatricula=matricula.idMatricula inner join estado 
+                 on alumno.estado_idEstado= estado.idEstado inner join grado on 
+                 alumno.grado_idGrado=grado.idGrado inner join periodo on 
+                 notap.periodo_idPeriodo=periodo.idPeriodo 
+                  inner join promedio on alumno.idAlumno=promedio.alumno_idAlumno
+                  where matricula.anio_idAnio=$anioMat
+                  and estado.tipoEstado='Activo' and notap.periodo_idPeriodo=$numeroPeriodo 
+                  and notap.grado_idGrado=$gradoAlumno and  materia.nombreMateria='PROYECTO' and alumno.grado_idGrado = $gradoAlumno
+                    and logros.periodo_idPeriodo=$numeroPeriodo and materia.gradoMateria=$gradoAlumno 
+                    and promedio.periodo_idPeriodo=$numeroPeriodo  and notap.anio_idAnio = $anioMat
+                    and notap.anio_idAnio=$globalYear and promedio.anio_idAnio = $globalYear
+                     and matricula.anio_idAnio=$globalYear  and alumno.sede ='$sedeGlobal'
+                   order by promedio.valor desc ";
             }
             $this->listaAlumnos        = $alumno->find_all_by_sql($sql); //ya está cargando sus notas
             $this->number              = $alumno->find_by_sql($sql2);
@@ -227,7 +236,7 @@ class BoletinController extends AppController
 
 
              $sqlCom                      = "SELECT * from notap inner join alumno on notap.alumno_idAlumno=alumno.idAlumno
-              inner join materia on notap.materia_idMateria=materia.idMateria inner join
+                          inner join materia on notap.materia_idMateria=materia.idMateria inner join
                logros on materia.idMateria=logros.materia_idMateria inner join matricula 
                on alumno.matricula_idMatricula=matricula.idMatricula inner join estado 
                on alumno.estado_idEstado= estado.idEstado inner join grado on 
@@ -418,7 +427,7 @@ class BoletinController extends AppController
               alumno.grado_idGrado=grado.idGrado inner join periodo on 
               notap.periodo_idPeriodo=periodo.idPeriodo inner join promedio on alumno.idAlumno=promedio.alumno_idAlumno
                where matricula.anio_idAnio=$anioMat
-               and estado.tipoEstado='Activo' and notap.periodo_idPeriodo=$numeroPeriodo 
+               and estado.tipoEstado='Activo' and notap.periodo_idPeriodo=$numeroPeriodo and notap.anio_idAnio= $globalYear
                and notap.grado_idGrado=$gradoAlumno and  materia.nombreMateria='EDUCACION FISICA' and alumno.grado_idGrado = $gradoAlumno
                  and logros.periodo_idPeriodo=$numeroPeriodo and materia.gradoMateria=$gradoAlumno 
                  and promedio.periodo_idPeriodo=$numeroPeriodo and matricula.anio_idAnio=$globalYear  and alumno.sede ='$sedeGlobal'
