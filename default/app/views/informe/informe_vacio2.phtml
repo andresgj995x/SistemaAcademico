@@ -148,8 +148,8 @@ $html.=' <td class="text-center"></td></tr> ';
 </div>';
 
 
-$mpdf = new mPDF('c', 'Letter-L');
-$mpdf->debug = true;
+//$mpdf = new mPDF('c', 'Letter-L');
+//$mpdf->debug = true;
 
 $html = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
 $mpdf->WriteHTML($css, 1);

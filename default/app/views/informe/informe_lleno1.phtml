@@ -147,8 +147,8 @@ $html.=' <td class="text-center">'.($i+1) .'</td></tr> ';
 </div>';
 
 
-$mpdf = new mPDF('c', 'Letter-L');
-$mpdf->debug = true;
+$mpdf = new mPDF('utf-8', array(330,216));
+
 
 $html = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
 $mpdf->WriteHTML($css, 1);
