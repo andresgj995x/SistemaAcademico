@@ -233,7 +233,7 @@ class AlumnoController extends AppController
 
    /* GENERADOR DE PROMEDIOS ANUALES PARA CADA ESTUDIANTE CREADO*/
 
-   
+
 
   if($tempG==13){  
 	   for ($i = 1; $i < 8; $i++) {
@@ -299,6 +299,10 @@ class AlumnoController extends AppController
     }
 	   }
 
+     /*
+       TO DO
+       Acomodar las iteraciones desde 6to a 9, luego de 10 y 11 dependiendo de las materias dichas, cambiar i en for loop.
+      */
   }elseif($tempG==6){
 	 for ($i = 61; $i < 74; $i++) {
     $sql = "INSERT INTO promedioanual (valor,anio_idAnio,alumno_idAlumno,materia_idMateria)
@@ -350,6 +354,10 @@ class AlumnoController extends AppController
 	   }
 
   }
+
+  /* TO DO
+    Anadir elseif para grado 11 cuando se sepan las materias finales, asi se sabra el ID del for loop.
+   */
 
 
   else{
@@ -852,11 +860,11 @@ VALUES (0,0,0,0,0,0,0,0,0,0,$globalYear,$tempID,$i,2,$tempG,$j)";
    }
    if($celMadreA == 0){
 
-     $celMadreA=0000;
+     $celMadreA=0;
    }
    if($celPadreA == 0){
 
-     $celPadreA=0000;
+     $celPadreA=0;
    }
 
 
